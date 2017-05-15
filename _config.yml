@@ -69,7 +69,7 @@ theme: next
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type:git
-  repo:https://github.com/alonelaval/blog.git
-  branch:master
-  message:huawei的博客更新
+  type: git
+  repo: git@www.alonelaval.com:/home/git/blog.git
+  branch: master
+  message:  huawei的博客更新
