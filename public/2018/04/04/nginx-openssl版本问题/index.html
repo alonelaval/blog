@@ -1,0 +1,769 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="nginx,openssl," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="出现异常的方式相同配置的两台nginx服务器，其中一台访问正常。其中一台访问的时候，浏览器502.由于证书都是自签名，并且配置文件和证书文件都是直接拷贝过去，基本排查配置的问题。 错误机器的异常日志/var/log/nginx/error.log隐藏了部分IP和host,采用xxxx代替，其中基本错误都是这种类型 1234562018/04/04 13:53:55 [error] 5342#0:">
+<meta name="keywords" content="nginx,openssl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记一次nginx，https502异常">
+<meta property="og:url" content="http://alonelaval.com/2018/04/04/nginx-openssl版本问题/index.html">
+<meta property="og:site_name" content="无言">
+<meta property="og:description" content="出现异常的方式相同配置的两台nginx服务器，其中一台访问正常。其中一台访问的时候，浏览器502.由于证书都是自签名，并且配置文件和证书文件都是直接拷贝过去，基本排查配置的问题。 错误机器的异常日志/var/log/nginx/error.log隐藏了部分IP和host,采用xxxx代替，其中基本错误都是这种类型 1234562018/04/04 13:53:55 [error] 5342#0:">
+<meta property="og:updated_time" content="2018-04-04T07:03:22.900Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="记一次nginx，https502异常">
+<meta name="twitter:description" content="出现异常的方式相同配置的两台nginx服务器，其中一台访问正常。其中一台访问的时候，浏览器502.由于证书都是自签名，并且配置文件和证书文件都是直接拷贝过去，基本排查配置的问题。 错误机器的异常日志/var/log/nginx/error.log隐藏了部分IP和host,采用xxxx代替，其中基本错误都是这种类型 1234562018/04/04 13:53:55 [error] 5342#0:">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://alonelaval.com/2018/04/04/nginx-openssl版本问题/"/>
+
+
+
+
+
+  <title>记一次nginx，https502异常 | 无言</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">无言</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">不语</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://alonelaval.com/2018/04/04/nginx-openssl版本问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="huawei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1763449.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="无言">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                记一次nginx，https502异常
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-04T13:57:23+08:00">
+                2018-04-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">nginx</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="出现异常的方式"><a href="#出现异常的方式" class="headerlink" title="出现异常的方式"></a>出现异常的方式</h2><p>相同配置的两台nginx服务器，其中一台访问正常。其中一台访问的时候，浏览器502.由于证书都是自签名，并且配置文件和证书文件都是直接拷贝过去，基本排查配置的问题。</p>
+<h3 id="错误机器的异常日志-var-log-nginx-error-log"><a href="#错误机器的异常日志-var-log-nginx-error-log" class="headerlink" title="错误机器的异常日志/var/log/nginx/error.log"></a>错误机器的异常日志/var/log/nginx/error.log</h3><p>隐藏了部分IP和host,采用xxxx代替，其中基本错误都是这种类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">2018/04/04 13:53:55 [error] 5342#0: *3468 SSL_do_handshake() failed (SSL: error:100AE081:elliptic curve routines:EC_GROUP_new_by_curve_name:unknown group error:1408D010:SSL routines:SSL3_GET_KEY_EXCHANGE:EC lib) while SSL handshaking to upstream, client: xxxxx, server: xxxx, request: &quot;POST /platformService?wsdl HTTP/1.1&quot;, upstream: &quot;https://10.1.152.9:8444/platformService?wsdl&quot;, host: &quot;xxxx&quot;   </div><div class="line">2018/04/04 13:53:55 [error] 5342#0: *3468 SSL_do_handshake() failed (SSL: error:100AE081:elliptic curve routines:EC_GROUP_new_by_curve_name:unknown group error:1408D010:SSL routines:SSL3_GET_KEY_EXCHANGE:EC lib) while SSL handshaking to upstream, client: xxxxx, server: xxxx, request: &quot;POST /platformService?wsdl HTTP/1.1&quot;, upstream: &quot;https://10.1.152.9:8445/platformService?wsdl&quot;, host: &quot;xxxx&quot;</div><div class="line">2018/04/04 13:53:55 [error] 5342#0: *3571 no live upstreams while connecting to upstream, client: xxxx, server: xxxx, request: &quot;POST /platformService?wsdl HTTP/1.1&quot;, upstream: &quot;https://jk/platformService?wsdl&quot;, host: &quot;xxxxx&quot;   </div><div class="line">2018/04/04 13:53:55 [error] 5342#0: *3468 SSL_do_handshake() failed (SSL: error:100AE081:elliptic curve routines:EC_GROUP_new_by_curve_name:unknown group error:1408D010:SSL routines:SSL3_GET_KEY_EXCHANGE:EC lib) while SSL handshaking to upstream, client: xxxx, server: xxxx, request: &quot;POST /platformService?wsdl HTTP/1.1&quot;, upstream: &quot;https://10.1.152.9:8444/platformService?wsdl&quot;, host: &quot;xxxxx&quot;   </div><div class="line">2018/04/04 13:53:56 [error] 5342#0: *3468 SSL_do_handshake() failed (SSL: error:100AE081:elliptic curve routines:EC_GROUP_new_by_curve_name:unknown group error:1408D010:SSL routines:SSL3_GET_KEY_EXCHANGE:EC lib) while SSL handshaking to upstream, client: xxxxx, server: xxxx, request: &quot;POST /platformService?wsdl HTTP/1.1&quot;, upstream: &quot;https://10.1.152.9:8445/platformService?wsdl&quot;, host: &quot;xxxx&quot;   </div><div class="line">2018/04/04 13:53:56 [error] 5342#0: *3468 no live upstreams while connecting to upstream, client: xxxx, server: xxxx, request: &quot;POST /platformService?wsdl HTTP/1.1&quot;, upstream: &quot;https://jk/platformService?wsdl&quot;, host: &quot;xxxxx&quot;</div></pre></td></tr></table></figure>
+<p>正常机器没有出现异常。</p>
+<h3 id="解决问题思路"><a href="#解决问题思路" class="headerlink" title="解决问题思路"></a>解决问题思路</h3><p>可以看出，在访问 <a href="https://10.1.152.9:8444/platformService?wsdl" target="_blank" rel="external">https://10.1.152.9:8444/platformService?wsdl</a> 内部地址时，出现了异常，那该地址去控制台访问，<br>wget <a href="https://10.1.152.9:8444/platformService?wsdl，发现异常如下：" target="_blank" rel="external">https://10.1.152.9:8444/platformService?wsdl，发现异常如下：</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">OpenSSL: error:100AE081:elliptic curve routines:EC_GROUP_new_by_curve_name:unknown group</div><div class="line">OpenSSL: error:1408D010:SSL routines:SSL3_GET_KEY_EXCHANGE:EC lib</div><div class="line">无法建立 SSL 连接。</div></pre></td></tr></table></figure>
+<p>在正常机器 10.1.152.8 访问 wget <a href="https://10.1.152.8:8444/platformService?wsdl：" target="_blank" rel="external">https://10.1.152.8:8444/platformService?wsdl：</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">正在连接 10.1.152.8:8444... 已连接。</div><div class="line">错误: 无法验证 10.1.152.8 的由 “/C=CN/O=WoSign CA Limited/CN=CA xxxxx G2” 颁发的证书:</div><div class="line">  	颁发的证书已经过期。</div><div class="line">   	 错误: certificate common name “xxxx” doesn&apos;t match requested host name “10.1.152.8”.</div><div class="line">要以不安全的方式连接至 10.1.152.8，使用‘--no-check-certificate’。</div></pre></td></tr></table></figure>
+<p>由于不是很严格的自签名证书，正常的异常。</p>
+<h3 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h3><p><strong>系统版本号:RHEL / CentOS 6.5</strong><br><strong>Root Cause:</strong> The OpenSSL library available and installed by default on RHEL/CentOS 6.5 has a bug. Refer to     <a href="https://bugzilla.redhat.com/show_bug.cgi?id=1025598" target="_blank" rel="external">BUG</a> for detailed information on the bug.<br>大意是该版本的系统的openssl有bug需要升级<br>1.查看系统openssl版本:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rpm -qa | grep openssl</div><div class="line">openssl-1.0.1e-15.el6.x86_64</div></pre></td></tr></table></figure>
+<p>2.升级系统版本：  </p>
+<pre><code class="：">yum -y upgrade openssl
+openssl-1.0.1e-57.el6.x86_64
+</code></pre>
+<p>升级后浏览器访问恢复正常！</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/nginx/" rel="tag"># nginx</a>
+          
+            <a href="/tags/openssl/" rel="tag"># openssl</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/01/java 垃圾回收/" rel="next" title="java 垃圾回收">
+                <i class="fa fa-chevron-left"></i> java 垃圾回收
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/04/leetcode1/" rel="prev" title="leetcode算法，查找指定数和的元素的索引">
+                leetcode算法，查找指定数和的元素的索引 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/1763449.jpeg"
+               alt="huawei" />
+          <p class="site-author-name" itemprop="name">huawei</p>
+           
+              <p class="site-description motion-element" itemprop="description">1</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/alonelaval" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#出现异常的方式"><span class="nav-number">1.</span> <span class="nav-text">出现异常的方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#错误机器的异常日志-var-log-nginx-error-log"><span class="nav-number">1.1.</span> <span class="nav-text">错误机器的异常日志/var/log/nginx/error.log</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决问题思路"><span class="nav-number">1.2.</span> <span class="nav-text">解决问题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方法："><span class="nav-number">1.3.</span> <span class="nav-text">解决方法：</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">huawei</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

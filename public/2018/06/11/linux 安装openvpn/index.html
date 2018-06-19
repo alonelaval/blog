@@ -1,0 +1,771 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="linux,centos6.5,openvpn," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="安装openvpn,easy-rsa软件1yum install -y openvpn easy-rsa 拷贝文件123cp /usr/share/doc/openvpn-2.4.6/sample/sample-config-files/server.conf /etc/openvpn/cp -r /usr/share/easy-rsa/3.0.3/* /etc/openvpn/ 使用easy-r">
+<meta name="keywords" content="linux,centos6.5,openvpn">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux 安装openvpn">
+<meta property="og:url" content="http://alonelaval.com/2018/06/11/linux 安装openvpn/index.html">
+<meta property="og:site_name" content="无言">
+<meta property="og:description" content="安装openvpn,easy-rsa软件1yum install -y openvpn easy-rsa 拷贝文件123cp /usr/share/doc/openvpn-2.4.6/sample/sample-config-files/server.conf /etc/openvpn/cp -r /usr/share/easy-rsa/3.0.3/* /etc/openvpn/ 使用easy-r">
+<meta property="og:updated_time" content="2018-06-11T07:38:45.322Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="linux 安装openvpn">
+<meta name="twitter:description" content="安装openvpn,easy-rsa软件1yum install -y openvpn easy-rsa 拷贝文件123cp /usr/share/doc/openvpn-2.4.6/sample/sample-config-files/server.conf /etc/openvpn/cp -r /usr/share/easy-rsa/3.0.3/* /etc/openvpn/ 使用easy-r">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://alonelaval.com/2018/06/11/linux 安装openvpn/"/>
+
+
+
+
+
+  <title>linux 安装openvpn | 无言</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">无言</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">不语</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://alonelaval.com/2018/06/11/linux 安装openvpn/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="huawei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1763449.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="无言">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                linux 安装openvpn
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-11T13:39:23+08:00">
+                2018-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/系统/" itemprop="url" rel="index">
+                    <span itemprop="name">系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="安装openvpn-easy-rsa软件"><a href="#安装openvpn-easy-rsa软件" class="headerlink" title="安装openvpn,easy-rsa软件"></a>安装openvpn,easy-rsa软件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install -y openvpn easy-rsa</div></pre></td></tr></table></figure>
+<h3 id="拷贝文件"><a href="#拷贝文件" class="headerlink" title="拷贝文件"></a>拷贝文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cp /usr/share/doc/openvpn-2.4.6/sample/sample-config-files/server.conf /etc/openvpn/</div><div class="line"></div><div class="line">cp -r /usr/share/easy-rsa/3.0.3/* /etc/openvpn/</div></pre></td></tr></table></figure>
+<h3 id="使用easy-rsa生成服务器端证书"><a href="#使用easy-rsa生成服务器端证书" class="headerlink" title="使用easy-rsa生成服务器端证书"></a>使用easy-rsa生成服务器端证书</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">cd /etc/openvpn</div><div class="line"></div><div class="line">./easyrsa init-pki  #创建空的pki，创建后会多一个pki的目录，初始化后，不要再初始化了。</div><div class="line">./easyrsa build-ca nopass #创建新的CA，不使用密码，一路回车</div><div class="line">./easyrsa gen-req server nopass #创建服务端证书，一路回车</div><div class="line">./easyrsa sign server server #使用CA证书对服务器端证书，进行签名</div><div class="line">./easyrsa gen-dh #创建 Diffie-Hellman，一种密钥交换算法</div></pre></td></tr></table></figure>
+<h3 id="使用easy-rsa生成客户端证书"><a href="#使用easy-rsa生成客户端证书" class="headerlink" title="使用easy-rsa生成客户端证书"></a>使用easy-rsa生成客户端证书</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">./easyrsa gen-req test nopass</div><div class="line">./easyrsa sign client test</div></pre></td></tr></table></figure>
+<h3 id="查看easy-rsa创建的pki目录结构"><a href="#查看easy-rsa创建的pki目录结构" class="headerlink" title="查看easy-rsa创建的pki目录结构"></a>查看easy-rsa创建的pki目录结构</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">tree</div><div class="line">.</div><div class="line">├── ca.crt</div><div class="line">├── certs_by_serial</div><div class="line">│   ├── 4F6A847EF9A70413EA6E24BFD6AAA3CE.pem</div><div class="line">│   └── C2833F45701214C377138DC1303D7935.pem</div><div class="line">├── dh.pem</div><div class="line">├── index.txt</div><div class="line">├── index.txt.attr</div><div class="line">├── index.txt.attr.old</div><div class="line">├── index.txt.old</div><div class="line">├── issued</div><div class="line">│   ├── server.crt</div><div class="line">│   └── test.crt</div><div class="line">├── private</div><div class="line">│   ├── server.key</div><div class="line">│   ├── ca.key</div><div class="line">│   └── test.key</div><div class="line">├── reqs</div><div class="line">│   ├── server.req</div><div class="line">│   └── test.req</div><div class="line">├── serial</div><div class="line">└── serial.old</div></pre></td></tr></table></figure>
+<h3 id="生成ta-key文件"><a href="#生成ta-key文件" class="headerlink" title="生成ta.key文件"></a>生成ta.key文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">openvpn --genkey --secret /etc/openvpn/ta.key</div></pre></td></tr></table></figure>
+<h3 id="编辑服务配置文件-vim-etc-openvpn-server-conf"><a href="#编辑服务配置文件-vim-etc-openvpn-server-conf" class="headerlink" title="编辑服务配置文件 vim /etc/openvpn/server.conf"></a>编辑服务配置文件 vim /etc/openvpn/server.conf</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div></pre></td><td class="code"><pre><div class="line">;local a.b.c.d</div><div class="line"></div><div class="line"># 设置监听端口，必须要对应的在防火墙里面打开</div><div class="line">port 1194</div><div class="line"></div><div class="line"># 设置用TCP还是UDP协议？</div><div class="line">;proto tcp</div><div class="line">proto tcp</div><div class="line"></div><div class="line"># 设置创建tun的路由IP通道，还是创建tap的以太网通道，由于路由IP容易控制，所以推荐使用tunnel；</div><div class="line"># 但如果如IPX等必须使用第二层才能通过的通讯，则可以用tap方式，tap也就是以太网桥接</div><div class="line">;dev tap</div><div class="line">dev tun</div><div class="line"></div><div class="line"># 这里是重点，必须指定SSL/TLS root certificate (ca),</div><div class="line"># certificate(cert), and private key (key)</div><div class="line"># ca文件是服务端和客户端都必须使用的，但不需要ca.key</div><div class="line"># 服务端和客户端指定各自的.crt和.key</div><div class="line"># 请注意路径,可以使用以配置文件开始为根的相对路径,</div><div class="line"># 也可以使用绝对路径</div><div class="line"># 请小心存放.key密钥文件</div><div class="line"></div><div class="line">ca pki/ca.crt</div><div class="line">cert pki/issued/server.crt</div><div class="line">key pki/private/server.key</div><div class="line">#（默认是2048，如果生成ca的时候修改过dh参数“export KEY_SIZE”则改为对应的数字）</div><div class="line"></div><div class="line">dh pki/dh.pem</div><div class="line"></div><div class="line"># 配置VPN使用的网段，OpenVPN会自动提供基于该网段的DHCP服务，但不能和任何一方的局域网段重复，保证唯一</div><div class="line">server 10.20.0.0 255.255.255.0</div><div class="line"></div><div class="line"># 维持一个客户端和virtual IP的对应表，以方便客户端重新连接可以获得同样的IP</div><div class="line">ifconfig-pool-persist ipp.txt</div><div class="line"></div><div class="line"># 为客户端创建对应的路由，以另其通达公司网内部服务器</div><div class="line"># 但记住，公司网内部服务器也需要有可用路由返回到客户端</div><div class="line">;push &quot;route 192.168.20.0 255.255.255.0&quot;</div><div class="line">push &quot;route 10.X.0.0 255.255.0.0&quot;</div><div class="line"># （X按照机房网段修改）</div><div class="line"></div><div class="line"># 若客户端希望所有的流量都通过VPN传输,则可以使用该语句</div><div class="line"># 其会自动改变客户端的网关为VPN服务器,推荐关闭</div><div class="line">#一旦设置，请小心服务端的DHCP设置问题</div><div class="line">;push &quot;redirect-gateway def1 bypass-dhcp&quot;</div><div class="line"></div><div class="line"># 用OpenVPN的DHCP功能为客户端提供指定的DNS、WINS等</div><div class="line">;push &quot;dhcp-option DNS 208.67.222.222&quot;</div><div class="line">;push &quot;dhcp-option DNS 208.67.220.220&quot;</div><div class="line"></div><div class="line"># 默认客户端之间是不能直接通讯的，除非把下面的语句注释掉</div><div class="line">client-to-client</div><div class="line"></div><div class="line"># 下面是一些对安全性增强的措施</div><div class="line"># For extra security beyond that provided by SSL/TLS, create an &quot;HMAC firewall&quot;</div><div class="line"># to help block DoS attacks and UDP port flooding.</div><div class="line">#</div><div class="line"># Generate with:</div><div class="line"># openvpn --genkey --secret ta.key</div><div class="line">#</div><div class="line"># The server and each client must have a copy of this key.</div><div class="line"># The second parameter should be 0 on the server and 1 on the clients.</div><div class="line">; tls-auth ta.key 0 # This file is secret</div><div class="line">#(这句要注释掉)</div><div class="line"></div><div class="line"># 使用lzo压缩的通讯,服务端和客户端都必须配置</div><div class="line">comp-lzo</div><div class="line"></div><div class="line"># 输出短日志,每分钟刷新一次,以显示当前的客户端</div><div class="line">status /var/log/openvpn/openvpn-status.log</div><div class="line"></div><div class="line"># 缺省日志会记录在系统日志中，但也可以导向到其他地方</div><div class="line"># 建议调试的使用先不要设置,调试完成后再定义</div><div class="line">log         /var/log/openvpn/openvpn.log</div><div class="line">log-append  /var/log/openvpn/openvpn.log</div><div class="line"></div><div class="line"># 设置日志的级别</div><div class="line">#</div><div class="line"># 0 is silent, except for fatal errors</div><div class="line"># 4 is reasonable for general usage</div><div class="line"># 5 and 6 can help to debug connection problems</div><div class="line"># 9 is extremely verbose</div><div class="line">verb 3</div></pre></td></tr></table></figure>
+<h3 id="启动服务："><a href="#启动服务：" class="headerlink" title="启动服务："></a>启动服务：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">service openvpn start</div><div class="line">#设置开机启动</div><div class="line">chkconfig openvpn on</div></pre></td></tr></table></figure>
+<h3 id="开启路由转发功能"><a href="#开启路由转发功能" class="headerlink" title="开启路由转发功能"></a>开启路由转发功能</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">vim /etc/sysctl.conf</div><div class="line"></div><div class="line">找到net.ipv4.ip_forward = 0</div><div class="line">把0改成1</div><div class="line">sysctl -p #生效</div></pre></td></tr></table></figure>
+<h3 id="设置防火墙"><a href="#设置防火墙" class="headerlink" title="设置防火墙"></a>设置防火墙</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># 设置iptables（这一条至关重要，通过配置nat将vpn网段IP转发到server内网）</div><div class="line">iptables -t nat -A POSTROUTING -s 10.20.0.0/24 -o eth0 -j MASQUERADE</div><div class="line"># openvpn端口通过</div><div class="line">iptables -A INPUT -p TCP --dport 1194 -j ACCEPT</div><div class="line">iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT</div><div class="line">service iptables save</div></pre></td></tr></table></figure>
+<h3 id="创建客户端文件"><a href="#创建客户端文件" class="headerlink" title="创建客户端文件"></a>创建客户端文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd /home/test</div><div class="line">vim test.opvn</div></pre></td></tr></table></figure>
+<p>填入内容 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">client</div><div class="line">dev tun</div><div class="line">proto tcp</div><div class="line">remote xxx.xxx.xxx.xxx 1194</div><div class="line">ca ca.crt</div><div class="line">cert test.crt</div><div class="line">key test.key</div><div class="line">comp-lzo</div><div class="line">persist-key</div><div class="line">persist-tun</div></pre></td></tr></table></figure>
+<h3 id="拷贝客户端文件"><a href="#拷贝客户端文件" class="headerlink" title="拷贝客户端文件"></a>拷贝客户端文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cp /etc/openvpn/pki/ca.crt /home/test</div><div class="line">cp /etc/openvpn/pki/issued/test.crt /home/test</div><div class="line">cp /etc/openvpn/pki/private/test.key /home/test</div><div class="line">cp /etc/openvpn/ta.key /home/test</div></pre></td></tr></table></figure>
+<h3 id="打包下载文件"><a href="#打包下载文件" class="headerlink" title="打包下载文件"></a>打包下载文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cd /home/test</div><div class="line">zip test.zip *</div><div class="line">sz test.zip</div></pre></td></tr></table></figure>
+<p>下载openvpn客户端，打开test.opvn，即可连上服务器了。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+            <a href="/tags/centos6-5/" rel="tag"># centos6.5</a>
+          
+            <a href="/tags/openvpn/" rel="tag"># openvpn</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/31/jdk1.8安装/" rel="next" title="centos 6.5安装JDK1.8">
+                <i class="fa fa-chevron-left"></i> centos 6.5安装JDK1.8
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/11/linux磁盘格式化/" rel="prev" title="linux 磁盘格式化">
+                linux 磁盘格式化 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/1763449.jpeg"
+               alt="huawei" />
+          <p class="site-author-name" itemprop="name">huawei</p>
+           
+              <p class="site-description motion-element" itemprop="description">1</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/alonelaval" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装openvpn-easy-rsa软件"><span class="nav-number">1.</span> <span class="nav-text">安装openvpn,easy-rsa软件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拷贝文件"><span class="nav-number">2.</span> <span class="nav-text">拷贝文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用easy-rsa生成服务器端证书"><span class="nav-number">3.</span> <span class="nav-text">使用easy-rsa生成服务器端证书</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用easy-rsa生成客户端证书"><span class="nav-number">4.</span> <span class="nav-text">使用easy-rsa生成客户端证书</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看easy-rsa创建的pki目录结构"><span class="nav-number">5.</span> <span class="nav-text">查看easy-rsa创建的pki目录结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成ta-key文件"><span class="nav-number">6.</span> <span class="nav-text">生成ta.key文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编辑服务配置文件-vim-etc-openvpn-server-conf"><span class="nav-number">7.</span> <span class="nav-text">编辑服务配置文件 vim /etc/openvpn/server.conf</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动服务："><span class="nav-number">8.</span> <span class="nav-text">启动服务：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开启路由转发功能"><span class="nav-number">9.</span> <span class="nav-text">开启路由转发功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置防火墙"><span class="nav-number">10.</span> <span class="nav-text">设置防火墙</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建客户端文件"><span class="nav-number">11.</span> <span class="nav-text">创建客户端文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拷贝客户端文件"><span class="nav-number">12.</span> <span class="nav-text">拷贝客户端文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打包下载文件"><span class="nav-number">13.</span> <span class="nav-text">打包下载文件</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">huawei</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

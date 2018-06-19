@@ -270,12 +270,12 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://alonelaval.com/2017/05/01/hive表的创建/">
+    <link itemprop="mainEntityOfPage" href="http://alonelaval.com/2018/06/11/spark pyspark /">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="huawei">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/1763449.jepg">
+      <meta itemprop="image" content="/images/1763449.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -292,8 +292,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/05/01/hive表的创建/" itemprop="url">
-                  hive表创建的几种方式
+                <a class="post-title-link" href="/2018/06/11/spark pyspark /" itemprop="url">
+                  未命名
                 </a>
               
             
@@ -309,8 +309,131 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-01T13:39:23+08:00">
-                2017-05-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-11T16:27:07+08:00">
+                2018-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Spark-运行Bug"><a href="#Spark-运行Bug" class="headerlink" title="Spark 运行Bug"></a>Spark 运行Bug</h2><p>spark-shell执行命令出现以下错误提示：</p>
+<p>java.io.IOException: Cannot run program “/etc/hadoop/conf.cloudera.yarn/topology.py” (in directory “/home/108857”): error=2。</p>
+<p>这个算是Cloudera 的bug ， 把datanode上的 /etc/hadoop/conf.cloudera.yarn/topology* 复制到执行spark-shell的机器上即可。</p>
+<h2 id="spark-pyspark"><a href="#spark-pyspark" class="headerlink" title="spark pyspark"></a>spark pyspark</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">from pyspark.sql import HiveContext</div><div class="line">sqc = HiveContext(sc)</div><div class="line"></div><div class="line">sqc.sql(&quot;use xcredit&quot;).show()</div><div class="line">sqc.sql(select * from xxx.xxx).show()</div></pre></td></tr></table></figure>
+<h2 id="spark-spark-shell"><a href="#spark-spark-shell" class="headerlink" title="spark spark-shell"></a>spark spark-shell</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">import org.apache.spark.SparkConf</div><div class="line">import org.apache.spark.SparkContext</div><div class="line">import org.apache.spark.sql.hive.HiveContext</div><div class="line"></div><div class="line">val sqlContext = new HiveContext(sc)</div><div class="line">import sqlContext.implicits._</div><div class="line"></div><div class="line">sqlContext.sql(&quot; SELECT * FROM xxx.xxx limit 10&quot;).collect().foreach(println)</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">sqlContext.sql(&quot;insert overwrite local directory &apos;/data/spark_test&apos; row format delimited fields terminated by &apos;,&apos; select ln.index_digest,ln.begin_date,count(distinct lt.p_id) as c  from tb_distinct_analyze_loan ln join tb_distinct_analyze_loan lt</div><div class="line">on ln.index_digest = lt.index_digest where ln.begin_date&gt;=date_sub(current_date, 1095) and lt.begin_date&gt;=date_sub(current_date, 1095) and</div><div class="line">((ln.begin_date &lt; lt.end_date and ln.begin_date &gt;= lt.begin_date) or</div><div class="line">(ln.end_date &gt;= lt.begin_date and ln.end_date &lt;= lt.end_date)) group by  ln.index_digest,ln.begin_date &quot;)</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://alonelaval.com/2018/06/11/linux磁盘格式化/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="huawei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1763449.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="无言">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/06/11/linux磁盘格式化/" itemprop="url">
+                  linux 磁盘格式化
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-11T13:39:23+08:00">
+                2018-06-11
               </time>
             
 
@@ -332,8 +455,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/大数据/" itemprop="url" rel="index">
-                    <span itemprop="name">大数据</span>
+                  <a href="/categories/系统/" itemprop="url" rel="index">
+                    <span itemprop="name">系统</span>
                   </a>
                 </span>
 
@@ -368,339 +491,485 @@
       
         
           
-            <h2 id="hive表的创建"><a href="#hive表的创建" class="headerlink" title="hive表的创建"></a>hive表的创建</h2><h3 id="一、语法"><a href="#一、语法" class="headerlink" title="一、语法"></a>一、语法</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div></pre></td><td class="code"><pre><div class="line">CREATE [TEMPORARY] [EXTERNAL] TABLE [IF NOT EXISTS] [db_name.]table_name    -- (Note: TEMPORARY available in Hive 0.14.0 and later)</div><div class="line">  [(col_name data_type [COMMENT col_comment], ...)]</div><div class="line">  [COMMENT table_comment]</div><div class="line">  [PARTITIONED BY (col_name data_type [COMMENT col_comment], ...)]</div><div class="line">  [CLUSTERED BY (col_name, col_name, ...) [SORTED BY (col_name [ASC|DESC], ...)] INTO num_buckets BUCKETS]</div><div class="line">  [SKEWED BY (col_name, col_name, ...)                  -- (Note: Available in Hive 0.10.0 and later)]</div><div class="line">     ON ((col_value, col_value, ...), (col_value, col_value, ...), ...)</div><div class="line">     [STORED AS DIRECTORIES]</div><div class="line">  [</div><div class="line">   [ROW FORMAT row_format] </div><div class="line">   [STORED AS file_format]</div><div class="line">     | STORED BY 'storage.handler.class.name' [WITH SERDEPROPERTIES (...)]  -- (Note: Available in Hive 0.6.0 and later)</div><div class="line">  ]</div><div class="line">  [LOCATION hdfs_path]</div><div class="line">  [TBLPROPERTIES (property_name=property_value, ...)]   -- (Note: Available in Hive 0.6.0 and later)</div><div class="line">  [AS select_statement];   -- (Note: Available in Hive 0.5.0 and later; not supported for external tables)</div><div class="line"> </div><div class="line">CREATE [TEMPORARY] [EXTERNAL] TABLE [IF NOT EXISTS] [db_name.]table_name</div><div class="line">  LIKE existing_table_or_view_name</div><div class="line">  [LOCATION hdfs_path];</div><div class="line"> </div><div class="line">data_type</div><div class="line">  : primitive_type</div><div class="line">  | array_type</div><div class="line">  | map_type</div><div class="line">  | struct_type</div><div class="line">  | union_type  -- (Note: Available in Hive 0.7.0 and later)</div><div class="line"> </div><div class="line">primitive_type</div><div class="line">  : TINYINT</div><div class="line">  | SMALLINT</div><div class="line">  | INT</div><div class="line">  | BIGINT</div><div class="line">  | BOOLEAN</div><div class="line">  | FLOAT</div><div class="line">  | DOUBLE</div><div class="line">  | STRING</div><div class="line">  | BINARY      -- (Note: Available in Hive 0.8.0 and later)</div><div class="line">  | TIMESTAMP   -- (Note: Available in Hive 0.8.0 and later)</div><div class="line">  | DECIMAL     -- (Note: Available in Hive 0.11.0 and later)</div><div class="line">  | DECIMAL(precision, scale)  -- (Note: Available in Hive 0.13.0 and later)</div><div class="line">  | DATE        -- (Note: Available in Hive 0.12.0 and later)</div><div class="line">  | VARCHAR     -- (Note: Available in Hive 0.12.0 and later)</div><div class="line">  | CHAR        -- (Note: Available in Hive 0.13.0 and later)</div><div class="line"> </div><div class="line">array_type</div><div class="line">  : ARRAY &lt; data_type &gt;</div><div class="line"> </div><div class="line">map_type</div><div class="line">  : MAP &lt; primitive_type, data_type &gt;</div><div class="line"> </div><div class="line">struct_type</div><div class="line">  : STRUCT &lt; col_name : data_type [COMMENT col_comment], ...&gt;</div><div class="line"> </div><div class="line">union_type</div><div class="line">   : UNIONTYPE &lt; data_type, data_type, ... &gt;  -- (Note: Available in Hive 0.7.0 and later)</div><div class="line"> </div><div class="line">row_format</div><div class="line">  : DELIMITED [FIELDS TERMINATED BY char [ESCAPED BY char]] [COLLECTION ITEMS TERMINATED BY char]</div><div class="line">        [MAP KEYS TERMINATED BY char] [LINES TERMINATED BY char]</div><div class="line">        [NULL DEFINED AS char]   -- (Note: Available in Hive 0.13 and later)</div><div class="line">  | SERDE serde_name [WITH SERDEPROPERTIES (property_name=property_value, property_name=property_value, ...)]</div><div class="line"> </div><div class="line">file_format:</div><div class="line">  : SEQUENCEFILE</div><div class="line">  | TEXTFILE    -- (Default, depending on hive.default.fileformat configuration)</div><div class="line">  | RCFILE      -- (Note: Available in Hive 0.6.0 and later)</div><div class="line">  | ORC         -- (Note: Available in Hive 0.11.0 and later)</div><div class="line">  | PARQUET     -- (Note: Available in Hive 0.13.0 and later)</div><div class="line">  | AVRO        -- (Note: Available in Hive 0.14.0 and later)</div><div class="line">  | INPUTFORMAT input_format_classname OUTPUTFORMAT output_format_classname</div></pre></td></tr></table></figure>
-<h3 id="二、创建表时的4种模式"><a href="#二、创建表时的4种模式" class="headerlink" title="二、创建表时的4种模式"></a>二、创建表时的4种模式</h3><ol>
-<li>TEMPORARY模式，在该模式下创建的表，只在当前session中有效，当前session关闭时，该表会被hive删除，不支持分区，也不支持创建索引.  </li>
-<li><p>EXTERNAL模式，俗称外部表，该模式的表，数据不由hive管理，删除表时，数据不会被删除，创建表时可以指定数据加载的路径如:  </p>
-<pre><code>CREATE EXTERNAL TABLE [IF NOT EXISTS] [db_name.]table_name
- LIKE existing_table_or_view_name
-[LOCATION hdfs_path];
-</code></pre></li>
-<li>默认模式，俗称管理表，该模式的表，数据由hive管理,删除表时数据也会被删除。</li>
-<li>Create Table As Select (CTAS)模式，该模式的表是由查询的结果来创建，在该模式下，不能创建分区表，不能创建外部表，也不支持数据分桶。  </li>
+            <h3 id="卸载硬盘"><a href="#卸载硬盘" class="headerlink" title="卸载硬盘"></a>卸载硬盘</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">umount -v 挂载路径</div></pre></td></tr></table></figure>
+<p>如果磁盘busy</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lsof |grep 挂载路径</div></pre></td></tr></table></figure>
+<p>找出正在使用磁盘的进程，kill掉。</p>
+<h3 id="查看磁盘分区格式"><a href="#查看磁盘分区格式" class="headerlink" title="查看磁盘分区格式"></a>查看磁盘分区格式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df -T</div></pre></td></tr></table></figure>
+<h3 id="格式化磁盘分区"><a href="#格式化磁盘分区" class="headerlink" title="格式化磁盘分区"></a>格式化磁盘分区</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mkfs -t ext4 /dev/sdb</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://alonelaval.com/2018/06/11/linux 安装openvpn/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="huawei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1763449.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="无言">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/06/11/linux 安装openvpn/" itemprop="url">
+                  linux 安装openvpn
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-11T13:39:23+08:00">
+                2018-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/系统/" itemprop="url" rel="index">
+                    <span itemprop="name">系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="安装openvpn-easy-rsa软件"><a href="#安装openvpn-easy-rsa软件" class="headerlink" title="安装openvpn,easy-rsa软件"></a>安装openvpn,easy-rsa软件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install -y openvpn easy-rsa</div></pre></td></tr></table></figure>
+<h3 id="拷贝文件"><a href="#拷贝文件" class="headerlink" title="拷贝文件"></a>拷贝文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cp /usr/share/doc/openvpn-2.4.6/sample/sample-config-files/server.conf /etc/openvpn/</div><div class="line"></div><div class="line">cp -r /usr/share/easy-rsa/3.0.3/* /etc/openvpn/</div></pre></td></tr></table></figure>
+<h3 id="使用easy-rsa生成服务器端证书"><a href="#使用easy-rsa生成服务器端证书" class="headerlink" title="使用easy-rsa生成服务器端证书"></a>使用easy-rsa生成服务器端证书</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">cd /etc/openvpn</div><div class="line"></div><div class="line">./easyrsa init-pki  #创建空的pki，创建后会多一个pki的目录，初始化后，不要再初始化了。</div><div class="line">./easyrsa build-ca nopass #创建新的CA，不使用密码，一路回车</div><div class="line">./easyrsa gen-req server nopass #创建服务端证书，一路回车</div><div class="line">./easyrsa sign server server #使用CA证书对服务器端证书，进行签名</div><div class="line">./easyrsa gen-dh #创建 Diffie-Hellman，一种密钥交换算法</div></pre></td></tr></table></figure>
+<h3 id="使用easy-rsa生成客户端证书"><a href="#使用easy-rsa生成客户端证书" class="headerlink" title="使用easy-rsa生成客户端证书"></a>使用easy-rsa生成客户端证书</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">./easyrsa gen-req test nopass</div><div class="line">./easyrsa sign client test</div></pre></td></tr></table></figure>
+<h3 id="查看easy-rsa创建的pki目录结构"><a href="#查看easy-rsa创建的pki目录结构" class="headerlink" title="查看easy-rsa创建的pki目录结构"></a>查看easy-rsa创建的pki目录结构</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">tree</div><div class="line">.</div><div class="line">├── ca.crt</div><div class="line">├── certs_by_serial</div><div class="line">│   ├── 4F6A847EF9A70413EA6E24BFD6AAA3CE.pem</div><div class="line">│   └── C2833F45701214C377138DC1303D7935.pem</div><div class="line">├── dh.pem</div><div class="line">├── index.txt</div><div class="line">├── index.txt.attr</div><div class="line">├── index.txt.attr.old</div><div class="line">├── index.txt.old</div><div class="line">├── issued</div><div class="line">│   ├── server.crt</div><div class="line">│   └── test.crt</div><div class="line">├── private</div><div class="line">│   ├── server.key</div><div class="line">│   ├── ca.key</div><div class="line">│   └── test.key</div><div class="line">├── reqs</div><div class="line">│   ├── server.req</div><div class="line">│   └── test.req</div><div class="line">├── serial</div><div class="line">└── serial.old</div></pre></td></tr></table></figure>
+<h3 id="生成ta-key文件"><a href="#生成ta-key文件" class="headerlink" title="生成ta.key文件"></a>生成ta.key文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">openvpn --genkey --secret /etc/openvpn/ta.key</div></pre></td></tr></table></figure>
+<h3 id="编辑服务配置文件-vim-etc-openvpn-server-conf"><a href="#编辑服务配置文件-vim-etc-openvpn-server-conf" class="headerlink" title="编辑服务配置文件 vim /etc/openvpn/server.conf"></a>编辑服务配置文件 vim /etc/openvpn/server.conf</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div></pre></td><td class="code"><pre><div class="line">;local a.b.c.d</div><div class="line"></div><div class="line"># 设置监听端口，必须要对应的在防火墙里面打开</div><div class="line">port 1194</div><div class="line"></div><div class="line"># 设置用TCP还是UDP协议？</div><div class="line">;proto tcp</div><div class="line">proto tcp</div><div class="line"></div><div class="line"># 设置创建tun的路由IP通道，还是创建tap的以太网通道，由于路由IP容易控制，所以推荐使用tunnel；</div><div class="line"># 但如果如IPX等必须使用第二层才能通过的通讯，则可以用tap方式，tap也就是以太网桥接</div><div class="line">;dev tap</div><div class="line">dev tun</div><div class="line"></div><div class="line"># 这里是重点，必须指定SSL/TLS root certificate (ca),</div><div class="line"># certificate(cert), and private key (key)</div><div class="line"># ca文件是服务端和客户端都必须使用的，但不需要ca.key</div><div class="line"># 服务端和客户端指定各自的.crt和.key</div><div class="line"># 请注意路径,可以使用以配置文件开始为根的相对路径,</div><div class="line"># 也可以使用绝对路径</div><div class="line"># 请小心存放.key密钥文件</div><div class="line"></div><div class="line">ca pki/ca.crt</div><div class="line">cert pki/issued/server.crt</div><div class="line">key pki/private/server.key</div><div class="line">#（默认是2048，如果生成ca的时候修改过dh参数“export KEY_SIZE”则改为对应的数字）</div><div class="line"></div><div class="line">dh pki/dh.pem</div><div class="line"></div><div class="line"># 配置VPN使用的网段，OpenVPN会自动提供基于该网段的DHCP服务，但不能和任何一方的局域网段重复，保证唯一</div><div class="line">server 10.20.0.0 255.255.255.0</div><div class="line"></div><div class="line"># 维持一个客户端和virtual IP的对应表，以方便客户端重新连接可以获得同样的IP</div><div class="line">ifconfig-pool-persist ipp.txt</div><div class="line"></div><div class="line"># 为客户端创建对应的路由，以另其通达公司网内部服务器</div><div class="line"># 但记住，公司网内部服务器也需要有可用路由返回到客户端</div><div class="line">;push &quot;route 192.168.20.0 255.255.255.0&quot;</div><div class="line">push &quot;route 10.X.0.0 255.255.0.0&quot;</div><div class="line"># （X按照机房网段修改）</div><div class="line"></div><div class="line"># 若客户端希望所有的流量都通过VPN传输,则可以使用该语句</div><div class="line"># 其会自动改变客户端的网关为VPN服务器,推荐关闭</div><div class="line">#一旦设置，请小心服务端的DHCP设置问题</div><div class="line">;push &quot;redirect-gateway def1 bypass-dhcp&quot;</div><div class="line"></div><div class="line"># 用OpenVPN的DHCP功能为客户端提供指定的DNS、WINS等</div><div class="line">;push &quot;dhcp-option DNS 208.67.222.222&quot;</div><div class="line">;push &quot;dhcp-option DNS 208.67.220.220&quot;</div><div class="line"></div><div class="line"># 默认客户端之间是不能直接通讯的，除非把下面的语句注释掉</div><div class="line">client-to-client</div><div class="line"></div><div class="line"># 下面是一些对安全性增强的措施</div><div class="line"># For extra security beyond that provided by SSL/TLS, create an &quot;HMAC firewall&quot;</div><div class="line"># to help block DoS attacks and UDP port flooding.</div><div class="line">#</div><div class="line"># Generate with:</div><div class="line"># openvpn --genkey --secret ta.key</div><div class="line">#</div><div class="line"># The server and each client must have a copy of this key.</div><div class="line"># The second parameter should be 0 on the server and 1 on the clients.</div><div class="line">; tls-auth ta.key 0 # This file is secret</div><div class="line">#(这句要注释掉)</div><div class="line"></div><div class="line"># 使用lzo压缩的通讯,服务端和客户端都必须配置</div><div class="line">comp-lzo</div><div class="line"></div><div class="line"># 输出短日志,每分钟刷新一次,以显示当前的客户端</div><div class="line">status /var/log/openvpn/openvpn-status.log</div><div class="line"></div><div class="line"># 缺省日志会记录在系统日志中，但也可以导向到其他地方</div><div class="line"># 建议调试的使用先不要设置,调试完成后再定义</div><div class="line">log         /var/log/openvpn/openvpn.log</div><div class="line">log-append  /var/log/openvpn/openvpn.log</div><div class="line"></div><div class="line"># 设置日志的级别</div><div class="line">#</div><div class="line"># 0 is silent, except for fatal errors</div><div class="line"># 4 is reasonable for general usage</div><div class="line"># 5 and 6 can help to debug connection problems</div><div class="line"># 9 is extremely verbose</div><div class="line">verb 3</div></pre></td></tr></table></figure>
+<h3 id="启动服务："><a href="#启动服务：" class="headerlink" title="启动服务："></a>启动服务：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">service openvpn start</div><div class="line">#设置开机启动</div><div class="line">chkconfig openvpn on</div></pre></td></tr></table></figure>
+<h3 id="开启路由转发功能"><a href="#开启路由转发功能" class="headerlink" title="开启路由转发功能"></a>开启路由转发功能</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">vim /etc/sysctl.conf</div><div class="line"></div><div class="line">找到net.ipv4.ip_forward = 0</div><div class="line">把0改成1</div><div class="line">sysctl -p #生效</div></pre></td></tr></table></figure>
+<h3 id="设置防火墙"><a href="#设置防火墙" class="headerlink" title="设置防火墙"></a>设置防火墙</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># 设置iptables（这一条至关重要，通过配置nat将vpn网段IP转发到server内网）</div><div class="line">iptables -t nat -A POSTROUTING -s 10.20.0.0/24 -o eth0 -j MASQUERADE</div><div class="line"># openvpn端口通过</div><div class="line">iptables -A INPUT -p TCP --dport 1194 -j ACCEPT</div><div class="line">iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT</div><div class="line">service iptables save</div></pre></td></tr></table></figure>
+<h3 id="创建客户端文件"><a href="#创建客户端文件" class="headerlink" title="创建客户端文件"></a>创建客户端文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd /home/test</div><div class="line">vim test.opvn</div></pre></td></tr></table></figure>
+<p>填入内容 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">client</div><div class="line">dev tun</div><div class="line">proto tcp</div><div class="line">remote xxx.xxx.xxx.xxx 1194</div><div class="line">ca ca.crt</div><div class="line">cert test.crt</div><div class="line">key test.key</div><div class="line">comp-lzo</div><div class="line">persist-key</div><div class="line">persist-tun</div></pre></td></tr></table></figure>
+<h3 id="拷贝客户端文件"><a href="#拷贝客户端文件" class="headerlink" title="拷贝客户端文件"></a>拷贝客户端文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cp /etc/openvpn/pki/ca.crt /home/test</div><div class="line">cp /etc/openvpn/pki/issued/test.crt /home/test</div><div class="line">cp /etc/openvpn/pki/private/test.key /home/test</div><div class="line">cp /etc/openvpn/ta.key /home/test</div></pre></td></tr></table></figure>
+<h3 id="打包下载文件"><a href="#打包下载文件" class="headerlink" title="打包下载文件"></a>打包下载文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cd /home/test</div><div class="line">zip test.zip *</div><div class="line">sz test.zip</div></pre></td></tr></table></figure>
+<p>下载openvpn客户端，打开test.opvn，即可连上服务器了。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://alonelaval.com/2018/05/31/jdk1.8安装/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="huawei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1763449.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="无言">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/05/31/jdk1.8安装/" itemprop="url">
+                  centos 6.5安装JDK1.8
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-31T13:57:23+08:00">
+                2018-05-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="下载安装包"><a href="#下载安装包" class="headerlink" title="下载安装包"></a>下载安装包</h3><p>jdk-8u161-linux-x64.tar.gz</p>
+<h3 id="解压安装包"><a href="#解压安装包" class="headerlink" title="解压安装包"></a>解压安装包</h3><p>tar xvf jdk-8u161-linux-x64.tar.gz</p>
+<h3 id="拷贝安装包到-usr-local-目录"><a href="#拷贝安装包到-usr-local-目录" class="headerlink" title="拷贝安装包到/usr/local 目录"></a>拷贝安装包到/usr/local 目录</h3><p>mv jdk1.8.0_161 /usr/local/</p>
+<h3 id="设置-etc-profile环境变量"><a href="#设置-etc-profile环境变量" class="headerlink" title="设置/etc/profile环境变量"></a>设置/etc/profile环境变量</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">export GREP_OPTIONS=--color=auto</div><div class="line"></div><div class="line"></div><div class="line">export JAVA_HOME=/usr/local/jdk1.8.0_161</div><div class="line"></div><div class="line">export PATH=$JAVA_HOME/bin:$PATH</div><div class="line"></div><div class="line">export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</div></pre></td></tr></table></figure>
+<h3 id="source-etc-profile-生效"><a href="#source-etc-profile-生效" class="headerlink" title="source /etc/profile 生效"></a>source /etc/profile 生效</h3>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://alonelaval.com/2018/05/31/mysql5.7GTID主从同步/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="huawei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1763449.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="无言">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/05/31/mysql5.7GTID主从同步/" itemprop="url">
+                  mysql5.7 GTID主从同步
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-31T13:57:23+08:00">
+                2018-05-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">mysql</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="机器："><a href="#机器：" class="headerlink" title="机器："></a>机器：</h3><p>db1: 10.19.2.11<br>db2: 10.19.113.140  </p>
+<h3 id="mysql版本"><a href="#mysql版本" class="headerlink" title="mysql版本"></a>mysql版本</h3><p>Server version: 5.7.21-log MySQL Community Server (GPL)</p>
+<h4 id="db1-my-cnf配置"><a href="#db1-my-cnf配置" class="headerlink" title="db1 my.cnf配置"></a>db1 my.cnf配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">[mysqld]</div><div class="line">#是内存情况配置，理想为 70%的物理内存</div><div class="line">innodb_buffer_pool_size = 45G</div><div class="line">skip-external-locking</div><div class="line">key_buffer_size = 384M</div><div class="line">max_allowed_packet = 1073741824</div><div class="line">table_open_cache = 512</div><div class="line">sort_buffer_size = 2M</div><div class="line">read_buffer_size = 2M</div><div class="line">read_rnd_buffer_size = 8M</div><div class="line">myisam_sort_buffer_size = 64M</div><div class="line">thread_cache_size = 8</div><div class="line">query_cache_size = 32M</div><div class="line">#thread_concurrency = 8</div><div class="line">binlog_cache_size = 4M</div><div class="line">max_connections = 1000</div><div class="line">log_timestamps=SYSTEM</div><div class="line">default-time_zone = &apos;+8:00&apos;</div><div class="line">#</div><div class="line">datadir=/data/mysql</div><div class="line">socket=/data/mysql/mysql.sock</div><div class="line">lower_case_table_names=1</div><div class="line"># Disabling symbolic-links is recommended to prevent assorted security risks</div><div class="line">symbolic-links=0</div><div class="line"></div><div class="line">log-error=/var/log/mysqld.log</div><div class="line">pid-file=/var/run/mysqld/mysqld.pid</div><div class="line">secure-file-priv = &quot;&quot;</div><div class="line">tmpdir=/data/tmp</div><div class="line"></div><div class="line">validate_password_policy=0</div><div class="line"># 记录慢速查询</div><div class="line">slow_query_log=1</div><div class="line">slow_query_log_file=/data/log/mysql/mysql-slow.log</div><div class="line"># # 慢查询最小值，大于此时间，则为慢查询，单位为秒</div><div class="line">long_query_time=6</div><div class="line">#GTID 主从同步</div><div class="line">gtid_mode=on</div><div class="line">enforce_gtid_consistency=on</div><div class="line">#唯一的服务辨识号,数值位于 1 到 2^32-1之间.</div><div class="line">server_id=1</div><div class="line">log-bin=mysql-bin</div><div class="line">log-slave-updates=1</div><div class="line">binlog_format=row</div><div class="line">#当binlog_format=row时，用于记录原始的sql语句,不记录了</div><div class="line">#binlog_rows_query_log_events=on</div><div class="line">slave-skip-errors=all</div><div class="line">auto-increment-offset=1</div><div class="line">auto-increment-increment=2</div><div class="line">#忽略下列的库表</div><div class="line">#replicate-wild-ignore-table=mysql.%</div><div class="line">#replicate-wild-ignore-table=test.%</div><div class="line">#replicate-wild-ignore-table=performance_schema.%</div><div class="line"></div><div class="line"></div><div class="line">[client]</div><div class="line">socket=/data/mysql/mysql.sock</div></pre></td></tr></table></figure>
+<h4 id="db2-my-cnf配置"><a href="#db2-my-cnf配置" class="headerlink" title="db2 my.cnf配置"></a>db2 my.cnf配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div></pre></td><td class="code"><pre><div class="line">[mysqld]</div><div class="line"></div><div class="line">#是内存情况配置，理想为 70%的物理内存</div><div class="line">innodb_buffer_pool_size = 45G</div><div class="line"></div><div class="line">skip-external-locking</div><div class="line">key_buffer_size = 384M</div><div class="line">max_allowed_packet = 1073741824</div><div class="line">table_open_cache = 512</div><div class="line">sort_buffer_size = 2M</div><div class="line">read_buffer_size = 2M</div><div class="line">read_rnd_buffer_size = 8M</div><div class="line">myisam_sort_buffer_size = 64M</div><div class="line">thread_cache_size = 8</div><div class="line">query_cache_size = 32M</div><div class="line">#thread_concurrency = 8</div><div class="line">binlog_cache_size = 4M</div><div class="line">max_connections = 1000</div><div class="line">log_timestamps=SYSTEM</div><div class="line">default-time_zone = &apos;+8:00&apos;</div><div class="line">#</div><div class="line">datadir=/data/mysql</div><div class="line">socket=/data/mysql/mysql.sock</div><div class="line">lower_case_table_names=1</div><div class="line"># Disabling symbolic-links is recommended to prevent assorted security risks</div><div class="line">symbolic-links=0</div><div class="line"></div><div class="line"></div><div class="line">log-error=/var/log/mysqld.log</div><div class="line">pid-file=/var/run/mysqld/mysqld.pid</div><div class="line">secure-file-priv = &quot;&quot;</div><div class="line">tmpdir=/data/tmp</div><div class="line"></div><div class="line">validate_password_policy=0</div><div class="line"># 记录慢速查询</div><div class="line">slow_query_log=1</div><div class="line">slow_query_log_file=/data/log/mysql/mysql-slow.log</div><div class="line"># 慢查询最小值，大于此时间，则为慢查询，单位为秒</div><div class="line">long_query_time=6</div><div class="line"></div><div class="line">#GTID 主从同步</div><div class="line">gtid_mode=on</div><div class="line">enforce_gtid_consistency=on</div><div class="line">#唯一的服务辨识号,数值位于 1 到 2^32-1之间.</div><div class="line">server_id=2</div><div class="line">log-bin=mysql-bin</div><div class="line">log-slave-updates=1</div><div class="line">binlog_format=row</div><div class="line">#当binlog_format=row时，用于记录原始的sql语句,不记录了</div><div class="line">#binlog_rows_query_log_events=on</div><div class="line">slave-skip-errors=all</div><div class="line">#在主主同步配置时，需要将两台服务器的auto_increment_increment增长量都配置为2，而要把auto_increment_offset分别配置为1和2。这样才可以避免两台服务器同时做更新时自增长字段的值之间发生冲突。参考：http://dev.mysql.com/doc/refman/5.0/en/replication-options-master.html</div><div class="line">auto-increment-offset=2</div><div class="line">auto-increment-increment=2</div><div class="line">##忽略下列的库表</div><div class="line">#replicate-wild-ignore-table=mysql.%</div><div class="line">#replicate-wild-ignore-table=test.%</div><div class="line">#replicate-wild-ignore-table=performance_schema.%</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">#</div><div class="line"></div><div class="line">[client]</div><div class="line">socket=/data/mysql/mysql.sock</div></pre></td></tr></table></figure>
+<h3 id="db1-创建同步用户"><a href="#db1-创建同步用户" class="headerlink" title="db1 创建同步用户"></a>db1 创建同步用户</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">create user &apos;slave&apos;@&apos;10.19.%.%&apos; identified by &apos;slave123#@!b11d&apos;;</div><div class="line">grant replication slave on *.* to &apos;slave&apos;@&apos;10.19.%.%&apos;;</div><div class="line">flush privileges;</div></pre></td></tr></table></figure>
+<h3 id="db2-上开启同步db1"><a href="#db2-上开启同步db1" class="headerlink" title="db2 上开启同步db1"></a>db2 上开启同步db1</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">change master to master_host=&apos;10.19.2.11&apos;,</div><div class="line">master_user=&apos;slave&apos;,</div><div class="line">master_password=&apos;slave123#@!b11d&apos;,</div><div class="line">MASTER_AUTO_POSITION=1;</div><div class="line"></div><div class="line">start slave;</div></pre></td></tr></table></figure>
+<h3 id="查看是否成功"><a href="#查看是否成功" class="headerlink" title="查看是否成功"></a>查看是否成功</h3><p>show master logs;<br>show master status;<br>通过show slave status \G 查看slave状态   </p>
+<p>也可以通过 select user,host from mysql.user; 来查看同步用户是否已经建立好，<br>如果建立好，代表已经同步成功。</p>
+<h3 id="db1-上开启同步db2"><a href="#db1-上开启同步db2" class="headerlink" title="db1 上开启同步db2"></a>db1 上开启同步db2</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">change master to master_host=&apos;10.19.113.140&apos;,</div><div class="line">master_user=&apos;slave&apos;,</div><div class="line">master_password=&apos;slave123#@!b11d&apos;,</div><div class="line">MASTER_AUTO_POSITION=1;</div><div class="line"></div><div class="line">start slave;</div></pre></td></tr></table></figure>
+<h3 id="测试同步复制"><a href="#测试同步复制" class="headerlink" title="测试同步复制"></a>测试同步复制</h3><h4 id="db2从db1同步测试"><a href="#db2从db1同步测试" class="headerlink" title="db2从db1同步测试"></a>db2从db1同步测试</h4><p>在db1上执行以下语句：   </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">create database test_db1;</div><div class="line">use test_db1;</div><div class="line"> create table temp(id int primary key not null auto_increment,a int,b int,c int as (a*b));</div><div class="line">insert into temp (a,b)values(1,2),(3,4),(5,6);</div></pre></td></tr></table></figure>
+<p>在db2上查看是否正常同步，如果正常，即成功。</p>
+<p>在db2上执行以下语句：</p>
+<h4 id="db1从db2同步测试"><a href="#db1从db2同步测试" class="headerlink" title="db1从db2同步测试"></a>db1从db2同步测试</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">create database test_db2;</div><div class="line">use test_db2;</div><div class="line"> create table temp(id int primary key not null auto_increment,a int,b int,c int as (a*b));</div><div class="line">insert into temp (a,b)values(1,2),(3,4),(5,6);</div></pre></td></tr></table></figure>
+<p>在db1上查看是否正常同步，如果正常，即成功。</p>
+<h3 id="停机测试"><a href="#停机测试" class="headerlink" title="停机测试"></a>停机测试</h3><ol>
+<li>停止db2的数据库，在db1上执行</li>
+<li>启动db2，查看是否正常同步，如果正常同步，即成功。</li>
 </ol>
-<h3 id="三、表中的字段的数据类型"><a href="#三、表中的字段的数据类型" class="headerlink" title="三、表中的字段的数据类型"></a>三、表中的字段的数据类型</h3><h5 id="在hive中字段支持5种类型"><a href="#在hive中字段支持5种类型" class="headerlink" title="在hive中字段支持5种类型:"></a>在hive中字段支持5种类型:</h5><p>1.基本类型（primitive_type）:</p>
-<pre><code> TINYINT
-| SMALLINT
-| INT
-| BIGINT
-| BOOLEAN
-| FLOAT
-| DOUBLE
-| STRING
-| BINARY      
-| TIMESTAMP   
-| DECIMAL    
-| DECIMAL(precision, scale)  
-| DATE        
-| VARCHAR     
-| CHAR 
-</code></pre><p>2.数组类型（array_type）<br>3.字典类型(map_type)<br>4.结构类型(struct_type)<br>5.联合类型(union_type)<br>如:  </p>
-<pre><code>CREATE TABLE employees (  
-    name STRING,  
-    salary FLOAT,  
-    subordinates ARRAY&lt;STRING&gt;,  
-    deductions MAP&lt;STRING, FLOAT&gt;,  
-    address STRUCT&lt;street:STRING, city:STRING, state:STRING, zip:INT&gt;,
-    dddd:UNIONTYPE&lt;data_type,data_type,....&gt;
-) PARTITIONED BY (country STRING, state STRING);  
-</code></pre><h3 id="四、数据分区"><a href="#四、数据分区" class="headerlink" title="四、数据分区"></a>四、数据分区</h3><p>数据分区为将数据按照指定字段的值来分别存放，这样在查询时，可以只查某一个分区的数据，以提高数据查询效率，也可以在数据的管理上更有效率。指定分区时，数据将按照分区字段先后的顺序来存放.<br>如：  </p>
-<pre><code> CREATE TABLE employees (.....)
-PARTITIONED BY (pt_dt string)
-ROW FORMAT DELIMITED FIELDS TERMINATED BY &apos;\t&apos;
-STORED AS TEXTFILE;
-</code></pre><h3 id="五、数据分桶"><a href="#五、数据分桶" class="headerlink" title="五、数据分桶"></a>五、数据分桶</h3><p>#####把表（或者分区）组织成桶（Bucket）有两个理由：<br>1.为获得更高的查询处理效率。桶为表加上了额外的结构，Hive 在处理有些查询时能利用这个结构。具体而言，连接两个在（包含连接列的）相同列上划分了桶的表，可以使用 Map 端连接 （Map-side join）高效的实现。比如JOIN操作。对于JOIN操作两个表有一个相同的列，如果对这两个表都进行了桶操作。那么将保存相同列值的桶进行JOIN操作就可以，可以大大较少JOIN的数据量。  </p>
-<p>2.使取样（sampling）更高效。在处理大规模数据集时，在开发和修改查询的阶段，如果能在数据集的一小部分数据上试运行查询，会带来很多方便。</p>
-<h3 id="六、数据导入与数据导出"><a href="#六、数据导入与数据导出" class="headerlink" title="六、数据导入与数据导出"></a>六、数据导入与数据导出</h3><p>在创建表时，可以指定3个属性[INPUTFORMAT, OUTPUTFORMAT, SERDE],由这些属性来指定数据的导入格式和导出格式<br>首先来理清这三者之间的关系，我们直接引用Hive官方说法：  </p>
-<pre><code>SerDe is a short name for “Serializer and Deserializer.”
-Hive uses SerDe (and !FileFormat) to read and write table rows.
-HDFS files –&gt; InputFileFormat –&gt; &lt;key, value&gt; –&gt; Deserializer –&gt; Row object
-Row object –&gt; Serializer –&gt; &lt;key, value&gt; –&gt; OutputFileFormat –&gt; HDFS files
-</code></pre><p>总结一下，当面临一个HDFS上的文件时，Hive将如下处理（以读为例）：</p>
-<pre><code>1.调用InputFormat，将文件切成不同的文档。每篇文档即一行(Row)。  
-2.调用SerDe的Deserializer，将一行(Row)，切分为各个字段。
-</code></pre><p>当HIVE执行INSERT操作，将Row写入文件时，主要调用OutputFormat、SerDe的Seriliazer，顺序与读取相反<br>【INPUTFORMAT】属性的类必须实现org.apache.hadoop.mapred.InputFormat接口<br>【OUTPUTFORMAT】属性的类必须实现org.apache.hadoop.mapreduce.OutputFormat接口<br>【SERDE】属性的类必须实现org.apache.hadoop.hive.serde2接口</p>
-<p>###注：参考文档<br>    <a href="https://cwiki.apache.org/confluence/display/Hive/DeveloperGuide" target="_blank" rel="external">https://cwiki.apache.org/confluence/display/Hive/DeveloperGuide</a><br>    <a href="https://hive.apache.org/javadocs/r1.2.1/api/" target="_blank" rel="external">https://hive.apache.org/javadocs/r1.2.1/api/</a><br>    <a href="http://hadoop.apache.org/docs/r2.7.1/api/" target="_blank" rel="external">http://hadoop.apache.org/docs/r2.7.1/api/</a><br>    <a href="https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL" target="_blank" rel="external">https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://alonelaval.com/2017/05/01/在现实编程中使用fluent模式/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="huawei">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/1763449.jepg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="无言">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/05/01/在现实编程中使用fluent模式/" itemprop="url">
-                  在现实编程中使用fluent风格
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-01T13:39:23+08:00">
-                2017-05-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/设计模式/" itemprop="url" rel="index">
-                    <span itemprop="name">设计模式</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="在现实编程中使用fluent风格"><a href="#在现实编程中使用fluent风格" class="headerlink" title="在现实编程中使用fluent风格"></a>在现实编程中使用fluent风格</h2><h3 id="需求："><a href="#需求：" class="headerlink" title="需求："></a>需求：</h3><pre><code>根据相应的条件查找对应的imsi,其中条件有多个满足即返回结果，如果不满足对对数据进行过滤，交由后续处理。
-条件:
-1.电话号码匹配，返回匹配结果，即匹配的imsi
-2.根据电话号码生成imsi前缀，匹配imsi，如果多条，需进行后续处理
-3.根据银行，卡号匹配imsi,如果多条，需进行后续处理
-4.根据地区，匹配imsi,如果多条，需进行后续处理
-5.根据姓名的摘要，匹配imsi，如果多条，即认为数据没有命中
-</code></pre><h3 id="设计："><a href="#设计：" class="headerlink" title="设计："></a>设计：</h3><p>在前面的条件中，所有的步骤都能结束整个查找流程，在上述的查找流程中，我引入了责任链的模式，该模式的类图为：<br><img src="/images/6rM7Vv.png" alt=""><br>职责链模式：使多个对象都有机会处理请求，将多个对象连成一条链，并沿着这条链传递该请求，直到有一个对象处理他为止，使用该模式，可对查询条件进行组合，或者添加新的查询条件，而不影响别已有的结构。</p>
-<h3 id="使用："><a href="#使用：" class="headerlink" title="使用："></a>使用：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> IMatcher <span class="title">buildMatchChain</span><span class="params">(String phone,String name,String areaCode,String bank,String card)</span> <span class="keyword">throws</span> Exception</span>&#123;</div><div class="line">		bank = BankCache.getInstance().get(bank);</div><div class="line">		IMatcher imsiUserNameMatch = <span class="keyword">new</span> ImsiUserNameMatch(name);  <span class="comment">//匹配姓名</span></div><div class="line">		</div><div class="line">		IMatcher imsiAreaMatch = <span class="keyword">new</span> ImsiAreaMatch(areaCode);  <span class="comment">//匹配地区</span></div><div class="line">		imsiAreaMatch.setNext(imsiUserNameMatch);</div><div class="line"><span class="comment">//		</span></div><div class="line">		IMatcher preFixphoneImsiCardMatch = <span class="keyword">new</span> PrefixPhoneImsiCardMatch(phone,bank, card); <span class="comment">//匹配银行卡号</span></div><div class="line">		preFixphoneImsiCardMatch.setNext(imsiAreaMatch);</div><div class="line">		</div><div class="line">		IMatcher phoneImsiMatch = <span class="keyword">new</span> PhoneImsiMatch(phone);<span class="comment">//匹配手机号和IMSI</span></div><div class="line">		phoneImsiMatch.setNext(preFixphoneImsiCardMatch);</div><div class="line">		<span class="keyword">return</span> phoneImsiMatch;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
-<h4 id="使用fluent风格："><a href="#使用fluent风格：" class="headerlink" title="使用fluent风格："></a>使用fluent风格：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> IMatcher <span class="title">buildMatchChain2</span><span class="params">(String phone,String name,String areaCode,String bank,String card)</span> <span class="keyword">throws</span> Exception</span>&#123;</div><div class="line">	bank = BankCache.getInstance().get(bank);</div><div class="line">	<span class="keyword">return</span> <span class="keyword">new</span> PhoneImsiMatch(phone)</div><div class="line">			  .setNext(<span class="keyword">new</span> PrefixPhoneImsiCardMatch(phone,bank, card))</div><div class="line">			  .setNext(<span class="keyword">new</span> ImsiAreaMatch(areaCode))</div><div class="line">			  .setNext(<span class="keyword">new</span> ImsiUserNameMatch(name));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="fluent风格在知名开源框架中的使用："><a href="#fluent风格在知名开源框架中的使用：" class="headerlink" title="fluent风格在知名开源框架中的使用："></a>fluent风格在知名开源框架中的使用：</h3><p>1.在google guava中，各种api接口都是采用该风格<br>2.在netty api中，也是采用该种风格<br>3.在apache curator,也是采用风格  </p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://alonelaval.com/2017/05/01/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="huawei">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/1763449.jepg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="无言">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/05/01/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-01T10:39:44+08:00">
-                2017-05-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">insert into temp (a,b)values(7,8),(9,10);</div></pre></td></tr></table></figure>
+<h3 id="停止同步slave-模式，然后再启动测试，看数据是否同步"><a href="#停止同步slave-模式，然后再启动测试，看数据是否同步" class="headerlink" title="停止同步slave 模式，然后再启动测试，看数据是否同步"></a>停止同步slave 模式，然后再启动测试，看数据是否同步</h3><ol>
+<li><p>停止db2的slave</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">stop slave;</div></pre></td></tr></table></figure>
+<p> 在db1上执行  </p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">insert into temp (a,b)values(11,12);</div></pre></td></tr></table></figure>
+</li>
+<li><p>启动db2，查看是否正常同步，如果正常同步，即成功。  </p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">start slave;</div></pre></td></tr></table></figure>
+</li>
+</ol>
 
           
         
@@ -738,6 +1007,10 @@ Row object –&gt; Serializer –&gt; &lt;key, value&gt; –&gt; OutputFileForma
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -768,7 +1041,7 @@ Row object –&gt; Serializer –&gt; &lt;key, value&gt; –&gt; OutputFileForma
       <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/1763449.jepg"
+               src="/images/1763449.jpeg"
                alt="huawei" />
           <p class="site-author-name" itemprop="name">huawei</p>
            
@@ -780,7 +1053,7 @@ Row object –&gt; Serializer –&gt; &lt;key, value&gt; –&gt; OutputFileForma
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -791,7 +1064,7 @@ Row object –&gt; Serializer –&gt; &lt;key, value&gt; –&gt; OutputFileForma
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -802,7 +1075,7 @@ Row object –&gt; Serializer –&gt; &lt;key, value&gt; –&gt; OutputFileForma
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -813,6 +1086,17 @@ Row object –&gt; Serializer –&gt; &lt;key, value&gt; –&gt; OutputFileForma
         
 
         <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/alonelaval" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
           
         </div>
 
@@ -844,7 +1128,7 @@ Row object –&gt; Serializer –&gt; &lt;key, value&gt; –&gt; OutputFileForma
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
