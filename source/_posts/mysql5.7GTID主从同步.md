@@ -34,6 +34,7 @@ thread_cache_size = 8
 query_cache_size = 32M
 #thread_concurrency = 8
 binlog_cache_size = 4M
+expire_logs_days = 10
 max_connections = 1000
 log_timestamps=SYSTEM
 default-time_zone = '+8:00'

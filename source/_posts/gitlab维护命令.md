@@ -105,3 +105,9 @@ server {
 ```
 
 
+### webide异常
+```
+I made it work behind a nginx reverse proxy by adding $request_uri to the proxy_pass:
+
+proxy_pass http://my-gitlab:5555/$request_uri;
+```

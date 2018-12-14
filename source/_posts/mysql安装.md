@@ -58,14 +58,19 @@ service mysqld start
 ### 添加用户
 ```
 set global validate_password_policy=0;
-Delete FROM user Where User='supervise' and Host='%';
+Delete FROM user Where User='xcredit' and Host='%';
 
 flush privileges;
 
-create user xcreditapp identified by 'Cq&9!#jq^J4K';
-grant all privileges on *.* to xcreditapp@'%' identified by 'Cq&9!#jq^J4K';
+create user xcredit identified by 'Cq&asdfasd9!#jq^J4K';
+grant all privileges on *.* to yczapp@localhost identified by 'Cq&9sdaf!#jq^J4K';
 flush privileges;
 
 ```
 
+### 设置root能远程访问
+```
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
+FLUSH PRIVILEGES
+```
 

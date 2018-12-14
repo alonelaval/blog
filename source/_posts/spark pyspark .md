@@ -1,3 +1,13 @@
+---
+title: Spark 运行Bug
+date: 2018-06-26 13:57:23
+categories: 
+	- 大数据
+	- spark
+tags:
+	- spark
+	- pyspark
+---
 ## Spark 运行Bug
 spark-shell执行命令出现以下错误提示：
 
