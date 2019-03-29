@@ -22,6 +22,23 @@ yum install -y openvpn easy-rsa
  cp -r /usr/share/easy-rsa/3.0.3/* /etc/openvpn/
 
 ```
+### 设置默认参数 
+```
+cd /etc/openvpn
+
+vim vars
+
+export KEY_SIZE=4096
+export KEY_COUNTRY="CN"
+export KEY_PROVINCE="SH"
+export KEY_CITY="SH"
+export KEY_ORG="xxx"
+export KEY_EMAIL="xxx"
+
+
+chmod +x vars
+
+```
 ### 使用easy-rsa生成服务器端证书
 
 ```
@@ -71,6 +88,11 @@ tree
 ### 生成ta.key文件
 ```
 openvpn --genkey --secret /etc/openvpn/ta.key
+
+```
+### 创建日志目录
+```
+mkdir -p /var/log/openvpn/
 
 ```
 ### 编辑服务配置文件 vim /etc/openvpn/server.conf

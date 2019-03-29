@@ -154,8 +154,17 @@ create user 'slave'@'10.19.%.%' identified by 'slave123#@!b11d';
 grant replication slave on *.* to 'slave'@'10.19.%.%';
 flush privileges;
 
+```
+### mysql 8.13
+```
+
+create user 'slave'@'%' identified  WITH mysql_native_password by 'slave1ddd23#@!b11dddd';
+grant replication slave on *.* to 'slave'@'%';
+flush privileges;
 
 ```
+
+
 ### db2 上开启同步db1
 ```
 
@@ -171,11 +180,19 @@ start slave;
 
 show master logs;   
 show master status;  
+
 通过show slave status \G 查看slave状态   
 
 也可以通过 select user,host from mysql.user; 来查看同步用户是否已经建立好，
 如果建立好，代表已经同步成功。
 
+### 8.13无法复制用户过来在db2新建账号
+```
+create user 'slave'@'%' identified  WITH mysql_native_password by 'slave1ddd23#@!b11dddd';
+grant replication slave on *.* to 'slave'@'%';
+flush privileges;
+
+```
 
 
 
@@ -222,9 +239,7 @@ insert into temp (a,b)values(1,2),(3,4),(5,6);
 
 ```
 insert into temp (a,b)values(7,8),(9,10);
-
 ```
-
 
 ### 停止同步slave 模式，然后再启动测试，看数据是否同步
 

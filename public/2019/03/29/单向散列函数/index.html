@@ -1,0 +1,780 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="hash," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="单向散列函数的说明 单向散列函数也称为消息摘要函数, 哈希函数 或者 杂凑函数   单向散列函数输出的散列值又称为消息摘要 或者 指纹  单向散列函数的特点 加密后密文的长度是定长的(即对任意长度的消息三列,得到的散列值是定长的) 散列计算速度快,非常高效 如果明文不一样，那么散列后的结果一定不一样 如果明文一样，那么加密后的密文一定一样（对相同数据加密，加密后的密文一样） 所有的加密算法是公开的">
+<meta name="keywords" content="hash">
+<meta property="og:type" content="article">
+<meta property="og:title" content="单向散列函数">
+<meta property="og:url" content="http://alonelaval.com/2019/03/29/单向散列函数/index.html">
+<meta property="og:site_name" content="无言">
+<meta property="og:description" content="单向散列函数的说明 单向散列函数也称为消息摘要函数, 哈希函数 或者 杂凑函数   单向散列函数输出的散列值又称为消息摘要 或者 指纹  单向散列函数的特点 加密后密文的长度是定长的(即对任意长度的消息三列,得到的散列值是定长的) 散列计算速度快,非常高效 如果明文不一样，那么散列后的结果一定不一样 如果明文一样，那么加密后的密文一定一样（对相同数据加密，加密后的密文一样） 所有的加密算法是公开的">
+<meta property="og:updated_time" content="2019-03-29T05:58:08.659Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="单向散列函数">
+<meta name="twitter:description" content="单向散列函数的说明 单向散列函数也称为消息摘要函数, 哈希函数 或者 杂凑函数   单向散列函数输出的散列值又称为消息摘要 或者 指纹  单向散列函数的特点 加密后密文的长度是定长的(即对任意长度的消息三列,得到的散列值是定长的) 散列计算速度快,非常高效 如果明文不一样，那么散列后的结果一定不一样 如果明文一样，那么加密后的密文一定一样（对相同数据加密，加密后的密文一样） 所有的加密算法是公开的">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://alonelaval.com/2019/03/29/单向散列函数/"/>
+
+
+
+
+
+  <title>单向散列函数 | 无言</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">无言</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">不语</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://alonelaval.com/2019/03/29/单向散列函数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="huawei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1763449.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="无言">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                单向散列函数
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-29T13:57:23+08:00">
+                2019-03-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/密码学/" itemprop="url" rel="index">
+                    <span itemprop="name">密码学</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="单向散列函数的说明"><a href="#单向散列函数的说明" class="headerlink" title="单向散列函数的说明"></a>单向散列函数的说明</h3><ol>
+<li>单向散列函数也称为消息摘要函数, 哈希函数 或者 杂凑函数  </li>
+<li>单向散列函数输出的散列值又称为消息摘要 或者 指纹</li>
+</ol>
+<h3 id="单向散列函数的特点"><a href="#单向散列函数的特点" class="headerlink" title="单向散列函数的特点"></a>单向散列函数的特点</h3><ol>
+<li>加密后密文的长度是定长的(即对任意长度的消息三列,得到的散列值是定长的)</li>
+<li>散列计算速度快,非常高效</li>
+<li>如果明文不一样，那么散列后的结果一定不一样</li>
+<li>如果明文一样，那么加密后的密文一定一样（对相同数据加密，加密后的密文一样）</li>
+<li>所有的加密算法是公开的</li>
+<li>具备单向性,不可以逆推反算</li>
+</ol>
+<h3 id="单项散列函数的经典算法"><a href="#单项散列函数的经典算法" class="headerlink" title="单项散列函数的经典算法"></a>单项散列函数的经典算法</h3><ol>
+<li>MD4 </li>
+<li>MD5</li>
+<li>SHA1</li>
+<li>SHA256</li>
+<li>SHA512  </li>
+</ol>
+<p>MD5和SHA256是非常常用的两种单向散列函数，虽然MD5在2005年已经被中国密码学家王小云攻破，但是也还是在被大规模使用，现在比较常用的是SHA256算法，安全性暂时未有被破解。在BITS系统中，所有的索引都是通过sha256进行加密，即便知道了索引，在不知道原文的情况下，对知道者来说，也只是是一串无意义的字符串。</p>
+<h3 id="单向散列函数的常见应用场景"><a href="#单向散列函数的常见应用场景" class="headerlink" title="单向散列函数的常见应用场景"></a>单向散列函数的常见应用场景</h3><ol>
+<li><p>数据库中保存用户密码<br>比如前段时间频频爆出一些公司的数据库被爆，用户的账户密码以明文存在，大量资料流出这样的做法是极其不负责和危险的。<br>最好的方法就是将用户的密码通过单向散列函数输出到数据库，每次登录时对比散列值即可。由于单向散列函数的不可逆性，就算数据库被盗取，也没有办法得到用户的信息。<br>（某些自称破解单向散列函数的网站使用的方法其实是低级的穷举法，保存大量常用明文的散列值，这样做是很愚蠢的。有很多方法可以应对，比如一种叫做“加盐”的常用方法，将用户的信息后面统一加上诸如$%*^&amp;这样的字符，然后计算散列值存入数据库中，或者可以计算散列值的散列值，这样可以保证绝对的安全性。）</p>
+</li>
+<li><p>防止文件篡改<br>目前大部分提供下载服务的网站都有提供文件的SHA256值，这是因为单向散列函数具备防篡改的效果，若是下载的文件的SHA256和网站提供的值不符，则可能此文件已经遭到了修改，可能含有病毒或者是盗版等等。。。接下来的代码中我们也会来实现计算文件的SHA256值。</p>
+</li>
+<li><p>数字签名<br>在进行数字签名时也会使用单向散列函数。<br>数字签名是现实社会中的签名和盖章这样行为在数字世界中的实现。数字签名的处理过程非常耗时，因此一般不会对整个消息内容直接使用数字签名，而是先通过单向散列函数计算出消息的散列值，然后再对这个散列值使用私钥加密，得到的就是数字签名。</p>
+</li>
+<li><p>伪随机数生成器<br>使用单向散列函数可以构造伪随机数生成器。<br>密码技术中所使用的随机数需要具备“事实上不可能根据过去的随机数列预测未来的随机数列”这样的性质。为了保证不可预测性，可以利用单向散列函数的单向性。</p>
+</li>
+<li><p>秒传<br>很多诸如某云盘，某网盘这样的公司利用单向散列函数的特性实现秒传的效果。<br>单向散列函数就像文件的指纹一样，当用户上传文件时，首先计算一下此文件的单向散列值，将此值在数据库中进行查找，若存在相同值，证明此用户上传的文件已经存在相同的，所以无需上传，共享即可。如此可大幅降低服务器负载，大幅缩减存储空间，实现去重的效果。</p>
+</li>
+</ol>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p>什么是散列函数：<a href="https://web.archive.org/web/20061206022506/http://www.rsasecurity.com/rsalabs/node.asp?id=2176" target="_blank" rel="external">https://web.archive.org/web/20061206022506/http://www.rsasecurity.com/rsalabs/node.asp?id=2176</a><br>散列函数：<a href="https://zh.wikipedia.org/wiki/%E6%95%A3%E5%88%97%E5%87%BD%E6%95%B8" target="_blank" rel="external">https://zh.wikipedia.org/wiki/%E6%95%A3%E5%88%97%E5%87%BD%E6%95%B8</a><br>sha家族：<a href="https://zh.wikipedia.org/wiki/SHA%E5%AE%B6%E6%97%8F" target="_blank" rel="external">https://zh.wikipedia.org/wiki/SHA%E5%AE%B6%E6%97%8F</a><br>彩虹表：<a href="https://zh.wikipedia.org/wiki/%E5%BD%A9%E8%99%B9%E8%A1%A8" target="_blank" rel="external">https://zh.wikipedia.org/wiki/%E5%BD%A9%E8%99%B9%E8%A1%A8</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/hash/" rel="tag"># hash</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/14/hive on spark /" rel="next" title="hive on spark  java.net.ConnectException:Connection refused">
+                <i class="fa fa-chevron-left"></i> hive on spark  java.net.ConnectException:Connection refused
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/1763449.jpeg"
+               alt="huawei" />
+          <p class="site-author-name" itemprop="name">huawei</p>
+           
+              <p class="site-description motion-element" itemprop="description">1</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/alonelaval" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#单向散列函数的说明"><span class="nav-number">1.</span> <span class="nav-text">单向散列函数的说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单向散列函数的特点"><span class="nav-number">2.</span> <span class="nav-text">单向散列函数的特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单项散列函数的经典算法"><span class="nav-number">3.</span> <span class="nav-text">单项散列函数的经典算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单向散列函数的常见应用场景"><span class="nav-number">4.</span> <span class="nav-text">单向散列函数的常见应用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">huawei</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
