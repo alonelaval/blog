@@ -584,6 +584,152 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://alonelaval.com/2018/06/13/crontab/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="huawei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1763449.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="无言">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/06/13/crontab/" itemprop="url">
+                  crontab
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-13T13:39:23+08:00">
+                2018-06-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/gitlab/" itemprop="url" rel="index">
+                    <span itemprop="name">gitlab</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="执行时间设置"><a href="#执行时间设置" class="headerlink" title="执行时间设置"></a>执行时间设置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">每五分钟执行   */5 * * * *</div><div class="line"></div><div class="line">每小时执行     0 * * * *</div><div class="line"></div><div class="line">每天执行       0 0 * * *</div><div class="line"></div><div class="line">每周执行       0 0 * * 0</div><div class="line"></div><div class="line">每月执行       0 0 1 * *</div><div class="line"></div><div class="line">每年执行       0 0 1 1 *</div></pre></td></tr></table></figure>
+<h3 id="日志设置"><a href="#日志设置" class="headerlink" title="日志设置"></a>日志设置</h3><p>错误方式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">*/1 * * * * /data/crontab/test.sh  2&gt;&amp;1 &gt;&gt; /data/crontab/log/test.log</div></pre></td></tr></table></figure>
+<p>正确方式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">*/1 * * * * /data/crontab/test.sh  &gt;&gt; /data/crontab/log/test.log 2&gt;&amp;1</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://alonelaval.com/2018/06/13/gitlab维护命令/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -692,152 +838,6 @@
 <p>添加gitlab配置</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">vim /etc/nginx/conf.d/gitlab.conf</div><div class="line"></div><div class="line">upstream gitlab-workhorse &#123;</div><div class="line">  server unix:/var/opt/gitlab/gitlab-workhorse/socket;</div><div class="line">&#125;</div><div class="line"># HTTPS server</div><div class="line"></div><div class="line">        #proxy_cache_path  /data/nginx/cache  levels=1:2    keys_zone=STATIC:10 inactive=24h  max_size=1g;</div><div class="line">server &#123;</div><div class="line">        listen       80  default_server;</div><div class="line">        #server_name  git.okycz.com;</div><div class="line">        #ssl                  on;</div><div class="line">        #ssl_certificate</div><div class="line">        #ssl_certificate_key</div><div class="line"></div><div class="line">        #ssl_session_cache    shared:SSL:1m;</div><div class="line">        #ssl_session_timeout  5m;</div><div class="line"></div><div class="line">        #ssl_ciphers  HIGH:!aNULL:!MD5;</div><div class="line">        #ssl_prefer_server_ciphers  on;</div><div class="line"></div><div class="line">        proxy_read_timeout 1800;</div><div class="line">        proxy_send_timeout 1800;</div><div class="line">        #proxy_connect_timeout 600;</div><div class="line">        #send_timeout  600;</div><div class="line">        #keepalive_timeout 600s;</div><div class="line"></div><div class="line">        location / &#123;</div><div class="line">            proxy_pass http://gitlab-workhorse/;</div><div class="line">            proxy_set_header Host $host:$server_port;</div><div class="line">            proxy_set_header X-Real-IP $remote_addr;</div><div class="line">            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</div><div class="line">            proxy_set_header Via &quot;nginx&quot;;</div><div class="line">            #proxy_cache STATIC;</div><div class="line">            #proxy_cache_valid  200 1d;</div><div class="line">            #proxy_cache_use_stale  error timeout invalid_header updating http_500 http_502 http_503 http_504;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        location ~ ^/(assets)/ &#123;</div><div class="line">                root /opt/gitlab/embedded/service/gitlab-rails/public;</div><div class="line">                gzip_static on; # to serve pre-gzipped version</div><div class="line">                expires max;</div><div class="line">                add_header Cache-Control public;</div><div class="line">         &#125;</div><div class="line"></div><div class="line">        #rewrite ^(.*)$  https://$host$1 permanent;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="webide异常"><a href="#webide异常" class="headerlink" title="webide异常"></a>webide异常</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">I made it work behind a nginx reverse proxy by adding $request_uri to the proxy_pass:</div><div class="line"></div><div class="line">proxy_pass http://my-gitlab:5555/$request_uri;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://alonelaval.com/2018/06/13/crontab/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="huawei">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/1763449.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="无言">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2018/06/13/crontab/" itemprop="url">
-                  crontab
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-13T13:39:23+08:00">
-                2018-06-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/gitlab/" itemprop="url" rel="index">
-                    <span itemprop="name">gitlab</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="执行时间设置"><a href="#执行时间设置" class="headerlink" title="执行时间设置"></a>执行时间设置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">每五分钟执行   */5 * * * *</div><div class="line"></div><div class="line">每小时执行     0 * * * *</div><div class="line"></div><div class="line">每天执行       0 0 * * *</div><div class="line"></div><div class="line">每周执行       0 0 * * 0</div><div class="line"></div><div class="line">每月执行       0 0 1 * *</div><div class="line"></div><div class="line">每年执行       0 0 1 1 *</div></pre></td></tr></table></figure>
-<h3 id="日志设置"><a href="#日志设置" class="headerlink" title="日志设置"></a>日志设置</h3><p>错误方式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">*/1 * * * * /data/crontab/test.sh  2&gt;&amp;1 &gt;&gt; /data/crontab/log/test.log</div></pre></td></tr></table></figure>
-<p>正确方式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">*/1 * * * * /data/crontab/test.sh  &gt;&gt; /data/crontab/log/test.log 2&gt;&amp;1</div></pre></td></tr></table></figure>
-
           
         
       

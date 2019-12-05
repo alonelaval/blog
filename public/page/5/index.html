@@ -270,6 +270,158 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://alonelaval.com/2017/05/01/在现实编程中使用fluent模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="huawei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1763449.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="无言">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/05/01/在现实编程中使用fluent模式/" itemprop="url">
+                  在现实编程中使用fluent风格
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-01T13:39:23+08:00">
+                2017-05-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="在现实编程中使用fluent风格"><a href="#在现实编程中使用fluent风格" class="headerlink" title="在现实编程中使用fluent风格"></a>在现实编程中使用fluent风格</h2><h3 id="需求："><a href="#需求：" class="headerlink" title="需求："></a>需求：</h3><pre><code>根据相应的条件查找对应的imsi,其中条件有多个满足即返回结果，如果不满足对对数据进行过滤，交由后续处理。
+条件:
+1.电话号码匹配，返回匹配结果，即匹配的imsi
+2.根据电话号码生成imsi前缀，匹配imsi，如果多条，需进行后续处理
+3.根据银行，卡号匹配imsi,如果多条，需进行后续处理
+4.根据地区，匹配imsi,如果多条，需进行后续处理
+5.根据姓名的摘要，匹配imsi，如果多条，即认为数据没有命中
+</code></pre><h3 id="设计："><a href="#设计：" class="headerlink" title="设计："></a>设计：</h3><p>在前面的条件中，所有的步骤都能结束整个查找流程，在上述的查找流程中，我引入了责任链的模式，该模式的类图为：<br><img src="/images/6rM7Vv.png" alt=""><br>职责链模式：使多个对象都有机会处理请求，将多个对象连成一条链，并沿着这条链传递该请求，直到有一个对象处理他为止，使用该模式，可对查询条件进行组合，或者添加新的查询条件，而不影响别已有的结构。</p>
+<h3 id="使用："><a href="#使用：" class="headerlink" title="使用："></a>使用：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> IMatcher <span class="title">buildMatchChain</span><span class="params">(String phone,String name,String areaCode,String bank,String card)</span> <span class="keyword">throws</span> Exception</span>&#123;</div><div class="line">		bank = BankCache.getInstance().get(bank);</div><div class="line">		IMatcher imsiUserNameMatch = <span class="keyword">new</span> ImsiUserNameMatch(name);  <span class="comment">//匹配姓名</span></div><div class="line">		</div><div class="line">		IMatcher imsiAreaMatch = <span class="keyword">new</span> ImsiAreaMatch(areaCode);  <span class="comment">//匹配地区</span></div><div class="line">		imsiAreaMatch.setNext(imsiUserNameMatch);</div><div class="line"><span class="comment">//		</span></div><div class="line">		IMatcher preFixphoneImsiCardMatch = <span class="keyword">new</span> PrefixPhoneImsiCardMatch(phone,bank, card); <span class="comment">//匹配银行卡号</span></div><div class="line">		preFixphoneImsiCardMatch.setNext(imsiAreaMatch);</div><div class="line">		</div><div class="line">		IMatcher phoneImsiMatch = <span class="keyword">new</span> PhoneImsiMatch(phone);<span class="comment">//匹配手机号和IMSI</span></div><div class="line">		phoneImsiMatch.setNext(preFixphoneImsiCardMatch);</div><div class="line">		<span class="keyword">return</span> phoneImsiMatch;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<h4 id="使用fluent风格："><a href="#使用fluent风格：" class="headerlink" title="使用fluent风格："></a>使用fluent风格：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> IMatcher <span class="title">buildMatchChain2</span><span class="params">(String phone,String name,String areaCode,String bank,String card)</span> <span class="keyword">throws</span> Exception</span>&#123;</div><div class="line">	bank = BankCache.getInstance().get(bank);</div><div class="line">	<span class="keyword">return</span> <span class="keyword">new</span> PhoneImsiMatch(phone)</div><div class="line">			  .setNext(<span class="keyword">new</span> PrefixPhoneImsiCardMatch(phone,bank, card))</div><div class="line">			  .setNext(<span class="keyword">new</span> ImsiAreaMatch(areaCode))</div><div class="line">			  .setNext(<span class="keyword">new</span> ImsiUserNameMatch(name));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="fluent风格在知名开源框架中的使用："><a href="#fluent风格在知名开源框架中的使用：" class="headerlink" title="fluent风格在知名开源框架中的使用："></a>fluent风格在知名开源框架中的使用：</h3><p>1.在google guava中，各种api接口都是采用该风格<br>2.在netty api中，也是采用该种风格<br>3.在apache curator,也是采用风格  </p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://alonelaval.com/2017/05/01/hive表的创建/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -421,158 +573,6 @@ Row object –&gt; Serializer –&gt; &lt;key, value&gt; –&gt; OutputFileForma
 2.调用SerDe的Deserializer，将一行(Row)，切分为各个字段。
 </code></pre><p>当HIVE执行INSERT操作，将Row写入文件时，主要调用OutputFormat、SerDe的Seriliazer，顺序与读取相反<br>【INPUTFORMAT】属性的类必须实现org.apache.hadoop.mapred.InputFormat接口<br>【OUTPUTFORMAT】属性的类必须实现org.apache.hadoop.mapreduce.OutputFormat接口<br>【SERDE】属性的类必须实现org.apache.hadoop.hive.serde2接口</p>
 <p>###注：参考文档<br>    <a href="https://cwiki.apache.org/confluence/display/Hive/DeveloperGuide" target="_blank" rel="external">https://cwiki.apache.org/confluence/display/Hive/DeveloperGuide</a><br>    <a href="https://hive.apache.org/javadocs/r1.2.1/api/" target="_blank" rel="external">https://hive.apache.org/javadocs/r1.2.1/api/</a><br>    <a href="http://hadoop.apache.org/docs/r2.7.1/api/" target="_blank" rel="external">http://hadoop.apache.org/docs/r2.7.1/api/</a><br>    <a href="https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL" target="_blank" rel="external">https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://alonelaval.com/2017/05/01/在现实编程中使用fluent模式/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="huawei">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/1763449.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="无言">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/05/01/在现实编程中使用fluent模式/" itemprop="url">
-                  在现实编程中使用fluent风格
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-01T13:39:23+08:00">
-                2017-05-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/设计模式/" itemprop="url" rel="index">
-                    <span itemprop="name">设计模式</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="在现实编程中使用fluent风格"><a href="#在现实编程中使用fluent风格" class="headerlink" title="在现实编程中使用fluent风格"></a>在现实编程中使用fluent风格</h2><h3 id="需求："><a href="#需求：" class="headerlink" title="需求："></a>需求：</h3><pre><code>根据相应的条件查找对应的imsi,其中条件有多个满足即返回结果，如果不满足对对数据进行过滤，交由后续处理。
-条件:
-1.电话号码匹配，返回匹配结果，即匹配的imsi
-2.根据电话号码生成imsi前缀，匹配imsi，如果多条，需进行后续处理
-3.根据银行，卡号匹配imsi,如果多条，需进行后续处理
-4.根据地区，匹配imsi,如果多条，需进行后续处理
-5.根据姓名的摘要，匹配imsi，如果多条，即认为数据没有命中
-</code></pre><h3 id="设计："><a href="#设计：" class="headerlink" title="设计："></a>设计：</h3><p>在前面的条件中，所有的步骤都能结束整个查找流程，在上述的查找流程中，我引入了责任链的模式，该模式的类图为：<br><img src="/images/6rM7Vv.png" alt=""><br>职责链模式：使多个对象都有机会处理请求，将多个对象连成一条链，并沿着这条链传递该请求，直到有一个对象处理他为止，使用该模式，可对查询条件进行组合，或者添加新的查询条件，而不影响别已有的结构。</p>
-<h3 id="使用："><a href="#使用：" class="headerlink" title="使用："></a>使用：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> IMatcher <span class="title">buildMatchChain</span><span class="params">(String phone,String name,String areaCode,String bank,String card)</span> <span class="keyword">throws</span> Exception</span>&#123;</div><div class="line">		bank = BankCache.getInstance().get(bank);</div><div class="line">		IMatcher imsiUserNameMatch = <span class="keyword">new</span> ImsiUserNameMatch(name);  <span class="comment">//匹配姓名</span></div><div class="line">		</div><div class="line">		IMatcher imsiAreaMatch = <span class="keyword">new</span> ImsiAreaMatch(areaCode);  <span class="comment">//匹配地区</span></div><div class="line">		imsiAreaMatch.setNext(imsiUserNameMatch);</div><div class="line"><span class="comment">//		</span></div><div class="line">		IMatcher preFixphoneImsiCardMatch = <span class="keyword">new</span> PrefixPhoneImsiCardMatch(phone,bank, card); <span class="comment">//匹配银行卡号</span></div><div class="line">		preFixphoneImsiCardMatch.setNext(imsiAreaMatch);</div><div class="line">		</div><div class="line">		IMatcher phoneImsiMatch = <span class="keyword">new</span> PhoneImsiMatch(phone);<span class="comment">//匹配手机号和IMSI</span></div><div class="line">		phoneImsiMatch.setNext(preFixphoneImsiCardMatch);</div><div class="line">		<span class="keyword">return</span> phoneImsiMatch;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
-<h4 id="使用fluent风格："><a href="#使用fluent风格：" class="headerlink" title="使用fluent风格："></a>使用fluent风格：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> IMatcher <span class="title">buildMatchChain2</span><span class="params">(String phone,String name,String areaCode,String bank,String card)</span> <span class="keyword">throws</span> Exception</span>&#123;</div><div class="line">	bank = BankCache.getInstance().get(bank);</div><div class="line">	<span class="keyword">return</span> <span class="keyword">new</span> PhoneImsiMatch(phone)</div><div class="line">			  .setNext(<span class="keyword">new</span> PrefixPhoneImsiCardMatch(phone,bank, card))</div><div class="line">			  .setNext(<span class="keyword">new</span> ImsiAreaMatch(areaCode))</div><div class="line">			  .setNext(<span class="keyword">new</span> ImsiUserNameMatch(name));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="fluent风格在知名开源框架中的使用："><a href="#fluent风格在知名开源框架中的使用：" class="headerlink" title="fluent风格在知名开源框架中的使用："></a>fluent风格在知名开源框架中的使用：</h3><p>1.在google guava中，各种api接口都是采用该风格<br>2.在netty api中，也是采用该种风格<br>3.在apache curator,也是采用风格  </p>
 
           
         
