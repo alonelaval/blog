@@ -270,6 +270,312 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://alonelaval.com/2018/06/11/linux磁盘格式化/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="huawei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1763449.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="无言">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/06/11/linux磁盘格式化/" itemprop="url">
+                  linux 磁盘格式化
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-11T13:39:23+08:00">
+                2018-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/系统/" itemprop="url" rel="index">
+                    <span itemprop="name">系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="卸载硬盘"><a href="#卸载硬盘" class="headerlink" title="卸载硬盘"></a>卸载硬盘</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">umount -v 挂载路径</div></pre></td></tr></table></figure>
+<p>如果磁盘busy</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lsof |grep 挂载路径</div></pre></td></tr></table></figure>
+<p>找出正在使用磁盘的进程，kill掉。</p>
+<h3 id="查看磁盘分区格式"><a href="#查看磁盘分区格式" class="headerlink" title="查看磁盘分区格式"></a>查看磁盘分区格式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df -T</div></pre></td></tr></table></figure>
+<h3 id="格式化磁盘分区"><a href="#格式化磁盘分区" class="headerlink" title="格式化磁盘分区"></a>格式化磁盘分区</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mkfs -t ext4 /dev/sdb</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://alonelaval.com/2018/06/11/linux 安装openvpn/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="huawei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1763449.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="无言">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/06/11/linux 安装openvpn/" itemprop="url">
+                  linux 安装openvpn
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-11T13:39:23+08:00">
+                2018-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/系统/" itemprop="url" rel="index">
+                    <span itemprop="name">系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="安装openvpn-easy-rsa软件"><a href="#安装openvpn-easy-rsa软件" class="headerlink" title="安装openvpn,easy-rsa软件"></a>安装openvpn,easy-rsa软件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install -y openvpn easy-rsa</div></pre></td></tr></table></figure>
+<h3 id="拷贝文件"><a href="#拷贝文件" class="headerlink" title="拷贝文件"></a>拷贝文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cp /usr/share/doc/openvpn-2.4.6/sample/sample-config-files/server.conf /etc/openvpn/</div><div class="line"></div><div class="line">cp -r /usr/share/easy-rsa/3.0.3/* /etc/openvpn/</div></pre></td></tr></table></figure>
+<h3 id="设置默认参数"><a href="#设置默认参数" class="headerlink" title="设置默认参数"></a>设置默认参数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">cd /etc/openvpn</div><div class="line"></div><div class="line">vim vars</div><div class="line"></div><div class="line">export KEY_SIZE=4096</div><div class="line">export KEY_COUNTRY=&quot;CN&quot;</div><div class="line">export KEY_PROVINCE=&quot;SH&quot;</div><div class="line">export KEY_CITY=&quot;SH&quot;</div><div class="line">export KEY_ORG=&quot;xxx&quot;</div><div class="line">export KEY_EMAIL=&quot;xxx&quot;</div><div class="line"></div><div class="line"></div><div class="line">chmod +x vars</div></pre></td></tr></table></figure>
+<h3 id="使用easy-rsa生成服务器端证书"><a href="#使用easy-rsa生成服务器端证书" class="headerlink" title="使用easy-rsa生成服务器端证书"></a>使用easy-rsa生成服务器端证书</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">cd /etc/openvpn</div><div class="line"></div><div class="line">./easyrsa init-pki  #创建空的pki，创建后会多一个pki的目录，初始化后，不要再初始化了。</div><div class="line">./easyrsa build-ca nopass #创建新的CA，不使用密码，一路回车</div><div class="line">./easyrsa gen-req server nopass #创建服务端证书，一路回车</div><div class="line">./easyrsa sign server server #使用CA证书对服务器端证书，进行签名</div><div class="line">./easyrsa gen-dh #创建 Diffie-Hellman，一种密钥交换算法</div></pre></td></tr></table></figure>
+<h3 id="使用easy-rsa生成客户端证书"><a href="#使用easy-rsa生成客户端证书" class="headerlink" title="使用easy-rsa生成客户端证书"></a>使用easy-rsa生成客户端证书</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">./easyrsa gen-req test nopass</div><div class="line">./easyrsa sign client test</div></pre></td></tr></table></figure>
+<h3 id="查看easy-rsa创建的pki目录结构"><a href="#查看easy-rsa创建的pki目录结构" class="headerlink" title="查看easy-rsa创建的pki目录结构"></a>查看easy-rsa创建的pki目录结构</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">tree</div><div class="line">.</div><div class="line">├── ca.crt</div><div class="line">├── certs_by_serial</div><div class="line">│   ├── 4F6A847EF9A70413EA6E24BFD6AAA3CE.pem</div><div class="line">│   └── C2833F45701214C377138DC1303D7935.pem</div><div class="line">├── dh.pem</div><div class="line">├── index.txt</div><div class="line">├── index.txt.attr</div><div class="line">├── index.txt.attr.old</div><div class="line">├── index.txt.old</div><div class="line">├── issued</div><div class="line">│   ├── server.crt</div><div class="line">│   └── test.crt</div><div class="line">├── private</div><div class="line">│   ├── server.key</div><div class="line">│   ├── ca.key</div><div class="line">│   └── test.key</div><div class="line">├── reqs</div><div class="line">│   ├── server.req</div><div class="line">│   └── test.req</div><div class="line">├── serial</div><div class="line">└── serial.old</div></pre></td></tr></table></figure>
+<h3 id="生成ta-key文件"><a href="#生成ta-key文件" class="headerlink" title="生成ta.key文件"></a>生成ta.key文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">openvpn --genkey --secret /etc/openvpn/ta.key</div></pre></td></tr></table></figure>
+<h3 id="创建日志目录"><a href="#创建日志目录" class="headerlink" title="创建日志目录"></a>创建日志目录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mkdir -p /var/log/openvpn/</div></pre></td></tr></table></figure>
+<h3 id="编辑服务配置文件-vim-etc-openvpn-server-conf"><a href="#编辑服务配置文件-vim-etc-openvpn-server-conf" class="headerlink" title="编辑服务配置文件 vim /etc/openvpn/server.conf"></a>编辑服务配置文件 vim /etc/openvpn/server.conf</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div></pre></td><td class="code"><pre><div class="line">;local a.b.c.d</div><div class="line"></div><div class="line"># 设置监听端口，必须要对应的在防火墙里面打开</div><div class="line">port 1194</div><div class="line"></div><div class="line"># 设置用TCP还是UDP协议？</div><div class="line">;proto tcp</div><div class="line">proto tcp</div><div class="line"></div><div class="line"># 设置创建tun的路由IP通道，还是创建tap的以太网通道，由于路由IP容易控制，所以推荐使用tunnel；</div><div class="line"># 但如果如IPX等必须使用第二层才能通过的通讯，则可以用tap方式，tap也就是以太网桥接</div><div class="line">;dev tap</div><div class="line">dev tun</div><div class="line"></div><div class="line"># 这里是重点，必须指定SSL/TLS root certificate (ca),</div><div class="line"># certificate(cert), and private key (key)</div><div class="line"># ca文件是服务端和客户端都必须使用的，但不需要ca.key</div><div class="line"># 服务端和客户端指定各自的.crt和.key</div><div class="line"># 请注意路径,可以使用以配置文件开始为根的相对路径,</div><div class="line"># 也可以使用绝对路径</div><div class="line"># 请小心存放.key密钥文件</div><div class="line"></div><div class="line">ca pki/ca.crt</div><div class="line">cert pki/issued/server.crt</div><div class="line">key pki/private/server.key</div><div class="line">#（默认是2048，如果生成ca的时候修改过dh参数“export KEY_SIZE”则改为对应的数字）</div><div class="line"></div><div class="line">dh pki/dh.pem</div><div class="line"></div><div class="line"># 配置VPN使用的网段，OpenVPN会自动提供基于该网段的DHCP服务，但不能和任何一方的局域网段重复，保证唯一</div><div class="line">server 10.20.0.0 255.255.255.0</div><div class="line"></div><div class="line"># 维持一个客户端和virtual IP的对应表，以方便客户端重新连接可以获得同样的IP</div><div class="line">ifconfig-pool-persist ipp.txt</div><div class="line"></div><div class="line"># 为客户端创建对应的路由，以另其通达公司网内部服务器</div><div class="line"># 但记住，公司网内部服务器也需要有可用路由返回到客户端</div><div class="line">;push &quot;route 192.168.20.0 255.255.255.0&quot;</div><div class="line">push &quot;route 10.X.0.0 255.255.0.0&quot;</div><div class="line"># （X按照机房网段修改）</div><div class="line"></div><div class="line"># 若客户端希望所有的流量都通过VPN传输,则可以使用该语句</div><div class="line"># 其会自动改变客户端的网关为VPN服务器,推荐关闭</div><div class="line">#一旦设置，请小心服务端的DHCP设置问题</div><div class="line">;push &quot;redirect-gateway def1 bypass-dhcp&quot;</div><div class="line"></div><div class="line"># 用OpenVPN的DHCP功能为客户端提供指定的DNS、WINS等</div><div class="line">;push &quot;dhcp-option DNS 208.67.222.222&quot;</div><div class="line">;push &quot;dhcp-option DNS 208.67.220.220&quot;</div><div class="line"></div><div class="line"># 默认客户端之间是不能直接通讯的，除非把下面的语句注释掉</div><div class="line">client-to-client</div><div class="line"></div><div class="line"># 下面是一些对安全性增强的措施</div><div class="line"># For extra security beyond that provided by SSL/TLS, create an &quot;HMAC firewall&quot;</div><div class="line"># to help block DoS attacks and UDP port flooding.</div><div class="line">#</div><div class="line"># Generate with:</div><div class="line"># openvpn --genkey --secret ta.key</div><div class="line">#</div><div class="line"># The server and each client must have a copy of this key.</div><div class="line"># The second parameter should be 0 on the server and 1 on the clients.</div><div class="line">; tls-auth ta.key 0 # This file is secret</div><div class="line">#(这句要注释掉)</div><div class="line"></div><div class="line"># 使用lzo压缩的通讯,服务端和客户端都必须配置</div><div class="line">comp-lzo</div><div class="line"></div><div class="line"># 输出短日志,每分钟刷新一次,以显示当前的客户端</div><div class="line">status /var/log/openvpn/openvpn-status.log</div><div class="line"></div><div class="line"># 缺省日志会记录在系统日志中，但也可以导向到其他地方</div><div class="line"># 建议调试的使用先不要设置,调试完成后再定义</div><div class="line">log         /var/log/openvpn/openvpn.log</div><div class="line">log-append  /var/log/openvpn/openvpn.log</div><div class="line"></div><div class="line"># 设置日志的级别</div><div class="line">#</div><div class="line"># 0 is silent, except for fatal errors</div><div class="line"># 4 is reasonable for general usage</div><div class="line"># 5 and 6 can help to debug connection problems</div><div class="line"># 9 is extremely verbose</div><div class="line">verb 3</div></pre></td></tr></table></figure>
+<h3 id="启动服务："><a href="#启动服务：" class="headerlink" title="启动服务："></a>启动服务：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">service openvpn start</div><div class="line">#设置开机启动</div><div class="line">chkconfig openvpn on</div></pre></td></tr></table></figure>
+<h3 id="开启路由转发功能"><a href="#开启路由转发功能" class="headerlink" title="开启路由转发功能"></a>开启路由转发功能</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">vim /etc/sysctl.conf</div><div class="line"></div><div class="line">找到net.ipv4.ip_forward = 0</div><div class="line">把0改成1</div><div class="line">sysctl -p #生效</div></pre></td></tr></table></figure>
+<h3 id="设置防火墙"><a href="#设置防火墙" class="headerlink" title="设置防火墙"></a>设置防火墙</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># 设置iptables（这一条至关重要，通过配置nat将vpn网段IP转发到server内网）</div><div class="line">iptables -t nat -A POSTROUTING -s 10.20.0.0/24 -o eth0 -j MASQUERADE</div><div class="line"># openvpn端口通过</div><div class="line">iptables -A INPUT -p TCP --dport 1194 -j ACCEPT</div><div class="line">iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT</div><div class="line">service iptables save</div></pre></td></tr></table></figure>
+<h3 id="创建客户端文件"><a href="#创建客户端文件" class="headerlink" title="创建客户端文件"></a>创建客户端文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd /home/test</div><div class="line">vim test.opvn</div></pre></td></tr></table></figure>
+<p>填入内容 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">client</div><div class="line">dev tun</div><div class="line">proto tcp</div><div class="line">remote xxx.xxx.xxx.xxx 1194</div><div class="line">ca ca.crt</div><div class="line">cert test.crt</div><div class="line">key test.key</div><div class="line">comp-lzo</div><div class="line">persist-key</div><div class="line">persist-tun</div></pre></td></tr></table></figure>
+<h3 id="拷贝客户端文件"><a href="#拷贝客户端文件" class="headerlink" title="拷贝客户端文件"></a>拷贝客户端文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cp /etc/openvpn/pki/ca.crt /home/test</div><div class="line">cp /etc/openvpn/pki/issued/test.crt /home/test</div><div class="line">cp /etc/openvpn/pki/private/test.key /home/test</div><div class="line">cp /etc/openvpn/ta.key /home/test</div></pre></td></tr></table></figure>
+<h3 id="打包下载文件"><a href="#打包下载文件" class="headerlink" title="打包下载文件"></a>打包下载文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cd /home/test</div><div class="line">zip test.zip *</div><div class="line">sz test.zip</div></pre></td></tr></table></figure>
+<p>下载openvpn客户端，打开test.opvn，即可连上服务器了。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://alonelaval.com/2018/05/31/mysql安装/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -418,7 +724,7 @@ mysqld_safe --skip-grant-tables &amp;
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://alonelaval.com/2018/05/31/jdk1.8安装/">
+    <link itemprop="mainEntityOfPage" href="http://alonelaval.com/2018/05/31/mysql导出数据/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="huawei">
@@ -440,8 +746,8 @@ mysqld_safe --skip-grant-tables &amp;
             
               
                 
-                <a class="post-title-link" href="/2018/05/31/jdk1.8安装/" itemprop="url">
-                  centos 6.5安装JDK1.8
+                <a class="post-title-link" href="/2018/05/31/mysql导出数据/" itemprop="url">
+                  mysql导出数据
                 </a>
               
             
@@ -480,8 +786,8 @@ mysqld_safe --skip-grant-tables &amp;
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
+                  <a href="/categories/mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">mysql</span>
                   </a>
                 </span>
 
@@ -516,11 +822,12 @@ mysqld_safe --skip-grant-tables &amp;
       
         
           
-            <h3 id="下载安装包"><a href="#下载安装包" class="headerlink" title="下载安装包"></a>下载安装包</h3><p>jdk-8u161-linux-x64.tar.gz</p>
-<h3 id="解压安装包"><a href="#解压安装包" class="headerlink" title="解压安装包"></a>解压安装包</h3><p>tar xvf jdk-8u161-linux-x64.tar.gz</p>
-<h3 id="拷贝安装包到-usr-local-目录"><a href="#拷贝安装包到-usr-local-目录" class="headerlink" title="拷贝安装包到/usr/local 目录"></a>拷贝安装包到/usr/local 目录</h3><p>mv jdk1.8.0_161 /usr/local/</p>
-<h3 id="设置-etc-profile环境变量"><a href="#设置-etc-profile环境变量" class="headerlink" title="设置/etc/profile环境变量"></a>设置/etc/profile环境变量</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">export GREP_OPTIONS=--color=auto</div><div class="line"></div><div class="line"></div><div class="line">export JAVA_HOME=/usr/local/jdk1.8.0_161</div><div class="line"></div><div class="line">export PATH=$JAVA_HOME/bin:$PATH</div><div class="line"></div><div class="line">export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</div></pre></td></tr></table></figure>
-<h3 id="source-etc-profile-生效"><a href="#source-etc-profile-生效" class="headerlink" title="source /etc/profile 生效"></a>source /etc/profile 生效</h3>
+            <h3 id="mysql导出所有数据库，会包含mysql本身的库"><a href="#mysql导出所有数据库，会包含mysql本身的库" class="headerlink" title="mysql导出所有数据库，会包含mysql本身的库"></a>mysql导出所有数据库，会包含mysql本身的库</h3><p>mysqldump -u root -p –all-databases &gt; alldb.sql</p>
+<h3 id="导入："><a href="#导入：" class="headerlink" title="导入："></a>导入：</h3><p>mysql -u root -p &lt; alldb.sql</p>
+<h3 id="导出指定的库"><a href="#导出指定的库" class="headerlink" title="导出指定的库"></a>导出指定的库</h3><p>mysqldump -u root -p –databases 数据库1 数据库2 | gzip &gt; alldb.sql.gz</p>
+<h3 id="导入指定的"><a href="#导入指定的" class="headerlink" title="导入指定的"></a>导入指定的</h3><p>gunzip &lt; myfile.sql.gz | mysql -u root -p </p>
+<h3 id="导出某张表的数据"><a href="#导出某张表的数据" class="headerlink" title="导出某张表的数据"></a>导出某张表的数据</h3><p>mysqldump [options] db_name [table_name……]</p>
+
           
         
       
@@ -728,316 +1035,11 @@ mysqld_safe --skip-grant-tables &amp;
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://alonelaval.com/2018/04/04/leetcode1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="huawei">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/1763449.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="无言">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2018/04/04/leetcode1/" itemprop="url">
-                  leetcode算法，查找指定数和的元素的索引
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-04T13:57:23+08:00">
-                2018-04-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p> <strong>给定一个整数数列，找出其中和为特定值的那两个数。<br> 你可以假设每个输入都只会有一种答案，同样的元素不能被重用。</strong></p>
-<h3 id="示例"><a href="#示例" class="headerlink" title="示例:"></a>示例:</h3><pre><code>给定：nums = [2, 7, 11, 15] , target = 9  
-因为：nums[0] + nums[1] = 2 + 7 = 9 
-所以返回： [0, 1]
-</code></pre><h3 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] code(<span class="keyword">int</span> [] arr,<span class="keyword">int</span> num)&#123;</div><div class="line">        Map&lt;Integer,Integer&gt; dataIndex = <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;();</div><div class="line"></div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>,s=arr.length;i&lt;s;i++)&#123;</div><div class="line">            <span class="keyword">int</span> v= num - arr[i]; <span class="comment">//如果和相等，即代表减法之中，肯定有一个能找到对应的</span></div><div class="line"></div><div class="line">            <span class="keyword">if</span> (v &gt;= <span class="number">0</span>) &#123;<span class="comment">//默认没有负数</span></div><div class="line">                <span class="keyword">if</span>(i != <span class="number">0</span> &amp;&amp; dataIndex.containsKey(v))&#123; <span class="comment">//将前面存储的找到。即为相应的</span></div><div class="line">                    <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;dataIndex.get(v),i&#125;;</div><div class="line">                &#125;</div><div class="line">                dataIndex.put(arr[i], i);<span class="comment">//存储值和索引</span></div><div class="line">            &#125;</div><div class="line"></div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="leetcode最优解："><a href="#leetcode最优解：" class="headerlink" title="leetcode最优解："></a>leetcode最优解：</h3><p>支持负数元素，少了判断</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">public int[] twoSum(int[] nums, int target) &#123;</div><div class="line">    Map&lt;Integer, Integer&gt; map = new HashMap&lt;&gt;();</div><div class="line">    for (int i = 0; i &lt; nums.length; i++) &#123;</div><div class="line">        int complement = target - nums[i];</div><div class="line">        if (map.containsKey(complement)) &#123;</div><div class="line">            return new int[] &#123; map.get(complement), i &#125;;</div><div class="line">        &#125;</div><div class="line">        map.put(nums[i], i);</div><div class="line">    &#125;</div><div class="line">    throw new IllegalArgumentException(&quot;No two sum solution&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://alonelaval.com/2018/04/04/nginx-openssl版本问题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="huawei">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/1763449.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="无言">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2018/04/04/nginx-openssl版本问题/" itemprop="url">
-                  记一次nginx，https502异常
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-04T13:57:23+08:00">
-                2018-04-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/nginx/" itemprop="url" rel="index">
-                    <span itemprop="name">nginx</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="出现异常的方式"><a href="#出现异常的方式" class="headerlink" title="出现异常的方式"></a>出现异常的方式</h2><p>相同配置的两台nginx服务器，其中一台访问正常。其中一台访问的时候，浏览器502.由于证书都是自签名，并且配置文件和证书文件都是直接拷贝过去，基本排查配置的问题。</p>
-<h3 id="错误机器的异常日志-var-log-nginx-error-log"><a href="#错误机器的异常日志-var-log-nginx-error-log" class="headerlink" title="错误机器的异常日志/var/log/nginx/error.log"></a>错误机器的异常日志/var/log/nginx/error.log</h3><p>隐藏了部分IP和host,采用xxxx代替，其中基本错误都是这种类型</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">2018/04/04 13:53:55 [error] 5342#0: *3468 SSL_do_handshake() failed (SSL: error:100AE081:elliptic curve routines:EC_GROUP_new_by_curve_name:unknown group error:1408D010:SSL routines:SSL3_GET_KEY_EXCHANGE:EC lib) while SSL handshaking to upstream, client: xxxxx, server: xxxx, request: &quot;POST /platformService?wsdl HTTP/1.1&quot;, upstream: &quot;https://10.1.152.9:8444/platformService?wsdl&quot;, host: &quot;xxxx&quot;   </div><div class="line">2018/04/04 13:53:55 [error] 5342#0: *3468 SSL_do_handshake() failed (SSL: error:100AE081:elliptic curve routines:EC_GROUP_new_by_curve_name:unknown group error:1408D010:SSL routines:SSL3_GET_KEY_EXCHANGE:EC lib) while SSL handshaking to upstream, client: xxxxx, server: xxxx, request: &quot;POST /platformService?wsdl HTTP/1.1&quot;, upstream: &quot;https://10.1.152.9:8445/platformService?wsdl&quot;, host: &quot;xxxx&quot;</div><div class="line">2018/04/04 13:53:55 [error] 5342#0: *3571 no live upstreams while connecting to upstream, client: xxxx, server: xxxx, request: &quot;POST /platformService?wsdl HTTP/1.1&quot;, upstream: &quot;https://jk/platformService?wsdl&quot;, host: &quot;xxxxx&quot;   </div><div class="line">2018/04/04 13:53:55 [error] 5342#0: *3468 SSL_do_handshake() failed (SSL: error:100AE081:elliptic curve routines:EC_GROUP_new_by_curve_name:unknown group error:1408D010:SSL routines:SSL3_GET_KEY_EXCHANGE:EC lib) while SSL handshaking to upstream, client: xxxx, server: xxxx, request: &quot;POST /platformService?wsdl HTTP/1.1&quot;, upstream: &quot;https://10.1.152.9:8444/platformService?wsdl&quot;, host: &quot;xxxxx&quot;   </div><div class="line">2018/04/04 13:53:56 [error] 5342#0: *3468 SSL_do_handshake() failed (SSL: error:100AE081:elliptic curve routines:EC_GROUP_new_by_curve_name:unknown group error:1408D010:SSL routines:SSL3_GET_KEY_EXCHANGE:EC lib) while SSL handshaking to upstream, client: xxxxx, server: xxxx, request: &quot;POST /platformService?wsdl HTTP/1.1&quot;, upstream: &quot;https://10.1.152.9:8445/platformService?wsdl&quot;, host: &quot;xxxx&quot;   </div><div class="line">2018/04/04 13:53:56 [error] 5342#0: *3468 no live upstreams while connecting to upstream, client: xxxx, server: xxxx, request: &quot;POST /platformService?wsdl HTTP/1.1&quot;, upstream: &quot;https://jk/platformService?wsdl&quot;, host: &quot;xxxxx&quot;</div></pre></td></tr></table></figure>
-<p>正常机器没有出现异常。</p>
-<h3 id="解决问题思路"><a href="#解决问题思路" class="headerlink" title="解决问题思路"></a>解决问题思路</h3><p>可以看出，在访问 <a href="https://10.1.152.9:8444/platformService?wsdl" target="_blank" rel="external">https://10.1.152.9:8444/platformService?wsdl</a> 内部地址时，出现了异常，那该地址去控制台访问，<br>wget <a href="https://10.1.152.9:8444/platformService?wsdl，发现异常如下：" target="_blank" rel="external">https://10.1.152.9:8444/platformService?wsdl，发现异常如下：</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">OpenSSL: error:100AE081:elliptic curve routines:EC_GROUP_new_by_curve_name:unknown group</div><div class="line">OpenSSL: error:1408D010:SSL routines:SSL3_GET_KEY_EXCHANGE:EC lib</div><div class="line">无法建立 SSL 连接。</div></pre></td></tr></table></figure>
-<p>在正常机器 10.1.152.8 访问 wget <a href="https://10.1.152.8:8444/platformService?wsdl：" target="_blank" rel="external">https://10.1.152.8:8444/platformService?wsdl：</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">正在连接 10.1.152.8:8444... 已连接。</div><div class="line">错误: 无法验证 10.1.152.8 的由 “/C=CN/O=WoSign CA Limited/CN=CA xxxxx G2” 颁发的证书:</div><div class="line">  	颁发的证书已经过期。</div><div class="line">   	 错误: certificate common name “xxxx” doesn&apos;t match requested host name “10.1.152.8”.</div><div class="line">要以不安全的方式连接至 10.1.152.8，使用‘--no-check-certificate’。</div></pre></td></tr></table></figure>
-<p>由于不是很严格的自签名证书，正常的异常。</p>
-<h3 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h3><p><strong>系统版本号:RHEL / CentOS 6.5</strong><br><strong>Root Cause:</strong> The OpenSSL library available and installed by default on RHEL/CentOS 6.5 has a bug. Refer to     <a href="https://bugzilla.redhat.com/show_bug.cgi?id=1025598" target="_blank" rel="external">BUG</a> for detailed information on the bug.<br>大意是该版本的系统的openssl有bug需要升级<br>1.查看系统openssl版本:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rpm -qa | grep openssl</div><div class="line">openssl-1.0.1e-15.el6.x86_64</div></pre></td></tr></table></figure>
-<p>2.升级系统版本：  </p>
-<pre><code class="：">yum -y upgrade openssl
-openssl-1.0.1e-57.el6.x86_64
-</code></pre>
-<p>升级后浏览器访问恢复正常！</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1082,7 +1084,7 @@ openssl-1.0.1e-57.el6.x86_64
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1093,7 +1095,7 @@ openssl-1.0.1e-57.el6.x86_64
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1104,7 +1106,7 @@ openssl-1.0.1e-57.el6.x86_64
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-count">30</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

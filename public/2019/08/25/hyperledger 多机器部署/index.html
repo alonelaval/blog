@@ -1,0 +1,846 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="hyperledger 多机器部署," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="机器准备   功能 ip 机器名称     orderer 10.9.149.68 order.bits.com   peer0 10.9.149.68 peer0.org1.bits.com   peer0 10.9.84.83 peer0.org2.bits.com    创建目录12mkdir bitscd bits 获取生成工具123把下载的hyperledger-fabric-linux">
+<meta name="keywords" content="hyperledger 多机器部署">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hyperledger 多机器部署">
+<meta property="og:url" content="http://alonelaval.com/2019/08/25/hyperledger 多机器部署/index.html">
+<meta property="og:site_name" content="无言">
+<meta property="og:description" content="机器准备   功能 ip 机器名称     orderer 10.9.149.68 order.bits.com   peer0 10.9.149.68 peer0.org1.bits.com   peer0 10.9.84.83 peer0.org2.bits.com    创建目录12mkdir bitscd bits 获取生成工具123把下载的hyperledger-fabric-linux">
+<meta property="og:updated_time" content="2019-10-16T03:17:47.709Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="hyperledger 多机器部署">
+<meta name="twitter:description" content="机器准备   功能 ip 机器名称     orderer 10.9.149.68 order.bits.com   peer0 10.9.149.68 peer0.org1.bits.com   peer0 10.9.84.83 peer0.org2.bits.com    创建目录12mkdir bitscd bits 获取生成工具123把下载的hyperledger-fabric-linux">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://alonelaval.com/2019/08/25/hyperledger 多机器部署/"/>
+
+
+
+
+
+  <title>hyperledger 多机器部署 | 无言</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">无言</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">不语</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://alonelaval.com/2019/08/25/hyperledger 多机器部署/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="huawei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1763449.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="无言">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                hyperledger 多机器部署
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-25T13:57:23+08:00">
+                2019-08-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/区块链/" itemprop="url" rel="index">
+                    <span itemprop="name">区块链</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/区块链/hyperledger/" itemprop="url" rel="index">
+                    <span itemprop="name">hyperledger</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="机器准备"><a href="#机器准备" class="headerlink" title="机器准备"></a>机器准备</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">功能</th>
+<th style="text-align:center">ip</th>
+<th style="text-align:right">机器名称</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">orderer</td>
+<td style="text-align:center">10.9.149.68</td>
+<td style="text-align:right">order.bits.com</td>
+</tr>
+<tr>
+<td style="text-align:left">peer0</td>
+<td style="text-align:center">10.9.149.68</td>
+<td style="text-align:right">peer0.org1.bits.com</td>
+</tr>
+<tr>
+<td style="text-align:left">peer0</td>
+<td style="text-align:center">10.9.84.83</td>
+<td style="text-align:right">peer0.org2.bits.com</td>
+</tr>
+</tbody>
+</table>
+<h3 id="创建目录"><a href="#创建目录" class="headerlink" title="创建目录"></a>创建目录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mkdir bits</div><div class="line">cd bits</div></pre></td></tr></table></figure>
+<h3 id="获取生成工具"><a href="#获取生成工具" class="headerlink" title="获取生成工具"></a>获取生成工具</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">把下载的hyperledger-fabric-linux-amd64-1.4.1.tar.gz二进制文件包解压，</div><div class="line">把其中的bin目录拷贝到bits目录下。</div><div class="line">设置权限：chmod -R 777 ./bin</div></pre></td></tr></table></figure>
+<h3 id="准备生成证书和区块配置文件"><a href="#准备生成证书和区块配置文件" class="headerlink" title="准备生成证书和区块配置文件"></a>准备生成证书和区块配置文件</h3><p>配置crypto-config.yaml和configtx.yaml文件，拷贝到bits目录下。</p>
+<h4 id="crypto-config-yaml-文件"><a href="#crypto-config-yaml-文件" class="headerlink" title="crypto-config.yaml 文件"></a>crypto-config.yaml 文件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div></pre></td><td class="code"><pre><div class="line"># Copyright IBM Corp. All Rights Reserved.</div><div class="line">#</div><div class="line"># SPDX-License-Identifier: Apache-2.0</div><div class="line">#</div><div class="line"></div><div class="line"># ---------------------------------------------------------------------------</div><div class="line"># &quot;OrdererOrgs&quot; - Definition of organizations managing orderer nodes</div><div class="line"># ---------------------------------------------------------------------------</div><div class="line">OrdererOrgs:</div><div class="line">  # ---------------------------------------------------------------------------</div><div class="line">  # Orderer</div><div class="line">  # ---------------------------------------------------------------------------</div><div class="line">  - Name: Orderer</div><div class="line">    Domain: bits.com</div><div class="line">    CA:</div><div class="line">        Country: US</div><div class="line">        Province: California</div><div class="line">        Locality: San Francisco</div><div class="line">    # ---------------------------------------------------------------------------</div><div class="line">    # &quot;Specs&quot; - See PeerOrgs below for complete description</div><div class="line">    # ---------------------------------------------------------------------------</div><div class="line">    Specs:</div><div class="line">      - Hostname: orderer</div><div class="line"># ---------------------------------------------------------------------------</div><div class="line"># &quot;PeerOrgs&quot; - Definition of organizations managing peer nodes</div><div class="line"># ---------------------------------------------------------------------------</div><div class="line">PeerOrgs:</div><div class="line">  # ---------------------------------------------------------------------------</div><div class="line">  # Org1</div><div class="line">  # ---------------------------------------------------------------------------</div><div class="line">  - Name: Org1</div><div class="line">    Domain: org1.bits.com</div><div class="line">    EnableNodeOUs: true</div><div class="line">    CA:</div><div class="line">        Country: US</div><div class="line">        Province: California</div><div class="line">        Locality: San Francisco</div><div class="line">    # ---------------------------------------------------------------------------</div><div class="line">    # &quot;Specs&quot;</div><div class="line">    # ---------------------------------------------------------------------------</div><div class="line">    # Uncomment this section to enable the explicit definition of hosts in your</div><div class="line">    # configuration.  Most users will want to use Template, below</div><div class="line">    #</div><div class="line">    # Specs is an array of Spec entries.  Each Spec entry consists of two fields:</div><div class="line">    #   - Hostname:   (Required) The desired hostname, sans the domain.</div><div class="line">    #   - CommonName: (Optional) Specifies the template or explicit override for</div><div class="line">    #                 the CN.  By default, this is the template:</div><div class="line">    #</div><div class="line">    #                              &quot;&#123;&#123;.Hostname&#125;&#125;.&#123;&#123;.Domain&#125;&#125;&quot;</div><div class="line">    #</div><div class="line">    #                 which obtains its values from the Spec.Hostname and</div><div class="line">    #                 Org.Domain, respectively.</div><div class="line">    # ---------------------------------------------------------------------------</div><div class="line">    # Specs:</div><div class="line">    #   - Hostname: foo # implicitly &quot;foo.org1.example.com&quot;</div><div class="line">    #     CommonName: foo27.org5.example.com # overrides Hostname-based FQDN set above</div><div class="line">    #   - Hostname: bar</div><div class="line">    #   - Hostname: baz</div><div class="line">    # ---------------------------------------------------------------------------</div><div class="line">    # &quot;Template&quot;</div><div class="line">    # ---------------------------------------------------------------------------</div><div class="line">    # Allows for the definition of 1 or more hosts that are created sequentially</div><div class="line">    # from a template. By default, this looks like &quot;peer%d&quot; from 0 to Count-1.</div><div class="line">    # You may override the number of nodes (Count), the starting index (Start)</div><div class="line">    # or the template used to construct the name (Hostname).</div><div class="line">    #</div><div class="line">    # Note: Template and Specs are not mutually exclusive.  You may define both</div><div class="line">    # sections and the aggregate nodes will be created for you.  Take care with</div><div class="line">    # name collisions</div><div class="line">    # ---------------------------------------------------------------------------</div><div class="line">    Template:</div><div class="line">      Count: 1</div><div class="line">      # Start: 5</div><div class="line">      # Hostname: &#123;&#123;.Prefix&#125;&#125;&#123;&#123;.Index&#125;&#125; # default</div><div class="line">    # ---------------------------------------------------------------------------</div><div class="line">    # &quot;Users&quot;</div><div class="line">    # ---------------------------------------------------------------------------</div><div class="line">    # Count: The number of user accounts _in addition_ to Admin</div><div class="line">    # ---------------------------------------------------------------------------</div><div class="line">    Users:</div><div class="line">      Count: 1</div><div class="line">  # ---------------------------------------------------------------------------</div><div class="line">  # Org2: See &quot;Org1&quot; for full specification</div><div class="line">  # ---------------------------------------------------------------------------</div><div class="line">  - Name: Org2</div><div class="line">    Domain: org2.bits.com</div><div class="line">    EnableNodeOUs: true</div><div class="line">    CA:</div><div class="line">        Country: US</div><div class="line">        Province: California</div><div class="line">        Locality: San Francisco</div><div class="line">    Template:</div><div class="line">      Count: 1</div><div class="line">    Users:</div><div class="line">      Count: 1</div></pre></td></tr></table></figure>
+<h4 id="configtx-yaml文件"><a href="#configtx-yaml文件" class="headerlink" title="configtx.yaml文件"></a>configtx.yaml文件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div><div class="line">225</div><div class="line">226</div><div class="line">227</div><div class="line">228</div><div class="line">229</div><div class="line">230</div><div class="line">231</div><div class="line">232</div><div class="line">233</div><div class="line">234</div><div class="line">235</div><div class="line">236</div><div class="line">237</div><div class="line">238</div><div class="line">239</div><div class="line">240</div><div class="line">241</div><div class="line">242</div><div class="line">243</div><div class="line">244</div><div class="line">245</div><div class="line">246</div><div class="line">247</div><div class="line">248</div><div class="line">249</div><div class="line">250</div><div class="line">251</div><div class="line">252</div><div class="line">253</div><div class="line">254</div><div class="line">255</div><div class="line">256</div><div class="line">257</div><div class="line">258</div><div class="line">259</div><div class="line">260</div><div class="line">261</div><div class="line">262</div><div class="line">263</div><div class="line">264</div><div class="line">265</div><div class="line">266</div><div class="line">267</div><div class="line">268</div><div class="line">269</div><div class="line">270</div><div class="line">271</div><div class="line">272</div><div class="line">273</div><div class="line">274</div><div class="line">275</div><div class="line">276</div><div class="line">277</div><div class="line">278</div><div class="line">279</div><div class="line">280</div><div class="line">281</div><div class="line">282</div><div class="line">283</div><div class="line">284</div><div class="line">285</div><div class="line">286</div><div class="line">287</div><div class="line">288</div><div class="line">289</div><div class="line">290</div><div class="line">291</div><div class="line">292</div><div class="line">293</div><div class="line">294</div><div class="line">295</div><div class="line">296</div><div class="line">297</div><div class="line">298</div><div class="line">299</div><div class="line">300</div><div class="line">301</div><div class="line">302</div><div class="line">303</div><div class="line">304</div><div class="line">305</div><div class="line">306</div><div class="line">307</div><div class="line">308</div><div class="line">309</div><div class="line">310</div><div class="line">311</div><div class="line">312</div><div class="line">313</div><div class="line">314</div><div class="line">315</div><div class="line">316</div><div class="line">317</div><div class="line">318</div><div class="line">319</div><div class="line">320</div></pre></td><td class="code"><pre><div class="line"># Copyright IBM Corp. All Rights Reserved.</div><div class="line">#</div><div class="line"># SPDX-License-Identifier: Apache-2.0</div><div class="line">#</div><div class="line"></div><div class="line">---</div><div class="line">################################################################################</div><div class="line">#</div><div class="line">#   Section: Organizations</div><div class="line">#</div><div class="line">#   - This section defines the different organizational identities which will</div><div class="line">#   be referenced later in the configuration.</div><div class="line">#</div><div class="line">################################################################################</div><div class="line">Organizations:</div><div class="line"></div><div class="line">    # SampleOrg defines an MSP using the sampleconfig.  It should never be used</div><div class="line">    # in production but may be used as a template for other definitions</div><div class="line">    - &amp;OrdererOrg</div><div class="line">        # DefaultOrg defines the organization which is used in the sampleconfig</div><div class="line">        # of the fabric.git development environment</div><div class="line">        Name: OrdererOrg</div><div class="line"></div><div class="line">        # ID to load the MSP definition as</div><div class="line">        ID: OrdererMSP</div><div class="line"></div><div class="line">        # MSPDir is the filesystem path which contains the MSP configuration</div><div class="line">        MSPDir: crypto-config/ordererOrganizations/bits.com/msp</div><div class="line"></div><div class="line">        # Policies defines the set of policies at this level of the config tree</div><div class="line">        # For organization policies, their canonical path is usually</div><div class="line">        #   /Channel/&lt;Application|Orderer&gt;/&lt;OrgName&gt;/&lt;PolicyName&gt;</div><div class="line">        Policies:</div><div class="line">            Readers:</div><div class="line">                Type: Signature</div><div class="line">                Rule: &quot;OR(&apos;OrdererMSP.member&apos;)&quot;</div><div class="line">            Writers:</div><div class="line">                Type: Signature</div><div class="line">                Rule: &quot;OR(&apos;OrdererMSP.member&apos;)&quot;</div><div class="line">            Admins:</div><div class="line">                Type: Signature</div><div class="line">                Rule: &quot;OR(&apos;OrdererMSP.admin&apos;)&quot;</div><div class="line"></div><div class="line">    - &amp;Org1</div><div class="line">        # DefaultOrg defines the organization which is used in the sampleconfig</div><div class="line">        # of the fabric.git development environment</div><div class="line">        Name: Org1MSP</div><div class="line"></div><div class="line">        # ID to load the MSP definition as</div><div class="line">        ID: Org1MSP</div><div class="line"></div><div class="line">        MSPDir: crypto-config/peerOrganizations/org1.bits.com/msp</div><div class="line"></div><div class="line">        # Policies defines the set of policies at this level of the config tree</div><div class="line">        # For organization policies, their canonical path is usually</div><div class="line">        #   /Channel/&lt;Application|Orderer&gt;/&lt;OrgName&gt;/&lt;PolicyName&gt;</div><div class="line">        Policies:</div><div class="line">            Readers:</div><div class="line">                Type: Signature</div><div class="line">                Rule: &quot;OR(&apos;Org1MSP.admin&apos;, &apos;Org1MSP.peer&apos;, &apos;Org1MSP.client&apos;)&quot;</div><div class="line">            Writers:</div><div class="line">                Type: Signature</div><div class="line">                Rule: &quot;OR(&apos;Org1MSP.admin&apos;, &apos;Org1MSP.client&apos;)&quot;</div><div class="line">            Admins:</div><div class="line">                Type: Signature</div><div class="line">                Rule: &quot;OR(&apos;Org1MSP.admin&apos;)&quot;</div><div class="line"></div><div class="line">        AnchorPeers:</div><div class="line">            # AnchorPeers defines the location of peers which can be used</div><div class="line">            # for cross org gossip communication.  Note, this value is only</div><div class="line">            # encoded in the genesis block in the Application section context</div><div class="line">            - Host: peer0.org1.bits.com</div><div class="line">              Port: 7051</div><div class="line"></div><div class="line">    - &amp;Org2</div><div class="line">        # DefaultOrg defines the organization which is used in the sampleconfig</div><div class="line">        # of the fabric.git development environment</div><div class="line">        Name: Org2MSP</div><div class="line"></div><div class="line">        # ID to load the MSP definition as</div><div class="line">        ID: Org2MSP</div><div class="line"></div><div class="line">        MSPDir: crypto-config/peerOrganizations/org2.bits.com/msp</div><div class="line"></div><div class="line">        # Policies defines the set of policies at this level of the config tree</div><div class="line">        # For organization policies, their canonical path is usually</div><div class="line">        #   /Channel/&lt;Application|Orderer&gt;/&lt;OrgName&gt;/&lt;PolicyName&gt;</div><div class="line">        Policies:</div><div class="line">            Readers:</div><div class="line">                Type: Signature</div><div class="line">                Rule: &quot;OR(&apos;Org2MSP.admin&apos;, &apos;Org2MSP.peer&apos;, &apos;Org2MSP.client&apos;)&quot;</div><div class="line">            Writers:</div><div class="line">                Type: Signature</div><div class="line">                Rule: &quot;OR(&apos;Org2MSP.admin&apos;, &apos;Org2MSP.client&apos;)&quot;</div><div class="line">            Admins:</div><div class="line">                Type: Signature</div><div class="line">                Rule: &quot;OR(&apos;Org2MSP.admin&apos;)&quot;</div><div class="line"></div><div class="line">        AnchorPeers:</div><div class="line">            # AnchorPeers defines the location of peers which can be used</div><div class="line">            # for cross org gossip communication.  Note, this value is only</div><div class="line">            # encoded in the genesis block in the Application section context</div><div class="line">            - Host: peer0.org2.bits.com</div><div class="line">              Port: 7051</div><div class="line"></div><div class="line">################################################################################</div><div class="line">#</div><div class="line">#   SECTION: Capabilities</div><div class="line">#</div><div class="line">#   - This section defines the capabilities of fabric network. This is a new</div><div class="line">#   concept as of v1.1.0 and should not be utilized in mixed networks with</div><div class="line">#   v1.0.x peers and orderers.  Capabilities define features which must be</div><div class="line">#   present in a fabric binary for that binary to safely participate in the</div><div class="line">#   fabric network.  For instance, if a new MSP type is added, newer binaries</div><div class="line">#   might recognize and validate the signatures from this type, while older</div><div class="line">#   binaries without this support would be unable to validate those</div><div class="line">#   transactions.  This could lead to different versions of the fabric binaries</div><div class="line">#   having different world states.  Instead, defining a capability for a channel</div><div class="line">#   informs those binaries without this capability that they must cease</div><div class="line">#   processing transactions until they have been upgraded.  For v1.0.x if any</div><div class="line">#   capabilities are defined (including a map with all capabilities turned off)</div><div class="line">#   then the v1.0.x peer will deliberately crash.</div><div class="line">#</div><div class="line">################################################################################</div><div class="line">Capabilities:</div><div class="line">    # Channel capabilities apply to both the orderers and the peers and must be</div><div class="line">    # supported by both.  Set the value of the capability to true to require it.</div><div class="line">    Global: &amp;ChannelCapabilities</div><div class="line">        # V1.1 for Global is a catchall flag for behavior which has been</div><div class="line">        # determined to be desired for all orderers and peers running v1.0.x,</div><div class="line">        # but the modification of which would cause incompatibilities.  Users</div><div class="line">        # should leave this flag set to true.</div><div class="line">        V1_1: true</div><div class="line"></div><div class="line">    # Orderer capabilities apply only to the orderers, and may be safely</div><div class="line">    # manipulated without concern for upgrading peers.  Set the value of the</div><div class="line">    # capability to true to require it.</div><div class="line">    Orderer: &amp;OrdererCapabilities</div><div class="line">        # V1.1 for Order is a catchall flag for behavior which has been</div><div class="line">        # determined to be desired for all orderers running v1.0.x, but the</div><div class="line">        # modification of which  would cause incompatibilities.  Users should</div><div class="line">        # leave this flag set to true.</div><div class="line">        V1_1: true</div><div class="line"></div><div class="line">    # Application capabilities apply only to the peer network, and may be safely</div><div class="line">    # manipulated without concern for upgrading orderers.  Set the value of the</div><div class="line">    # capability to true to require it.</div><div class="line">    Application: &amp;ApplicationCapabilities</div><div class="line">        # V1.1 for Application is a catchall flag for behavior which has been</div><div class="line">        # determined to be desired for all peers running v1.0.x, but the</div><div class="line">        # modification of which would cause incompatibilities.  Users should</div><div class="line">        # leave this flag set to true.</div><div class="line">        V1_2: true</div><div class="line"></div><div class="line">################################################################################</div><div class="line">#</div><div class="line">#   SECTION: Application</div><div class="line">#</div><div class="line">#   - This section defines the values to encode into a config transaction or</div><div class="line">#   genesis block for application related parameters</div><div class="line">#</div><div class="line">################################################################################</div><div class="line">Application: &amp;ApplicationDefaults</div><div class="line"></div><div class="line">    # Organizations is the list of orgs which are defined as participants on</div><div class="line">    # the application side of the network</div><div class="line">    Organizations:</div><div class="line"></div><div class="line">    # Policies defines the set of policies at this level of the config tree</div><div class="line">    # For Application policies, their canonical path is</div><div class="line">    #   /Channel/Application/&lt;PolicyName&gt;</div><div class="line">    Policies:</div><div class="line">        Readers:</div><div class="line">            Type: ImplicitMeta</div><div class="line">            Rule: &quot;ANY Readers&quot;</div><div class="line">        Writers:</div><div class="line">            Type: ImplicitMeta</div><div class="line">            Rule: &quot;ANY Writers&quot;</div><div class="line">        Admins:</div><div class="line">            Type: ImplicitMeta</div><div class="line">            Rule: &quot;MAJORITY Admins&quot;</div><div class="line"></div><div class="line">    # Capabilities describes the application level capabilities, see the</div><div class="line">    # dedicated Capabilities section elsewhere in this file for a full</div><div class="line">    # description</div><div class="line">    Capabilities:</div><div class="line">        &lt;&lt;: *ApplicationCapabilities</div><div class="line"></div><div class="line">################################################################################</div><div class="line">#</div><div class="line">#   SECTION: Orderer</div><div class="line">#</div><div class="line">#   - This section defines the values to encode into a config transaction or</div><div class="line">#   genesis block for orderer related parameters</div><div class="line">#</div><div class="line">################################################################################</div><div class="line">Orderer: &amp;OrdererDefaults</div><div class="line"></div><div class="line">    # Orderer Type: The orderer implementation to start</div><div class="line">    # Available types are &quot;solo&quot; and &quot;kafka&quot; and &quot;raft&quot;</div><div class="line">    OrdererType: solo</div><div class="line"></div><div class="line">    Addresses:</div><div class="line">        - orderer.bits.com:7050</div><div class="line"></div><div class="line">    # Batch Timeout: The amount of time to wait before creating a batch</div><div class="line">    BatchTimeout: 2s</div><div class="line"></div><div class="line">    # Batch Size: Controls the number of messages batched into a block</div><div class="line">    BatchSize:</div><div class="line"></div><div class="line">        # Max Message Count: The maximum number of messages to permit in a batch</div><div class="line">        MaxMessageCount: 10</div><div class="line"></div><div class="line">        # Absolute Max Bytes: The absolute maximum number of bytes allowed for</div><div class="line">        # the serialized messages in a batch.</div><div class="line">        AbsoluteMaxBytes: 98 MB</div><div class="line"></div><div class="line">        # Preferred Max Bytes: The preferred maximum number of bytes allowed for</div><div class="line">        # the serialized messages in a batch. A message larger than the preferred</div><div class="line">        # max bytes will result in a batch larger than preferred max bytes.</div><div class="line">        PreferredMaxBytes: 512 KB</div><div class="line"></div><div class="line">    Kafka:</div><div class="line">        # Brokers: A list of Kafka brokers to which the orderer connects. Edit</div><div class="line">        # this list to identify the brokers of the ordering service.</div><div class="line">        # NOTE: Use IP:port notation.</div><div class="line">        Brokers:</div><div class="line">            - 127.0.0.1:9092</div><div class="line"></div><div class="line">    # Organizations is the list of orgs which are defined as participants on</div><div class="line">    # the orderer side of the network</div><div class="line">    Organizations:</div><div class="line"></div><div class="line">    # Policies defines the set of policies at this level of the config tree</div><div class="line">    # For Orderer policies, their canonical path is</div><div class="line">    #   /Channel/Orderer/&lt;PolicyName&gt;</div><div class="line">    Policies:</div><div class="line">        Readers:</div><div class="line">            Type: ImplicitMeta</div><div class="line">            Rule: &quot;ANY Readers&quot;</div><div class="line">        Writers:</div><div class="line">            Type: ImplicitMeta</div><div class="line">            Rule: &quot;ANY Writers&quot;</div><div class="line">        Admins:</div><div class="line">            Type: ImplicitMeta</div><div class="line">            Rule: &quot;MAJORITY Admins&quot;</div><div class="line">        # BlockValidation specifies what signatures must be included in the block</div><div class="line">        # from the orderer for the peer to validate it.</div><div class="line">        BlockValidation:</div><div class="line">            Type: ImplicitMeta</div><div class="line">            Rule: &quot;ANY Writers&quot;</div><div class="line"></div><div class="line">    # Capabilities describes the orderer level capabilities, see the</div><div class="line">    # dedicated Capabilities section elsewhere in this file for a full</div><div class="line">    # description</div><div class="line">    Capabilities:</div><div class="line">        &lt;&lt;: *OrdererCapabilities</div><div class="line"></div><div class="line">################################################################################</div><div class="line">#</div><div class="line">#   CHANNEL</div><div class="line">#</div><div class="line">#   This section defines the values to encode into a config transaction or</div><div class="line">#   genesis block for channel related parameters.</div><div class="line">#</div><div class="line">################################################################################</div><div class="line">Channel: &amp;ChannelDefaults</div><div class="line">    # Policies defines the set of policies at this level of the config tree</div><div class="line">    # For Channel policies, their canonical path is</div><div class="line">    #   /Channel/&lt;PolicyName&gt;</div><div class="line">    Policies:</div><div class="line">        # Who may invoke the &apos;Deliver&apos; API</div><div class="line">        Readers:</div><div class="line">            Type: ImplicitMeta</div><div class="line">            Rule: &quot;ANY Readers&quot;</div><div class="line">        # Who may invoke the &apos;Broadcast&apos; API</div><div class="line">        Writers:</div><div class="line">            Type: ImplicitMeta</div><div class="line">            Rule: &quot;ANY Writers&quot;</div><div class="line">        # By default, who may modify elements at this config level</div><div class="line">        Admins:</div><div class="line">            Type: ImplicitMeta</div><div class="line">            Rule: &quot;MAJORITY Admins&quot;</div><div class="line"></div><div class="line"></div><div class="line">    # Capabilities describes the channel level capabilities, see the</div><div class="line">    # dedicated Capabilities section elsewhere in this file for a full</div><div class="line">    # description</div><div class="line">    Capabilities:</div><div class="line">        &lt;&lt;: *ChannelCapabilities</div><div class="line"></div><div class="line">################################################################################</div><div class="line">#</div><div class="line">#   Profile</div><div class="line">#</div><div class="line">#   - Different configuration profiles may be encoded here to be specified</div><div class="line">#   as parameters to the configtxgen tool</div><div class="line">#</div><div class="line">################################################################################</div><div class="line">Profiles:</div><div class="line"></div><div class="line">    TwoOrgsOrdererGenesis:</div><div class="line">        &lt;&lt;: *ChannelDefaults</div><div class="line">        Orderer:</div><div class="line">            &lt;&lt;: *OrdererDefaults</div><div class="line">            Organizations:</div><div class="line">                - *OrdererOrg</div><div class="line">        Consortiums:</div><div class="line">            SampleConsortium:</div><div class="line">                Organizations:</div><div class="line">                    - *Org1</div><div class="line">                    - *Org2</div><div class="line">    TwoOrgsChannel:</div><div class="line">        Consortium: SampleConsortium</div><div class="line">        Application:</div><div class="line">            &lt;&lt;: *ApplicationDefaults</div><div class="line">            Organizations:</div><div class="line">                - *Org1</div><div class="line">                - *Org2</div></pre></td></tr></table></figure>
+<h4 id="生成公私钥和证书"><a href="#生成公私钥和证书" class="headerlink" title="生成公私钥和证书"></a>生成公私钥和证书</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./bin/cryptogen generate --config=./crypto-config.yaml</div></pre></td></tr></table></figure>
+<h4 id="生成创世区块"><a href="#生成创世区块" class="headerlink" title="生成创世区块"></a>生成创世区块</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mkdir channel-artifacts</div><div class="line">./bin/configtxgen -profile TwoOrgsOrdererGenesis -outputBlock ./channel-artifacts/genesis.block</div></pre></td></tr></table></figure>
+<h4 id="生成通道配置区块"><a href="#生成通道配置区块" class="headerlink" title="生成通道配置区块"></a>生成通道配置区块</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./bin/configtxgen -profile TwoOrgsChannel -outputCreateChannelTx ./channel-artifacts/bits-query.tx -channelID bits-query</div></pre></td></tr></table></figure>
+<h4 id="拷贝到别的电脑"><a href="#拷贝到别的电脑" class="headerlink" title="拷贝到别的电脑"></a>拷贝到别的电脑</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd ..</div><div class="line">scp -r bits ubuntu@10.9.84.83:/data/bits</div></pre></td></tr></table></figure>
+<h2 id="部署order，配置docker-compose-orderer-yaml文件"><a href="#部署order，配置docker-compose-orderer-yaml文件" class="headerlink" title="部署order，配置docker-compose-orderer.yaml文件"></a>部署order，配置docker-compose-orderer.yaml文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"># Copyright IBM Corp. All Rights Reserved.</div><div class="line">#</div><div class="line"># SPDX-License-Identifier: Apache-2.0</div><div class="line">#</div><div class="line"></div><div class="line">version: &apos;2&apos;</div><div class="line"></div><div class="line">services:</div><div class="line"></div><div class="line">  orderer.example.com:</div><div class="line">    container_name: orderer.bits.com</div><div class="line">    image: hyperledger/fabric-orderer</div><div class="line">    environment:</div><div class="line">      - ORDERER_GENERAL_LOGLEVEL=debug</div><div class="line">      - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0</div><div class="line">      - ORDERER_GENERAL_GENESISMETHOD=file</div><div class="line">      - ORDERER_GENERAL_GENESISFILE=/var/hyperledger/orderer/orderer.genesis.block</div><div class="line">      - ORDERER_GENERAL_LOCALMSPID=OrdererMSP</div><div class="line">      - ORDERER_GENERAL_LOCALMSPDIR=/var/hyperledger/orderer/msp</div><div class="line">      # enabled TLS</div><div class="line">      - ORDERER_GENERAL_TLS_ENABLED=true</div><div class="line">      - ORDERER_GENERAL_TLS_PRIVATEKEY=/var/hyperledger/orderer/tls/server.key</div><div class="line">      - ORDERER_GENERAL_TLS_CERTIFICATE=/var/hyperledger/orderer/tls/server.crt</div><div class="line">      - ORDERER_GENERAL_TLS_ROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]</div><div class="line">      - ORDERER_KAFKA_RETRY_SHORTINTERVAL=1s</div><div class="line">      - ORDERER_KAFKA_RETRY_SHORTTOTAL=30s</div><div class="line">      - ORDERER_KAFKA_VERBOSE=true</div><div class="line">    working_dir: /opt/gopath/src/github.com/hyperledger/fabric</div><div class="line">    command: orderer</div><div class="line">    volumes:</div><div class="line">      - ./channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block</div><div class="line">      - ./crypto-config/ordererOrganizations/bits.com/orderers/orderer.bits.com/msp:/var/hyperledger/orderer/msp</div><div class="line">      - ./crypto-config/ordererOrganizations/bits.com/orderers/orderer.bits.com/tls/:/var/hyperledger/orderer/tls</div><div class="line">    ports:</div><div class="line">      - 7050:7050</div></pre></td></tr></table></figure>
+<h4 id="启动Fabric-orderer排序服务"><a href="#启动Fabric-orderer排序服务" class="headerlink" title="启动Fabric orderer排序服务"></a>启动Fabric orderer排序服务</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker-compose -f docker-compose-orderer.yaml up -d</div></pre></td></tr></table></figure>
+<h2 id="部署peer0-org1-bits-com-配置docker-compose-org1-peer0-yaml文件"><a href="#部署peer0-org1-bits-com-配置docker-compose-org1-peer0-yaml文件" class="headerlink" title="部署peer0.org1.bits.com,配置docker-compose-org1-peer0.yaml文件"></a>部署peer0.org1.bits.com,配置docker-compose-org1-peer0.yaml文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div></pre></td><td class="code"><pre><div class="line"># Copyright IBM Corp. All Rights Reserved.</div><div class="line">#</div><div class="line"># SPDX-License-Identifier: Apache-2.0</div><div class="line">#</div><div class="line"></div><div class="line">version: &apos;2&apos;</div><div class="line"></div><div class="line">services:</div><div class="line">  peer0.org1.bits.com:</div><div class="line">    container_name: peer0.org1.bits.com</div><div class="line">    image: hyperledger/fabric-peer</div><div class="line">    environment:</div><div class="line">      - CORE_PEER_ID=peer0.org1.bits.com</div><div class="line">      - CORE_PEER_ADDRESS=peer0.org1.bits.com:7051</div><div class="line">      - CORE_PEER_CHAINCODEADDRESS=peer0.org1.bits.com:7052</div><div class="line">      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052</div><div class="line">      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org1.bits.com:7051</div><div class="line">      - CORE_PEER_LOCALMSPID=Org1MSP</div><div class="line"></div><div class="line">      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock</div><div class="line">      # the following setting starts chaincode containers on the same</div><div class="line">      # bridge network as the peers</div><div class="line">      # https://docs.docker.com/compose/networking/</div><div class="line">      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=bits_default</div><div class="line">      #- CORE_LOGGING_LEVEL=ERROR</div><div class="line">      - CORE_LOGGING_LEVEL=DEBUG</div><div class="line">      - CORE_PEER_TLS_ENABLED=true</div><div class="line">      - CORE_PEER_GOSSIP_USELEADERELECTION=true</div><div class="line">      - CORE_PEER_GOSSIP_ORGLEADER=false</div><div class="line">      - CORE_PEER_PROFILE_ENABLED=true</div><div class="line">      - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/fabric/tls/server.crt</div><div class="line">      - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/fabric/tls/server.key</div><div class="line">      - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/fabric/tls/ca.crt</div><div class="line">    working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer</div><div class="line">    command: peer node start</div><div class="line">    volumes:</div><div class="line">        - /var/run/:/host/var/run/</div><div class="line">        - ./crypto-config/peerOrganizations/org1.bits.com/peers/peer0.org1.bits.com/msp:/etc/hyperledger/fabric/msp</div><div class="line">        - ./crypto-config/peerOrganizations/org1.bits.com/peers/peer0.org1.bits.com/tls:/etc/hyperledger/fabric/tls</div><div class="line">    ports:</div><div class="line">      - 7051:7051</div><div class="line">      - 7052:7052</div><div class="line">      - 7053:7053</div><div class="line">    extra_hosts:</div><div class="line">      - &quot;orderer.bits.com:10.9.149.68&quot;</div><div class="line"></div><div class="line">  cli:</div><div class="line">    container_name: cli</div><div class="line">    image: hyperledger/fabric-tools</div><div class="line">    tty: true</div><div class="line">    environment:</div><div class="line">      - GOPATH=/opt/gopath</div><div class="line">      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock</div><div class="line">      - CORE_LOGGING_LEVEL=DEBUG</div><div class="line">      - CORE_PEER_ID=cli</div><div class="line">      - CORE_PEER_ADDRESS=peer0.org1.bits.com:7051</div><div class="line">      - CORE_PEER_LOCALMSPID=Org1MSP</div><div class="line">      - CORE_PEER_TLS_ENABLED=true</div><div class="line">      - CORE_PEER_TLS_CERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.bits.com/peers/peer0.org1.bits.com/tls/server.crt</div><div class="line">      - CORE_PEER_TLS_KEY_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.bits.com/peers/peer0.org1.bits.com/tls/server.key</div><div class="line">      - CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.bits.com/peers/peer0.org1.bits.com/tls/ca.crt</div><div class="line">      - CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.bits.com/users/Admin@org1.bits.com/msp</div><div class="line">    working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer</div><div class="line">    volumes:</div><div class="line">        - /var/run/:/host/var/run/</div><div class="line">        - ./chaincode/go/:/opt/gopath/src/github.com/hyperledger/fabric/bits/chaincode/go</div><div class="line">        - ./crypto-config:/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/</div><div class="line">        - ./channel-artifacts:/opt/gopath/src/github.com/hyperledger/fabric/peer/channel-artifacts</div><div class="line">    depends_on:</div><div class="line">       - peer0.org1.bits.com</div><div class="line">    extra_hosts:</div><div class="line">       - &quot;orderer.bits.com:10.9.149.68&quot;</div><div class="line">       - &quot;peer0.org1.bits.com:10.9.149.68&quot;</div><div class="line">       - &quot;peer0.org2.bits.com:10.9.84.83&quot;</div></pre></td></tr></table></figure>
+<h4 id="启动peer0-org1-bits-com"><a href="#启动peer0-org1-bits-com" class="headerlink" title="启动peer0.org1.bits.com"></a>启动peer0.org1.bits.com</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker-compose -f docker-compose-org1-peer0.yaml up -d</div></pre></td></tr></table></figure>
+<h4 id="进入容器"><a href="#进入容器" class="headerlink" title="进入容器"></a>进入容器</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker exec -it cli bash</div></pre></td></tr></table></figure>
+<h4 id="创建Channel通道"><a href="#创建Channel通道" class="headerlink" title="创建Channel通道"></a>创建Channel通道</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># 因为创建通道需要通知orderer 所以设置oderer的tls证书</div><div class="line">ORDERER_CA=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/bits.com/orderers/orderer.bits.com/msp/tlscacerts/tlsca.bits.com-cert.pem</div><div class="line"></div><div class="line">peer channel create -o orderer.bits.com:7050 -c bits-query -f ./channel-artifacts/bits-query.tx --tls --cafile $ORDERER_CA</div></pre></td></tr></table></figure>
+<h4 id="加入channel通道"><a href="#加入channel通道" class="headerlink" title="加入channel通道"></a>加入channel通道</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">peer channel join -b bits-query.block</div></pre></td></tr></table></figure>
+<h4 id="保存通道信息-需将通道信息拷贝至其他节点"><a href="#保存通道信息-需将通道信息拷贝至其他节点" class="headerlink" title="保存通道信息,需将通道信息拷贝至其他节点"></a>保存通道信息,需将通道信息拷贝至其他节点</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#容器名</div><div class="line">docker cp xxxxxxxx:/opt/gopath/src/github.com/hyperledger/fabric/peer/bits-query.block /data/bits/channel-artifacts</div><div class="line"></div><div class="line">scp -r /data/bits xxx:/data</div></pre></td></tr></table></figure>
+<h4 id="打包智能合约"><a href="#打包智能合约" class="headerlink" title="打包智能合约"></a>打包智能合约</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"># 每台机器单独安装的话，里面的编号不一致，所以打包好后，去有需要的节点再安装</div><div class="line"></div><div class="line">peer chaincode package -n bits-query -p query/cmd/ -v 1.0 bits-query.pak</div><div class="line"></div><div class="line">docker cp xxxx:/opt/gopath/src/github.com/hyperledger/fabric/peer/bits-query.pak /data/bits/channel-artifacts</div></pre></td></tr></table></figure>
+<h4 id="peer0-org1-bits-com安装"><a href="#peer0-org1-bits-com安装" class="headerlink" title="peer0.org1.bits.com安装"></a>peer0.org1.bits.com安装</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">peer chaincode install bits-query.pak</div></pre></td></tr></table></figure>
+<h2 id="部署peer0-org2-bits-com-配置docker-compose-org2-peer0-yaml文件"><a href="#部署peer0-org2-bits-com-配置docker-compose-org2-peer0-yaml文件" class="headerlink" title="部署peer0.org2.bits.com,配置docker-compose-org2-peer0.yaml文件"></a>部署peer0.org2.bits.com,配置docker-compose-org2-peer0.yaml文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div></pre></td><td class="code"><pre><div class="line"># Copyright IBM Corp. All Rights Reserved.</div><div class="line">#</div><div class="line"># SPDX-License-Identifier: Apache-2.0</div><div class="line">#</div><div class="line"></div><div class="line">version: &apos;2&apos;</div><div class="line"></div><div class="line">services:</div><div class="line">  peer0.org2.bits.com:</div><div class="line">    container_name: peer0.org2.bits.com</div><div class="line">    image: hyperledger/fabric-peer</div><div class="line">    environment:</div><div class="line">      - CORE_PEER_ID=peer0.org2.bits.com</div><div class="line">      - CORE_PEER_ADDRESS=peer0.org2.bits.com:7051</div><div class="line">      - CORE_PEER_CHAINCODEADDRESS=peer0.org2.bits.com:7052</div><div class="line">      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052</div><div class="line">      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org2.bits.com:7051</div><div class="line">      - CORE_PEER_LOCALMSPID=Org2MSP</div><div class="line"></div><div class="line">      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock</div><div class="line">      # the following setting starts chaincode containers on the same</div><div class="line">      # bridge network as the peers</div><div class="line">      # https://docs.docker.com/compose/networking/</div><div class="line">      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=bits_default</div><div class="line">      #- CORE_LOGGING_LEVEL=ERROR</div><div class="line">      - CORE_LOGGING_LEVEL=DEBUG</div><div class="line">      - CORE_PEER_TLS_ENABLED=true</div><div class="line">      - CORE_PEER_GOSSIP_USELEADERELECTION=true</div><div class="line">      - CORE_PEER_GOSSIP_ORGLEADER=false</div><div class="line">      - CORE_PEER_PROFILE_ENABLED=true</div><div class="line">      - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/fabric/tls/server.crt</div><div class="line">      - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/fabric/tls/server.key</div><div class="line">      - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/fabric/tls/ca.crt</div><div class="line">    working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer</div><div class="line">    command: peer node start</div><div class="line">    volumes:</div><div class="line">        - /var/run/:/host/var/run/</div><div class="line">        - ./crypto-config/peerOrganizations/org2.bits.com/peers/peer0.org2.bits.com/msp:/etc/hyperledger/fabric/msp</div><div class="line">        - ./crypto-config/peerOrganizations/org2.bits.com/peers/peer0.org2.bits.com/tls:/etc/hyperledger/fabric/tls</div><div class="line">    ports:</div><div class="line">      - 7051:7051</div><div class="line">      - 7052:7052</div><div class="line">      - 7053:7053</div><div class="line">    extra_hosts:</div><div class="line">      - &quot;orderer.bits.com:10.9.149.68&quot;</div><div class="line"></div><div class="line">  cli:</div><div class="line">    container_name: cli</div><div class="line">    image: hyperledger/fabric-tools</div><div class="line">    tty: true</div><div class="line">    environment:</div><div class="line">      - GOPATH=/opt/gopath</div><div class="line">      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock</div><div class="line">      - CORE_LOGGING_LEVEL=DEBUG</div><div class="line">      - CORE_PEER_ID=cli</div><div class="line">      - CORE_PEER_ADDRESS=peer0.org2.bits.com:7051</div><div class="line">      - CORE_PEER_LOCALMSPID=Org2MSP</div><div class="line">      - CORE_PEER_TLS_ENABLED=true</div><div class="line">      - CORE_PEER_TLS_CERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.bits.com/peers/peer0.org2.bits.com/tls/server.crt</div><div class="line">      - CORE_PEER_TLS_KEY_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.bits.com/peers/peer0.org2.bits.com/tls/server.key</div><div class="line">      - CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.bits.com/peers/peer0.org2.bits.com/tls/ca.crt</div><div class="line">      - CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.bits.com/users/Admin@org2.bits.com/msp</div><div class="line">    working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer</div><div class="line">    volumes:</div><div class="line">        - /var/run/:/host/var/run/</div><div class="line">        - ./chaincode/go/:/opt/gopath/src/github.com/hyperledger/fabric/bits/chaincode/go</div><div class="line">        - ./crypto-config:/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/</div><div class="line">        - ./channel-artifacts:/opt/gopath/src/github.com/hyperledger/fabric/peer/channel-artifacts</div><div class="line">    depends_on:</div><div class="line">       - peer0.org2.bits.com</div><div class="line">    extra_hosts:</div><div class="line">       - &quot;orderer.bits.com:10.9.149.68&quot;</div><div class="line">       - &quot;peer0.org1.bits.com:10.9.149.68&quot;</div><div class="line">       - &quot;peer0.org2.bits.com:10.9.84.83&quot;</div></pre></td></tr></table></figure>
+<h4 id="启动peer0-org2-bits-com"><a href="#启动peer0-org2-bits-com" class="headerlink" title="启动peer0.org2.bits.com"></a>启动peer0.org2.bits.com</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker-compose -f docker-compose-org2-peer0.yaml up -d</div></pre></td></tr></table></figure>
+<h4 id="进入容器-1"><a href="#进入容器-1" class="headerlink" title="进入容器"></a>进入容器</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker exec -it cli bash</div></pre></td></tr></table></figure>
+<h4 id="加入通道"><a href="#加入通道" class="headerlink" title="加入通道"></a>加入通道</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">docker cp /data/bits/channel-artifacts/bits-query.block xxxxxxxx:/opt/gopath/src/github.com/hyperledger/fabric/peer/</div><div class="line"></div><div class="line">peer channel join -b bits-query.block</div></pre></td></tr></table></figure>
+<h4 id="peer0-org2-bits-com安装"><a href="#peer0-org2-bits-com安装" class="headerlink" title="peer0.org2.bits.com安装"></a>peer0.org2.bits.com安装</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">docker cp /data/bits/channel-artifacts/bits-query.pak xxxxxxxx:/opt/gopath/src/github.com/hyperledger/fabric/peer/</div><div class="line">##安装</div><div class="line">peer chaincode install bits-query.pak</div><div class="line">##查看是否安装成功</div><div class="line">peer chaincode list --installed</div><div class="line">peer chaincode list --instantiated -C bits-query</div></pre></td></tr></table></figure>
+<h2 id="调用"><a href="#调用" class="headerlink" title="调用"></a>调用</h2><h3 id="添加数据"><a href="#添加数据" class="headerlink" title="添加数据"></a>添加数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">ORDERER_CA=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/bits.com/orderers/orderer.bits.com/msp/tlscacerts/tlsca.bits.com-cert.pem</div><div class="line"></div><div class="line"></div><div class="line">&lt;!--peer chaincode instantiate -o orderer.bits.com:7050 --tls --cafile $ORDERER_CA -C bits-query -n bit-query -v 1.0 -c &apos;&#123;&quot;Args&quot;:[&quot;init&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;]&#125;&apos; -P &quot;OR (&apos;Org1MSP.peer&apos;,&apos;Org2MSP.peer&apos;)&quot;--&gt;</div><div class="line"></div><div class="line"></div><div class="line">peer chaincode invoke --tls --cafile $ORDERER_CA -C bits-query -n bits-query -c &apos;&#123;&quot;Args&quot;:[&quot;put&quot;,&quot;&#123;\&quot;queryId\&quot;:233,\&quot;indexDigest\&quot;:\&quot;indexDigest\&quot;,\&quot;provideQueryOrg\&quot;:\&quot;provideQueryOrg\&quot;,\&quot;offerOrg\&quot;:\&quot;offerOrg\&quot;,\&quot;queryTime\&quot;:\&quot;queryTime\&quot;,\&quot;queryType\&quot;:11,\&quot;queryResult\&quot;:11,\&quot;querySerial\&quot;:\&quot;querySerial\&quot;,\&quot;hit\&quot;:1&#125;&quot;]&#125;&apos;</div></pre></td></tr></table></figure>
+<h3 id="查看数据"><a href="#查看数据" class="headerlink" title="查看数据"></a>查看数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">peer chaincode query  -C bits-query -n bits-query -c &apos;&#123;&quot;Args&quot;:[&quot;query&quot;,&quot;222&quot;]&#125;&apos;</div></pre></td></tr></table></figure>
+<!--
+<!--peer chaincode install -n mycc -p github.com/hyperledger/fabric/multipeer/chaincode/go/example02/cmd/ -v 1.0
+
+ peer chaincode install -n mycc -p github.com/hyperledger/fabric/bits/chaincode/go/example02/cmd/ -v 1.0
+
+
+peer chaincode instantiate -o orderer.bits.com:7050 --tls --cafile $ORDERER_CA -C mychannel -n mycc -v 1.0 -c '{"Args":["init",""]}' -P "OR ('Org1MSP.peer','Org2MSP.peer')"
+
+
+
+docker-compose -f docker-compose-org2-peer0.yaml up -d
+
+
+
+docker cp /data/bits/mychannel.block 474c4699e132:/opt/gopath/src/github.com/hyperledger/fabric/peer/
+
+docker cp /data/bits/mycc.pak 474c4699e132:/opt/gopath/src/github.com/hyperledger/fabric/peer/
+
+peer channel join -b mychannel.block
+
+peer chaincode install mycc.pak
+
+
+peer chaincode list --installed
+
+
+
+
+peer chaincode invoke --tls --cafile $ORDERER_CA -C mychannel -n mycc -c '{"Args":["invoke","a","b","10"]}'
+
+
+peer chaincode query -C mychannel -n mycc -c '{"Args":["query","a"]}'-->
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/hyperledger-多机器部署/" rel="tag"># hyperledger 多机器部署</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/16/hyperledger部署测试/" rel="next" title="hyperledger 测试部署">
+                <i class="fa fa-chevron-left"></i> hyperledger 测试部署
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/30/编写第一个hyperledger区块链应用/" rel="prev" title="编写第一个hyperledger区块链应用.md">
+                编写第一个hyperledger区块链应用.md <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/1763449.jpeg"
+               alt="huawei" />
+          <p class="site-author-name" itemprop="name">huawei</p>
+           
+              <p class="site-description motion-element" itemprop="description">1</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/alonelaval" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#机器准备"><span class="nav-number">1.</span> <span class="nav-text">机器准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建目录"><span class="nav-number">2.</span> <span class="nav-text">创建目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取生成工具"><span class="nav-number">3.</span> <span class="nav-text">获取生成工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#准备生成证书和区块配置文件"><span class="nav-number">4.</span> <span class="nav-text">准备生成证书和区块配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#crypto-config-yaml-文件"><span class="nav-number">4.1.</span> <span class="nav-text">crypto-config.yaml 文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#configtx-yaml文件"><span class="nav-number">4.2.</span> <span class="nav-text">configtx.yaml文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生成公私钥和证书"><span class="nav-number">4.3.</span> <span class="nav-text">生成公私钥和证书</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生成创世区块"><span class="nav-number">4.4.</span> <span class="nav-text">生成创世区块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生成通道配置区块"><span class="nav-number">4.5.</span> <span class="nav-text">生成通道配置区块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#拷贝到别的电脑"><span class="nav-number">4.6.</span> <span class="nav-text">拷贝到别的电脑</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署order，配置docker-compose-orderer-yaml文件"><span class="nav-number"></span> <span class="nav-text">部署order，配置docker-compose-orderer.yaml文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#启动Fabric-orderer排序服务"><span class="nav-number">0.1.</span> <span class="nav-text">启动Fabric orderer排序服务</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署peer0-org1-bits-com-配置docker-compose-org1-peer0-yaml文件"><span class="nav-number"></span> <span class="nav-text">部署peer0.org1.bits.com,配置docker-compose-org1-peer0.yaml文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#启动peer0-org1-bits-com"><span class="nav-number">0.1.</span> <span class="nav-text">启动peer0.org1.bits.com</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#进入容器"><span class="nav-number">0.2.</span> <span class="nav-text">进入容器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建Channel通道"><span class="nav-number">0.3.</span> <span class="nav-text">创建Channel通道</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#加入channel通道"><span class="nav-number">0.4.</span> <span class="nav-text">加入channel通道</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#保存通道信息-需将通道信息拷贝至其他节点"><span class="nav-number">0.5.</span> <span class="nav-text">保存通道信息,需将通道信息拷贝至其他节点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#打包智能合约"><span class="nav-number">0.6.</span> <span class="nav-text">打包智能合约</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#peer0-org1-bits-com安装"><span class="nav-number">0.7.</span> <span class="nav-text">peer0.org1.bits.com安装</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署peer0-org2-bits-com-配置docker-compose-org2-peer0-yaml文件"><span class="nav-number"></span> <span class="nav-text">部署peer0.org2.bits.com,配置docker-compose-org2-peer0.yaml文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#启动peer0-org2-bits-com"><span class="nav-number">0.1.</span> <span class="nav-text">启动peer0.org2.bits.com</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#进入容器-1"><span class="nav-number">0.2.</span> <span class="nav-text">进入容器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#加入通道"><span class="nav-number">0.3.</span> <span class="nav-text">加入通道</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#peer0-org2-bits-com安装"><span class="nav-number">0.4.</span> <span class="nav-text">peer0.org2.bits.com安装</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调用"><span class="nav-number"></span> <span class="nav-text">调用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#添加数据"><span class="nav-number">1.</span> <span class="nav-text">添加数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看数据"><span class="nav-number">2.</span> <span class="nav-text">查看数据</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">huawei</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
