@@ -270,191 +270,6 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://alonelaval.com/2018/12/14/hive on spark /">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="huawei">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/1763449.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="无言">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2018/12/14/hive on spark /" itemprop="url">
-                  hive on spark  java.net.ConnectException:Connection refused
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-14T13:57:23+08:00">
-                2018-12-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/大数据/" itemprop="url" rel="index">
-                    <span itemprop="name">大数据</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/大数据/spark/" itemprop="url" rel="index">
-                    <span itemprop="name">spark</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="hive-on-spark-hive-cli运行时"><a href="#hive-on-spark-hive-cli运行时" class="headerlink" title="hive on spark hive cli运行时"></a>hive on spark hive cli运行时</h2><p>执行命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">set hive.execution.engine=spark;</div><div class="line">select count(1) from ****;</div><div class="line">```   </div><div class="line">出现以下错误提示：</div></pre></td></tr></table></figure></p>
-<p>Failed to execute spark task, with exception ‘org.apache.hadoop.hive.ql.metadata.HiveException(Failed to create spark client.)’<br>FAILED: Execution Error, return code 1 from org.apache.hadoop.hive.ql.exec.spark.SparkTask</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">使用**yarn logs -applicationId application_1544681531973_0028** 查看yarn日志：</div></pre></td></tr></table></figure>
-<p>18/12/14 15:16:28 INFO client.RMProxy: Connecting to ResourceManager at <em>*</em>.com/10.19.170.62:8032</p>
-<h1 id="Container-container-1544681531973-0028-01-000001-on-com-8041"><a href="#Container-container-1544681531973-0028-01-000001-on-com-8041" class="headerlink" title="Container: container_1544681531973_0028_01_000001 on *.com_8041"></a>Container: container_1544681531973_0028_01_000001 on <em>*</em>.com_8041</h1><p>LogType:stderr<br>Log Upload Time:Thu Dec 13 16:54:50 +0800 2018<br>LogLength:4896<br>Log Contents:<br>18/12/13 16:54:46 INFO yarn.ApplicationMaster: Registered signal handlers for [TERM, HUP, INT]<br>18/12/13 16:54:47 INFO yarn.ApplicationMaster: ApplicationAttemptId: appattempt_1544681531973_0028_000001<br>18/12/13 16:54:48 INFO spark.SecurityManager: Changing view acls to: yarn,root<br>18/12/13 16:54:48 INFO spark.SecurityManager: Changing modify acls to: yarn,root<br>18/12/13 16:54:48 INFO spark.SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: Set(yarn, root); users with modify permissions: Set(yarn, root)<br>18/12/13 16:54:48 INFO yarn.ApplicationMaster: Starting the user application in a separate Thread<br>18/12/13 16:54:48 INFO yarn.ApplicationMaster: Waiting for spark context initialization…<br>18/12/13 16:54:48 INFO client.RemoteDriver: Connecting to: localhost:39851<br>18/12/13 16:54:49 ERROR yarn.ApplicationMaster: User class threw exception: java.util.concurrent.ExecutionException: java.net.ConnectException: 拒绝连接: localhost/127.0.0.1:39851<br>java.util.concurrent.ExecutionException: java.net.ConnectException: 拒绝连接: localhost/127.0.0.1:39851<br>    at io.netty.util.concurrent.AbstractFuture.get(AbstractFuture.java:37)<br>    at org.apache.hive.spark.client.RemoteDriver.<init>(RemoteDriver.java:156)<br>    at org.apache.hive.spark.client.RemoteDriver.main(RemoteDriver.java:556)<br>    at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)<br>    at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)<br>    at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)<br>    at java.lang.reflect.Method.invoke(Method.java:498)<br>    at org.apache.spark.deploy.yarn.ApplicationMaster$$anon$2.run(ApplicationMaster.scala:552)<br>Caused by: java.net.ConnectException: 拒绝连接: localhost/127.0.0.1:39851<br>    at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)<br>    at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:717)<br>    at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:224)<br>    at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:289)<br>    at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:528)<br>    at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:468)<br>    at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:382)<br>    at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:354)<br>    at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:111)<br>    at java.lang.Thread.run(Thread.java:748)<br>18/12/13 16:54:49 INFO yarn.ApplicationMaster: Final app status: FAILED, exitCode: 15, (reason: User class threw exception: java.util.concurrent.ExecutionException: java.net.ConnectException: 拒绝连接: localhost/127.0.0.1:39851)<br>18/12/13 16:54:49 ERROR yarn.ApplicationMaster: Uncaught exception:<br>java.util.concurrent.ExecutionException: java.net.ConnectException: 拒绝连接: localhost/127.0.0.1:39851<br>    at io.netty.util.concurrent.AbstractFuture.get(AbstractFuture.java:37)<br>    at org.apache.hive.spark.client.RemoteDriver.<init>(RemoteDriver.java:156)<br>    at org.apache.hive.spark.client.RemoteDriver.main(RemoteDriver.java:556)<br>    at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)<br>    at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)<br>    at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)<br>    at java.lang.reflect.Method.invoke(Method.java:498)<br>    at org.apache.spark.deploy.yarn.ApplicationMaster$$anon$2.run(ApplicationMaster.scala:552)<br>Caused by: java.net.ConnectException: 拒绝连接: localhost/127.0.0.1:39851<br>    at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)<br>    at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:717)<br>    at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:224)<br>    at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:289)<br>    at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:528)<br>    at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:468)<br>    at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:382)<br>    at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:354)<br>    at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:111)<br>    at java.lang.Thread.run(Thread.java:748)<br>18/12/13 16:54:49 INFO yarn.ApplicationMaster: Unregistering ApplicationMaster with FAILED (diag message: User class threw exception: java.util.concurrent.ExecutionException: java.net.ConnectException: 拒绝连接: localhost/127.0.0.1:39851)<br>18/12/13 16:54:49 INFO yarn.ApplicationMaster: Deleting staging directory .sparkStaging/application_1544681531973_0028<br>18/12/13 16:54:49 INFO util.ShutdownHookManager: Shutdown hook called</init></init></p>
-<p>LogType:stdout<br>Log Upload Time:Thu Dec 13 16:54:50 +0800 2018<br>LogLength:0<br>Log Contents:</p>
-<pre><code>找了一天的原因，都没有找到，理解的是找不到某个服务的进程，链接，安装错误等等。  
-试了重装spark，查看了不同的进程。重启了集群N次，最后在
-
-## 分析错误原因
-1. hive 不使用 spark 引擎，正常跑任务  
-2. spark-shell 正常提交认为  
-3. hive on spark 不能提交任务
-4. yarn 能正常跑任务
-
-搜索clouder上hive on spark 安装配置步骤
-</code></pre><pre><code>By default, if a Spark service is available, the Hive dependency on the Spark service is configured. To change this configuration, do the following:
-
-In the Cloudera Manager Admin Console, go to the Hive service.
-Click the Configuration tab.
-Search for the Spark On YARN Service. To configure the Spark service, select the Spark service name. To remove the dependency, select none.
-Click Save Changes.
-Go to the Spark service.
-Add a Spark gateway role to the host running HiveServer2.
-Return to the Home page by clicking the Cloudera Manager logo.
-Click the icon next to any stale services to invoke the cluster restart wizard.
-Click Restart Stale Services.
-Click Restart Now.
-Click Finish.
-In the Hive client, configure the Spark execution engine.
-</code></pre><p>``` </p>
-<p>检查安装步骤后发现:<br>Add a Spark gateway role to the host running HiveServer2.<br>由于安装了 spark gateway 的机器 并不在 hiveServer2上，遂通过CDH的WEB界面在相应的机器上安装相关的环境。最后进入该机器，运行hive，设置<strong>SET hive.execution.engine=spark;
-</strong> 运行相关脚本。<br>最后异常信息消失，正常运行提交任务。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://alonelaval.com/2018/06/27/centos6.5安装python2.7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -769,6 +584,156 @@ In the Hive client, configure the Spark execution engine.
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://alonelaval.com/2018/06/13/gitlab维护命令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="huawei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1763449.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="无言">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/06/13/gitlab维护命令/" itemprop="url">
+                  gitlab 维护命令
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-13T13:39:23+08:00">
+                2018-06-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/gitlab/" itemprop="url" rel="index">
+                    <span itemprop="name">gitlab</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="不用gitlab自带的nginx"><a href="#不用gitlab自带的nginx" class="headerlink" title="不用gitlab自带的nginx"></a>不用gitlab自带的nginx</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">vim /etc/gitlab/gitlab.rb</div><div class="line">nginx[&apos;enable&apos;] = false</div></pre></td></tr></table></figure>
+<h3 id="设置服务端口域名"><a href="#设置服务端口域名" class="headerlink" title="设置服务端口域名"></a>设置服务端口域名</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">external_url &apos;http://xxx.com&apos;</div><div class="line">unicorn[&apos;port&apos;] = 8800</div></pre></td></tr></table></figure>
+<h3 id="更改配置文件后，重新设置生效"><a href="#更改配置文件后，重新设置生效" class="headerlink" title="更改配置文件后，重新设置生效"></a>更改配置文件后，重新设置生效</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gitlab-ctl reconfigure</div></pre></td></tr></table></figure>
+<h3 id="启动，重启，停止-查看状态，查看日志-查看某组件日志"><a href="#启动，重启，停止-查看状态，查看日志-查看某组件日志" class="headerlink" title="启动，重启，停止,查看状态，查看日志,查看某组件日志"></a>启动，重启，停止,查看状态，查看日志,查看某组件日志</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">gitlab-ctl start</div><div class="line">gitlab-ctl restart</div><div class="line">gitlab-ctl stop</div><div class="line">gitlab-ctl stop</div><div class="line">gitlab-ctl tail </div><div class="line">gitlab-ctl tail  unicorn</div></pre></td></tr></table></figure>
+<h3 id="gitlab无法push或clone的错误-JWT-DecodeError-Nil-JSON-web-token-lib-gitlab-workhorse-rb-120-in-verify"><a href="#gitlab无法push或clone的错误-JWT-DecodeError-Nil-JSON-web-token-lib-gitlab-workhorse-rb-120-in-verify" class="headerlink" title="gitlab无法push或clone的错误:JWT::DecodeError (Nil JSON web token): lib/gitlab/workhorse.rb:120:in `verify_"></a>gitlab无法push或clone的错误:JWT::DecodeError (Nil JSON web token): lib/gitlab/workhorse.rb:120:in `verify_</h3><p>问题出在反代的配置上:nginx或者apache的反代应该反代到 <a href="http://gitlab-workhorse" target="_blank" rel="external">http://gitlab-workhorse</a>; 而不应该反代到<a href="http://127.0.0.1:8080" target="_blank" rel="external">http://127.0.0.1:8080</a></p>
+<p>修改</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">vim /etc/nginx/nginx.conf  </div><div class="line"></div><div class="line">user git;</div></pre></td></tr></table></figure>
+<p>添加gitlab配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">vim /etc/nginx/conf.d/gitlab.conf</div><div class="line"></div><div class="line">upstream gitlab-workhorse &#123;</div><div class="line">  server unix:/var/opt/gitlab/gitlab-workhorse/socket;</div><div class="line">&#125;</div><div class="line"># HTTPS server</div><div class="line"></div><div class="line">        #proxy_cache_path  /data/nginx/cache  levels=1:2    keys_zone=STATIC:10 inactive=24h  max_size=1g;</div><div class="line">server &#123;</div><div class="line">        listen       80  default_server;</div><div class="line">        #server_name  git.okycz.com;</div><div class="line">        #ssl                  on;</div><div class="line">        #ssl_certificate</div><div class="line">        #ssl_certificate_key</div><div class="line"></div><div class="line">        #ssl_session_cache    shared:SSL:1m;</div><div class="line">        #ssl_session_timeout  5m;</div><div class="line"></div><div class="line">        #ssl_ciphers  HIGH:!aNULL:!MD5;</div><div class="line">        #ssl_prefer_server_ciphers  on;</div><div class="line"></div><div class="line">        proxy_read_timeout 1800;</div><div class="line">        proxy_send_timeout 1800;</div><div class="line">        #proxy_connect_timeout 600;</div><div class="line">        #send_timeout  600;</div><div class="line">        #keepalive_timeout 600s;</div><div class="line"></div><div class="line">        location / &#123;</div><div class="line">            proxy_pass http://gitlab-workhorse/;</div><div class="line">            proxy_set_header Host $host:$server_port;</div><div class="line">            proxy_set_header X-Real-IP $remote_addr;</div><div class="line">            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</div><div class="line">            proxy_set_header Via &quot;nginx&quot;;</div><div class="line">            #proxy_cache STATIC;</div><div class="line">            #proxy_cache_valid  200 1d;</div><div class="line">            #proxy_cache_use_stale  error timeout invalid_header updating http_500 http_502 http_503 http_504;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        location ~ ^/(assets)/ &#123;</div><div class="line">                root /opt/gitlab/embedded/service/gitlab-rails/public;</div><div class="line">                gzip_static on; # to serve pre-gzipped version</div><div class="line">                expires max;</div><div class="line">                add_header Cache-Control public;</div><div class="line">         &#125;</div><div class="line"></div><div class="line">        #rewrite ^(.*)$  https://$host$1 permanent;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="webide异常"><a href="#webide异常" class="headerlink" title="webide异常"></a>webide异常</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">I made it work behind a nginx reverse proxy by adding $request_uri to the proxy_pass:</div><div class="line"></div><div class="line">proxy_pass http://my-gitlab:5555/$request_uri;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://alonelaval.com/2018/06/13/crontab/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -915,7 +880,7 @@ In the Hive client, configure the Spark execution engine.
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://alonelaval.com/2018/06/13/gitlab维护命令/">
+    <link itemprop="mainEntityOfPage" href="http://alonelaval.com/2018/06/11/linux 安装openvpn/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="huawei">
@@ -937,8 +902,8 @@ In the Hive client, configure the Spark execution engine.
             
               
                 
-                <a class="post-title-link" href="/2018/06/13/gitlab维护命令/" itemprop="url">
-                  gitlab 维护命令
+                <a class="post-title-link" href="/2018/06/11/linux 安装openvpn/" itemprop="url">
+                  linux 安装openvpn
                 </a>
               
             
@@ -954,8 +919,8 @@ In the Hive client, configure the Spark execution engine.
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-13T13:39:23+08:00">
-                2018-06-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-11T13:39:23+08:00">
+                2018-06-11
               </time>
             
 
@@ -977,8 +942,8 @@ In the Hive client, configure the Spark execution engine.
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/gitlab/" itemprop="url" rel="index">
-                    <span itemprop="name">gitlab</span>
+                  <a href="/categories/系统/" itemprop="url" rel="index">
+                    <span itemprop="name">系统</span>
                   </a>
                 </span>
 
@@ -1013,16 +978,25 @@ In the Hive client, configure the Spark execution engine.
       
         
           
-            <h3 id="不用gitlab自带的nginx"><a href="#不用gitlab自带的nginx" class="headerlink" title="不用gitlab自带的nginx"></a>不用gitlab自带的nginx</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">vim /etc/gitlab/gitlab.rb</div><div class="line">nginx[&apos;enable&apos;] = false</div></pre></td></tr></table></figure>
-<h3 id="设置服务端口域名"><a href="#设置服务端口域名" class="headerlink" title="设置服务端口域名"></a>设置服务端口域名</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">external_url &apos;http://xxx.com&apos;</div><div class="line">unicorn[&apos;port&apos;] = 8800</div></pre></td></tr></table></figure>
-<h3 id="更改配置文件后，重新设置生效"><a href="#更改配置文件后，重新设置生效" class="headerlink" title="更改配置文件后，重新设置生效"></a>更改配置文件后，重新设置生效</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gitlab-ctl reconfigure</div></pre></td></tr></table></figure>
-<h3 id="启动，重启，停止-查看状态，查看日志-查看某组件日志"><a href="#启动，重启，停止-查看状态，查看日志-查看某组件日志" class="headerlink" title="启动，重启，停止,查看状态，查看日志,查看某组件日志"></a>启动，重启，停止,查看状态，查看日志,查看某组件日志</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">gitlab-ctl start</div><div class="line">gitlab-ctl restart</div><div class="line">gitlab-ctl stop</div><div class="line">gitlab-ctl stop</div><div class="line">gitlab-ctl tail </div><div class="line">gitlab-ctl tail  unicorn</div></pre></td></tr></table></figure>
-<h3 id="gitlab无法push或clone的错误-JWT-DecodeError-Nil-JSON-web-token-lib-gitlab-workhorse-rb-120-in-verify"><a href="#gitlab无法push或clone的错误-JWT-DecodeError-Nil-JSON-web-token-lib-gitlab-workhorse-rb-120-in-verify" class="headerlink" title="gitlab无法push或clone的错误:JWT::DecodeError (Nil JSON web token): lib/gitlab/workhorse.rb:120:in `verify_"></a>gitlab无法push或clone的错误:JWT::DecodeError (Nil JSON web token): lib/gitlab/workhorse.rb:120:in `verify_</h3><p>问题出在反代的配置上:nginx或者apache的反代应该反代到 <a href="http://gitlab-workhorse" target="_blank" rel="external">http://gitlab-workhorse</a>; 而不应该反代到<a href="http://127.0.0.1:8080" target="_blank" rel="external">http://127.0.0.1:8080</a></p>
-<p>修改</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">vim /etc/nginx/nginx.conf  </div><div class="line"></div><div class="line">user git;</div></pre></td></tr></table></figure>
-<p>添加gitlab配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">vim /etc/nginx/conf.d/gitlab.conf</div><div class="line"></div><div class="line">upstream gitlab-workhorse &#123;</div><div class="line">  server unix:/var/opt/gitlab/gitlab-workhorse/socket;</div><div class="line">&#125;</div><div class="line"># HTTPS server</div><div class="line"></div><div class="line">        #proxy_cache_path  /data/nginx/cache  levels=1:2    keys_zone=STATIC:10 inactive=24h  max_size=1g;</div><div class="line">server &#123;</div><div class="line">        listen       80  default_server;</div><div class="line">        #server_name  git.okycz.com;</div><div class="line">        #ssl                  on;</div><div class="line">        #ssl_certificate</div><div class="line">        #ssl_certificate_key</div><div class="line"></div><div class="line">        #ssl_session_cache    shared:SSL:1m;</div><div class="line">        #ssl_session_timeout  5m;</div><div class="line"></div><div class="line">        #ssl_ciphers  HIGH:!aNULL:!MD5;</div><div class="line">        #ssl_prefer_server_ciphers  on;</div><div class="line"></div><div class="line">        proxy_read_timeout 1800;</div><div class="line">        proxy_send_timeout 1800;</div><div class="line">        #proxy_connect_timeout 600;</div><div class="line">        #send_timeout  600;</div><div class="line">        #keepalive_timeout 600s;</div><div class="line"></div><div class="line">        location / &#123;</div><div class="line">            proxy_pass http://gitlab-workhorse/;</div><div class="line">            proxy_set_header Host $host:$server_port;</div><div class="line">            proxy_set_header X-Real-IP $remote_addr;</div><div class="line">            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</div><div class="line">            proxy_set_header Via &quot;nginx&quot;;</div><div class="line">            #proxy_cache STATIC;</div><div class="line">            #proxy_cache_valid  200 1d;</div><div class="line">            #proxy_cache_use_stale  error timeout invalid_header updating http_500 http_502 http_503 http_504;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        location ~ ^/(assets)/ &#123;</div><div class="line">                root /opt/gitlab/embedded/service/gitlab-rails/public;</div><div class="line">                gzip_static on; # to serve pre-gzipped version</div><div class="line">                expires max;</div><div class="line">                add_header Cache-Control public;</div><div class="line">         &#125;</div><div class="line"></div><div class="line">        #rewrite ^(.*)$  https://$host$1 permanent;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="webide异常"><a href="#webide异常" class="headerlink" title="webide异常"></a>webide异常</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">I made it work behind a nginx reverse proxy by adding $request_uri to the proxy_pass:</div><div class="line"></div><div class="line">proxy_pass http://my-gitlab:5555/$request_uri;</div></pre></td></tr></table></figure>
+            <h3 id="安装openvpn-easy-rsa软件"><a href="#安装openvpn-easy-rsa软件" class="headerlink" title="安装openvpn,easy-rsa软件"></a>安装openvpn,easy-rsa软件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install -y openvpn easy-rsa</div></pre></td></tr></table></figure>
+<h3 id="拷贝文件"><a href="#拷贝文件" class="headerlink" title="拷贝文件"></a>拷贝文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cp /usr/share/doc/openvpn-2.4.6/sample/sample-config-files/server.conf /etc/openvpn/</div><div class="line"></div><div class="line">cp -r /usr/share/easy-rsa/3.0.3/* /etc/openvpn/</div></pre></td></tr></table></figure>
+<h3 id="设置默认参数"><a href="#设置默认参数" class="headerlink" title="设置默认参数"></a>设置默认参数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">cd /etc/openvpn</div><div class="line"></div><div class="line">vim vars</div><div class="line"></div><div class="line">export KEY_SIZE=4096</div><div class="line">export KEY_COUNTRY=&quot;CN&quot;</div><div class="line">export KEY_PROVINCE=&quot;SH&quot;</div><div class="line">export KEY_CITY=&quot;SH&quot;</div><div class="line">export KEY_ORG=&quot;xxx&quot;</div><div class="line">export KEY_EMAIL=&quot;xxx&quot;</div><div class="line"></div><div class="line"></div><div class="line">chmod +x vars</div></pre></td></tr></table></figure>
+<h3 id="使用easy-rsa生成服务器端证书"><a href="#使用easy-rsa生成服务器端证书" class="headerlink" title="使用easy-rsa生成服务器端证书"></a>使用easy-rsa生成服务器端证书</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">cd /etc/openvpn</div><div class="line"></div><div class="line">./easyrsa init-pki  #创建空的pki，创建后会多一个pki的目录，初始化后，不要再初始化了。</div><div class="line">./easyrsa build-ca nopass #创建新的CA，不使用密码，一路回车</div><div class="line">./easyrsa gen-req server nopass #创建服务端证书，一路回车</div><div class="line">./easyrsa sign server server #使用CA证书对服务器端证书，进行签名</div><div class="line">./easyrsa gen-dh #创建 Diffie-Hellman，一种密钥交换算法</div></pre></td></tr></table></figure>
+<h3 id="使用easy-rsa生成客户端证书"><a href="#使用easy-rsa生成客户端证书" class="headerlink" title="使用easy-rsa生成客户端证书"></a>使用easy-rsa生成客户端证书</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">./easyrsa gen-req test nopass</div><div class="line">./easyrsa sign client test</div></pre></td></tr></table></figure>
+<h3 id="查看easy-rsa创建的pki目录结构"><a href="#查看easy-rsa创建的pki目录结构" class="headerlink" title="查看easy-rsa创建的pki目录结构"></a>查看easy-rsa创建的pki目录结构</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">tree</div><div class="line">.</div><div class="line">├── ca.crt</div><div class="line">├── certs_by_serial</div><div class="line">│   ├── 4F6A847EF9A70413EA6E24BFD6AAA3CE.pem</div><div class="line">│   └── C2833F45701214C377138DC1303D7935.pem</div><div class="line">├── dh.pem</div><div class="line">├── index.txt</div><div class="line">├── index.txt.attr</div><div class="line">├── index.txt.attr.old</div><div class="line">├── index.txt.old</div><div class="line">├── issued</div><div class="line">│   ├── server.crt</div><div class="line">│   └── test.crt</div><div class="line">├── private</div><div class="line">│   ├── server.key</div><div class="line">│   ├── ca.key</div><div class="line">│   └── test.key</div><div class="line">├── reqs</div><div class="line">│   ├── server.req</div><div class="line">│   └── test.req</div><div class="line">├── serial</div><div class="line">└── serial.old</div></pre></td></tr></table></figure>
+<h3 id="生成ta-key文件"><a href="#生成ta-key文件" class="headerlink" title="生成ta.key文件"></a>生成ta.key文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">openvpn --genkey --secret /etc/openvpn/ta.key</div></pre></td></tr></table></figure>
+<h3 id="创建日志目录"><a href="#创建日志目录" class="headerlink" title="创建日志目录"></a>创建日志目录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mkdir -p /var/log/openvpn/</div></pre></td></tr></table></figure>
+<h3 id="编辑服务配置文件-vim-etc-openvpn-server-conf"><a href="#编辑服务配置文件-vim-etc-openvpn-server-conf" class="headerlink" title="编辑服务配置文件 vim /etc/openvpn/server.conf"></a>编辑服务配置文件 vim /etc/openvpn/server.conf</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div></pre></td><td class="code"><pre><div class="line">;local a.b.c.d</div><div class="line"></div><div class="line"># 设置监听端口，必须要对应的在防火墙里面打开</div><div class="line">port 1194</div><div class="line"></div><div class="line"># 设置用TCP还是UDP协议？</div><div class="line">;proto tcp</div><div class="line">proto tcp</div><div class="line"></div><div class="line"># 设置创建tun的路由IP通道，还是创建tap的以太网通道，由于路由IP容易控制，所以推荐使用tunnel；</div><div class="line"># 但如果如IPX等必须使用第二层才能通过的通讯，则可以用tap方式，tap也就是以太网桥接</div><div class="line">;dev tap</div><div class="line">dev tun</div><div class="line"></div><div class="line"># 这里是重点，必须指定SSL/TLS root certificate (ca),</div><div class="line"># certificate(cert), and private key (key)</div><div class="line"># ca文件是服务端和客户端都必须使用的，但不需要ca.key</div><div class="line"># 服务端和客户端指定各自的.crt和.key</div><div class="line"># 请注意路径,可以使用以配置文件开始为根的相对路径,</div><div class="line"># 也可以使用绝对路径</div><div class="line"># 请小心存放.key密钥文件</div><div class="line"></div><div class="line">ca pki/ca.crt</div><div class="line">cert pki/issued/server.crt</div><div class="line">key pki/private/server.key</div><div class="line">#（默认是2048，如果生成ca的时候修改过dh参数“export KEY_SIZE”则改为对应的数字）</div><div class="line"></div><div class="line">dh pki/dh.pem</div><div class="line"></div><div class="line"># 配置VPN使用的网段，OpenVPN会自动提供基于该网段的DHCP服务，但不能和任何一方的局域网段重复，保证唯一</div><div class="line">server 10.20.0.0 255.255.255.0</div><div class="line"></div><div class="line"># 维持一个客户端和virtual IP的对应表，以方便客户端重新连接可以获得同样的IP</div><div class="line">ifconfig-pool-persist ipp.txt</div><div class="line"></div><div class="line"># 为客户端创建对应的路由，以另其通达公司网内部服务器</div><div class="line"># 但记住，公司网内部服务器也需要有可用路由返回到客户端</div><div class="line">;push &quot;route 192.168.20.0 255.255.255.0&quot;</div><div class="line">push &quot;route 10.X.0.0 255.255.0.0&quot;</div><div class="line"># （X按照机房网段修改）</div><div class="line"></div><div class="line"># 若客户端希望所有的流量都通过VPN传输,则可以使用该语句</div><div class="line"># 其会自动改变客户端的网关为VPN服务器,推荐关闭</div><div class="line">#一旦设置，请小心服务端的DHCP设置问题</div><div class="line">;push &quot;redirect-gateway def1 bypass-dhcp&quot;</div><div class="line"></div><div class="line"># 用OpenVPN的DHCP功能为客户端提供指定的DNS、WINS等</div><div class="line">;push &quot;dhcp-option DNS 208.67.222.222&quot;</div><div class="line">;push &quot;dhcp-option DNS 208.67.220.220&quot;</div><div class="line"></div><div class="line"># 默认客户端之间是不能直接通讯的，除非把下面的语句注释掉</div><div class="line">client-to-client</div><div class="line"></div><div class="line"># 下面是一些对安全性增强的措施</div><div class="line"># For extra security beyond that provided by SSL/TLS, create an &quot;HMAC firewall&quot;</div><div class="line"># to help block DoS attacks and UDP port flooding.</div><div class="line">#</div><div class="line"># Generate with:</div><div class="line"># openvpn --genkey --secret ta.key</div><div class="line">#</div><div class="line"># The server and each client must have a copy of this key.</div><div class="line"># The second parameter should be 0 on the server and 1 on the clients.</div><div class="line">; tls-auth ta.key 0 # This file is secret</div><div class="line">#(这句要注释掉)</div><div class="line"></div><div class="line"># 使用lzo压缩的通讯,服务端和客户端都必须配置</div><div class="line">comp-lzo</div><div class="line"></div><div class="line"># 输出短日志,每分钟刷新一次,以显示当前的客户端</div><div class="line">status /var/log/openvpn/openvpn-status.log</div><div class="line"></div><div class="line"># 缺省日志会记录在系统日志中，但也可以导向到其他地方</div><div class="line"># 建议调试的使用先不要设置,调试完成后再定义</div><div class="line">log         /var/log/openvpn/openvpn.log</div><div class="line">log-append  /var/log/openvpn/openvpn.log</div><div class="line"></div><div class="line"># 设置日志的级别</div><div class="line">#</div><div class="line"># 0 is silent, except for fatal errors</div><div class="line"># 4 is reasonable for general usage</div><div class="line"># 5 and 6 can help to debug connection problems</div><div class="line"># 9 is extremely verbose</div><div class="line">verb 3</div></pre></td></tr></table></figure>
+<h3 id="启动服务："><a href="#启动服务：" class="headerlink" title="启动服务："></a>启动服务：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">service openvpn start</div><div class="line">#设置开机启动</div><div class="line">chkconfig openvpn on</div></pre></td></tr></table></figure>
+<h3 id="开启路由转发功能"><a href="#开启路由转发功能" class="headerlink" title="开启路由转发功能"></a>开启路由转发功能</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">vim /etc/sysctl.conf</div><div class="line"></div><div class="line">找到net.ipv4.ip_forward = 0</div><div class="line">把0改成1</div><div class="line">sysctl -p #生效</div></pre></td></tr></table></figure>
+<h3 id="设置防火墙"><a href="#设置防火墙" class="headerlink" title="设置防火墙"></a>设置防火墙</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># 设置iptables（这一条至关重要，通过配置nat将vpn网段IP转发到server内网）</div><div class="line">iptables -t nat -A POSTROUTING -s 10.20.0.0/24 -o eth0 -j MASQUERADE</div><div class="line"># openvpn端口通过</div><div class="line">iptables -A INPUT -p TCP --dport 1194 -j ACCEPT</div><div class="line">iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT</div><div class="line">service iptables save</div></pre></td></tr></table></figure>
+<h3 id="创建客户端文件"><a href="#创建客户端文件" class="headerlink" title="创建客户端文件"></a>创建客户端文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd /home/test</div><div class="line">vim test.opvn</div></pre></td></tr></table></figure>
+<p>填入内容 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">client</div><div class="line">dev tun</div><div class="line">proto tcp</div><div class="line">remote xxx.xxx.xxx.xxx 1194</div><div class="line">ca ca.crt</div><div class="line">cert test.crt</div><div class="line">key test.key</div><div class="line">comp-lzo</div><div class="line">persist-key</div><div class="line">persist-tun</div></pre></td></tr></table></figure>
+<h3 id="拷贝客户端文件"><a href="#拷贝客户端文件" class="headerlink" title="拷贝客户端文件"></a>拷贝客户端文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cp /etc/openvpn/pki/ca.crt /home/test</div><div class="line">cp /etc/openvpn/pki/issued/test.crt /home/test</div><div class="line">cp /etc/openvpn/pki/private/test.key /home/test</div><div class="line">cp /etc/openvpn/ta.key /home/test</div></pre></td></tr></table></figure>
+<h3 id="打包下载文件"><a href="#打包下载文件" class="headerlink" title="打包下载文件"></a>打包下载文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cd /home/test</div><div class="line">zip test.zip *</div><div class="line">sz test.zip</div></pre></td></tr></table></figure>
+<p>下载openvpn客户端，打开test.opvn，即可连上服务器了。</p>
+
           
         
       
@@ -1105,7 +1079,7 @@ In the Hive client, configure the Spark execution engine.
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
